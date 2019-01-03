@@ -57,9 +57,9 @@ PORT=$(whiptail --title "Choix du Port de communication" --radiolist \
 exitstatus=$?
 if [ $exitstatus = 0 ]; then
 
-echo 'python /opt/spotnik/spotnik2hmi.spotnik2hmi.py' $PORT '9600' >> /etc/rc.local
+sed -i '/make start/a \python /opt/spotnik/spotnik2hmi/spotnik2hmi.py' $PORT '9600' /etc/rc.local
 else
-    echo "Vous avez annulé"
+    echo "Vous avez annuler"
 fi
 exit
 
@@ -75,7 +75,7 @@ exitstatus=$?
 if [ $exitstatus = 0 ]; then
     echo "Port du Nextion :" $PORT
 else
-    echo "Vous avez annulé"
+    echo "Vous avez annuler"
 fi
 
 ECRAN=$(whiptail --title "Choix type d'ecran NEXTION" --radiolist \
@@ -90,8 +90,7 @@ ECRAN=$(whiptail --title "Choix type d'ecran NEXTION" --radiolist \
 exitstatus=$?
 if [ $exitstatus = 0 ]; then
     echo "Type d'écran :" $ECRAN
-    
-sed -i '/make start/a \python /opt/spotnik/spotnik2hmi/spotnik2hmi.py' '/opt/spotnik/spotnik2hmi/nextion/'$ECRAN '/dev/'$PORT /etc/rc.local
+python /opt/spotnik/spotnik2hmi/nextion/nextion.py '/opt/spotnik/spotnik2hmi/nextion/'$ECRAN '/dev/'$PORT   
 else
     echo "Vous avez annulé"
 fi
