@@ -61,13 +61,6 @@ echo 'python /opt/spotnik/spotnik2hmi.spotnik2hmi.py' $PORT '9600' >> /etc/spotn
 else
     echo "Vous avez annulé"
 fi
-
-
-echo ""
-echo "INSTALL TERMINEE AVEC SUCCES"
-echo ""
-echo " ENJOY ;) TEAM:F0DEI,F5SWB,F8ASB"
-echo ""
 exit
 
 else
