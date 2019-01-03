@@ -21,9 +21,9 @@ if [ $INSTALL = "SPOTNIK2HMI" ]; then
 
 # MAJ
 echo "UPGRADE IN PROGRESS..."
-#apt-get -y update
-#apt-get -y dist-upgrade
-#apt-get -y upgrade
+apt-get -y update
+apt-get -y dist-upgrade
+apt-get -y upgrade
 echo "UPGRADE COMPLETED !"
  
 echo "INSTALLATION DEPENDANCE PYTHON"
