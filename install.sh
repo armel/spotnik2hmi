@@ -90,8 +90,8 @@ ECRAN=$(whiptail --title "Choix type d'ecran NEXTION" --radiolist \
 exitstatus=$?
 if [ $exitstatus = 0 ]; then
     echo "Type d'écran :" $ECRAN
-python /opt/spotnik/spotnik2hmi/nextion/nextion.py '/opt/spotnik/spotnik2hmi/nextion/'$ECRAN '/dev/'$PORT
-
+    
+sed -i '/make start/a \python /opt/spotnik/spotnik2hmi/spotnik2hmi.py' '/opt/spotnik/spotnik2hmi/nextion/'$ECRAN '/dev/'$PORT /etc/rc.local
 else
     echo "Vous avez annulé"
 fi
