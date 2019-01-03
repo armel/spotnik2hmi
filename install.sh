@@ -1,5 +1,24 @@
 #!/bin/bash
+whiptail --title "INFORMATION:" --msgbox "Ce script considère que vous partez d’une image disponible par F5NLG du Spotnik 1.9 et fonctionnelle sur Raspberry ou Orange Pi.Il permet d’ajouter un écran Nextion à la distribution. Plus d'informations sur http://blog.f8asb.com/spotnik2hmi.                                                                                         Team F0DEI/F5SWB/F8ASB" 15 60
+
+
+#!/bin/bash
+INSTALL=$(whiptail --title "Choisir votre installation" --radiolist \
+"Que voulez vous installer?" 15 60 4 \
+"SPOTNIK2HMI" "Gestion Nextion avec Spotnik " ON \
+"NEXTION" "Programmation ecran Nextion " OFF 3>&1 1>&2 2>&3)
  
+exitstatus=$?
+
+if [ $exitstatus = 0 ]; then
+    echo "Installation de :" $INSTALL
+
+else
+    echo "Vous avez annulé"
+fi
+
+if [ $INSTALL = "SPOTNIK2HMI" ]; then
+
 # MAJ
 echo "UPGRADE IN PROGRESS..."
 sudo apt-get -y update
@@ -29,96 +48,66 @@ echo "INSTALLATION UTILITAIRE METAR"
 git clone https://github.com/python-metar/python-metar.git /opt/spotnik/spotnik2hmi/
 echo "INSTALLATION COMPLETE !"
 
-echo "Parametrage du port de l'ecran Nextion:"
-echo "Sur quel port le branchez vous? ?"
-echo
-echo
-echo "taper: ttyAMA (pour le port serie du raspberry GPIO pin 8 et 10)"
-echo "taper: ttySS0 (pour le port UART J3 de l'OrangePi)"
-echo "taper: USB00 (convertiseseur USB/SERIE sur le Raspberry Pi ou Orange Pi)"
+PORT=$(whiptail --title "Choix du Port de communication" --radiolist \
+"Sur quoi raccorder vous le Nextion?" 15 60 4 \
+"ttyAMA0" "Sur Raspberry Pi " ON \
+"ttySS0" "Sur Orange Pi " OFF \
+"ttyUSB0" "Orange Pi ou Raspberry Pi " OFF 3>&1 1>&2 2>&3)
 
-read port
+exitstatus=$?
+if [ $exitstatus = 0 ]; then
 
-# Ecriture du script au demarage dans svxlin.rrf
-if [ $port == "ttyAMA0" ]; then
-echo "#demarrage script SPOTNIK2HMI" >> /etc/spotnik/restart.rrf
-echo "python /opt/spotnik/spotnik2hmi.spotnik2hmi.py ttyAMA0 9600" >> /etc/spotnik/restart.rrf
-
-elif [ $port == "USB0" ]; then
-echo "#demarrage script SPOTNIK2HMI" >> /etc/spotnik/restart.rrf
-echo "python /opt/spotnik/spotnik2hmi.spotnik2hmi.py ttyUSB0 9600" >> /etc/spotnik/restart.rrf
-
-elif [ $port == "ttySS0" ]; then
-echo "#demarrage script SPOTNIK2HMI" >> /etc/spotnik/restart.rrf
-echo "python /opt/spotnik/spotnik2hmi.spotnik2hmi.py ttySS0 9600" >> /etc/spotnik/restart.rrf
-
-else 
-	echo "Le script n'est pas inscrit au demarrage"
+echo 'python /opt/spotnik/spotnik2hmi.spotnik2hmi.py' $PORT '9600' >> /etc/spotnik/start.sh
+else
+    echo "Vous avez annulé"
+fi
 
 
-echo "Voulez vous transferer le fichier .TFT sur ecran Nextion?"
-echo 
-echo "Regarder la reference a l'arriere de l'ecran et taper:"
-echo
-echo  "NX3224T024 (non disponible)"
-echo  "NX4024T032 (non disponible)"
-echo  "NX4832T035 (disponible)"
-echo  "NX8048T050 (disponible)"
-echo
-echo  "NX3224K024 (non disponible)"
-echo  "NX4024K032 (non disponible)"
-echo  "NX4832K035 (disponible)"
-echo  "NX8048K050 (disponible)"
-echo
-echo
-echo "Il existe 2 sortes d'ecran, il y a la version standart avec un T ou la version Enhanced avec un K"
-echo
-echo "ATTENTION: Le protocole de transfert est simple et peut etrainer des erreurs, vous pouvez programmer"
-echo "l'ecran en insérant directement une cart mini SD et le fichier TFT dessus"
-echo
-
-
-read installhmi
-
-
-if [ $installhmi == "NX3224K024" ]; then
-wget http://f8asb.com/spotnik2hmi/NX3224K024.tft
-python nextion.py NX3224K024.tft '/dev/'+$port
-
-elif [ $installhmi == "NX4024K032" ]; then
-wget http://f8asb.com/spotnik2hmi/NX4024K032.tft
-python nextion.py NX4024K032.tft '/dev/'+$port
-
-elif [ $installhmi == "NX4832K035" ]; then
-wget http://f8asb.com/spotnik2hmi/NX4832K035.tft
-python nextion.py NX4832K035.tft '/dev/'+$port
-
-elif [ $installhmi == "NX8048K050"" ]; then
-wget http://f8asb.com/spotnik2hmi/NX8048K050.tft
-python nextion.py NX8048K050.tft '/dev/'+$port
-
-elif [ $installhmi == "NX3224T024" ]; then
-wget http://f8asb.com/spotnik2hmi/NX3224T024.tft
-python nextion.py NX3224T024.tft '/dev/'+$port
-
-elif [ $installhmi == "NX4024T032" ]; then
-wget http://f8asb.com/spotnik2hmi/NX4024T032.tft
-python nextion.py NX4024T032.tft '/dev/'+$port
-
-elif [ $installhmi == "NX4832T035" ]; then
-wget http://f8asb.com/spotnik2hmi/NX4832T035.tft
-python nextion.py NX4832T035.tft '/dev/'+$port
-
-elif [ $installhmi == "NX8048T050"" ]; then
-wget http://f8asb.com/spotnik2hmi/NX8048T050.tft
-python nextion.py NX8048T050.tft '/dev/'+$port
-
-
-else 
 echo ""
 echo "INSTALL TERMINEE AVEC SUCCES"
 echo ""
 echo " ENJOY ;) TEAM:F0DEI,F5SWB,F8ASB"
 echo ""
+exit
 
+else
+
+PORT=$(whiptail --title "Choix du Port de communication" --radiolist \
+"Sur quoi raccorder vous le Nextion?" 15 60 4 \
+"ttyAMA0" "Sur Raspberry Pi " ON \
+"ttySS0" "Sur Orange Pi " OFF \
+"ttyUSB0" "Orange Pi ou Raspberry Pi " OFF 3>&1 1>&2 2>&3)
+ 
+exitstatus=$?
+if [ $exitstatus = 0 ]; then
+    echo "Port du Nextion :" $PORT
+else
+    echo "Vous avez annulé"
+fi
+
+ECRAN=$(whiptail --title "Choix type d'ecran NEXTION" --radiolist \
+"Quel Type d'ecran ?" 15 60 4 \
+"NX3224K024.tft" "Ecran 2,4 Enhanced (non dispo)" OFF \
+"NX3224T024.tft" "Ecran 2,4 Basic (non dipo)" OFF \
+"NX4832K035.tft" "Ecran 3,5 Enhanced" OFF \
+"NX4832T035.tft" "Ecran 3,5 Basic" ON \
+"NX8048K050.tft" "Ecran 5,0 Enhanced" OFF \
+"NX8048T050.tft" "Ecran 5,0 Basic" OFF 3>&1 1>&2 2>&3)
+ 
+exitstatus=$?
+if [ $exitstatus = 0 ]; then
+    echo "Type d'écran :" $ECRAN
+python /opt/spotnik/spotnik2hmi/nextion/nextion.py '/opt/spotnik/spotnik2hmi/nextion/'$ECRAN '/dev/'$PORT
+
+else
+    echo "Vous avez annulé"
+fi
+fi
+
+
+echo ""
+echo "INSTALL TERMINEE AVEC SUCCES"
+echo ""
+echo " ENJOY ;) TEAM:F0DEI,F5SWB,F8ASB"
+echo ""
 
