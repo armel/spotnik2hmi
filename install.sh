@@ -21,9 +21,9 @@ if [ $INSTALL = "SPOTNIK2HMI" ]; then
 
 # MAJ
 echo "UPGRADE IN PROGRESS..."
-sudo apt-get -y update
-sudo apt-get -y dist-upgrade
-sudo apt-get -y upgrade
+apt-get -y update
+apt-get -y dist-upgrade
+apt-get -y upgrade
 echo "UPGRADE COMPLETED !"
  
 echo "INSTALLATION DEPENDANCE PYTHON"
@@ -34,7 +34,7 @@ echo "INSTALLATION COMPLETE !"
 # PIP
 echo "INSTALLATION PIP"
 wget https://bootstrap.pypa.io/get-pip.py -O – | python
-sudo pip install psutil
+pip install psutil
 echo "INSTALLATION COMPLETE !"
 
 echo "INSTALLATION scripts python"
@@ -57,7 +57,7 @@ PORT=$(whiptail --title "Choix du Port de communication" --radiolist \
 exitstatus=$?
 if [ $exitstatus = 0 ]; then
 
-echo 'python /opt/spotnik/spotnik2hmi.spotnik2hmi.py' $PORT '9600' >> /etc/spotnik/start.sh
+echo 'python /opt/spotnik/spotnik2hmi.spotnik2hmi.py' $PORT '9600' >> /etc/rc.local
 else
     echo "Vous avez annulé"
 fi
