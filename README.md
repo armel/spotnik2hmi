@@ -10,7 +10,7 @@ Une belle experience d’un travail collaboratif, qui au bout de 2 semaines prop
 Spotnik2hmi permet de gérer un ecran de type Nextion sur un Spotnik (Hotspot analogique sur reseau RRF)
 https://f5nlg.wordpress.com/category/hotspot/
 
-Toutes les informations d'installations logiciels et hardware se retrouve sur :
+Toutes les informations d'installations logiciels et hardware se retrouvent sur :
 http://f8asb.com/spotnik2hmi
 
 ENJOY ;)
