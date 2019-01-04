@@ -65,7 +65,7 @@ exit
 
 else
 
-PORT=$(whiptail --title "Choix du Port de communication" --radiolist \
+PORT2=$(whiptail --title "Choix du Port de communication" --radiolist \
 "Sur quoi raccorder vous le Nextion?" 15 60 4 \
 "ttyAMA0" "Sur Raspberry Pi " ON \
 "ttyS0" "Sur Orange Pi " OFF \
@@ -73,7 +73,7 @@ PORT=$(whiptail --title "Choix du Port de communication" --radiolist \
  
 exitstatus=$?
 if [ $exitstatus = 0 ]; then
-    echo "Port du Nextion :" $PORT
+    echo "Port du Nextion :" $PORT2
 else
     echo "Vous avez annuler"
 fi
