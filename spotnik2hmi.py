@@ -32,7 +32,7 @@ eof = "\xff\xff\xff"
 today = datetime.now()
 url = "http://rrf.f5nlg.ovh"
 url2 = "http://rrf.f5nlg.ovh:82"
-versionDash = "1.020119"
+versionDash = "1.040119"
 wifistatut = 0
 
 #Reglage de luminosite
@@ -263,14 +263,14 @@ while 1:
         else:
                 print "Shutdown command...."		
 		page("confirm")
-		ecrire("confirm.t0.txt","CONFIRMER UN ARRET TOTAL?")			
+		ecrire("confirm.t0.txt","CONFIRMER UN ARRET TOTAL ?")			
 #RESTART
         if s.find("restart")== -1:
                 ecrire("page200.t3.txt","Mode autonome")
         else:
                 print "Restart command...."
                 page("confirm")
-                ecrire("confirm.t0.txt","CONFIRMER LE REDEMARRAGE LOGICIEL?")
+                ecrire("confirm.t0.txt","CONFIRMER LE REDEMARRAGE LOGICIEL ?")
 
 #REBOOT
         if s.find("reboot")== -1:
@@ -278,7 +278,7 @@ while 1:
         else:
                 print "Reboot command...."
 		page("confirm")
-                ecrire("confirm.t0.txt","CONFIRMER LE REBOOT GENERAL?")
+                ecrire("confirm.t0.txt","CONFIRMER LE REBOOT GENERAL ?")
 
 #MAJWIFI
         if s.find("maj")== -1:
