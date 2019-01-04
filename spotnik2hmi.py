@@ -55,8 +55,9 @@ config = ConfigParser.RawConfigParser()
 config.read(svxconfig)
 
 #recuperation indicatif et frequence    
-callsign = config.get('ReflectorLogic', 'CALLSIGN')
-freq = config.get('LocationInfo', 'FREQUENCY')
+callsign = get_callsign()
+freq = get_frequency()
+#print indicatif
 
 #adresse IP
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -94,7 +95,7 @@ sleep(5);
 
 #envoi indicatif
 print "Maj Call ..."
-ecrire("boot.va0.txt",callsign)
+ecrire("boot.va0.txt",str(callsign))
 #Affichage de la page Dashboard
 print "Page trafic ..."
 page("trafic")

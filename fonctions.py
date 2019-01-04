@@ -130,7 +130,27 @@ def prenom(Searchcall):
 	for indicatif,nom,prenom,adresse,ville,cp in lines:
         	if indicatif==Searchprenom:
                 	print prenom                	
+#recuperation Frequence dans JSON
 
+def get_frequency():
+	global frequence
+	#recherche code IMAO dans config.json
+        with open(Json, 'r') as c:
+                        afind= json.load(c)
+                        frequence=afind['rx_qrg']
+			
+	return(frequence)
+#recuperation indicatif dans Json		
+def get_callsign():
+	global indicatif
+        #recherche code IMAO dans config.json
+        with open(Json, 'r') as d:
+                        afind= json.load(d)
+                        call=afind['callsign']
+			dept = afind['Departement']
+			band = afind['band_type']			
+	indicatif = "("+dept+") "+call+" "+band
+	return(indicatif)        
 
 #Fonction envoyer des commande console
 def console(cmd):
