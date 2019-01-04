@@ -12,3 +12,6 @@ https://f5nlg.wordpress.com/category/hotspot/
 
 Toutes les informations d'installations logiciels et hardware se retrouve sur :
 http://f8asb.com/spotnik2hmi
+
+ENJOY ;)
+TEAM: F0DEI,F5SWB,F8ASB
