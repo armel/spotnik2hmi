@@ -25,7 +25,6 @@ import csv
 import psutil
 import os
 
-#port=serial.Serial(port='/dev/'+sys.argv[1],baudrate=sys.argv[2],timeout=1, writeTimeout=1)
 portcom(sys.argv[1],sys.argv[2])
 
 #Variables
@@ -46,12 +45,10 @@ cheminversion= open("/etc/spotnik/version", "r")
 version = cheminversion.read()
 version = version.strip()
 conf="/etc/NetworkManager/system-connections/SPOTNIK"
-#icao="/opt/spotnik/spotnik2hmi/icao.cfg"
+
 #Chemin log a suivre
 svxlogfile = "/tmp/svxlink.log"   #SVXLink log file 
 
-#Chemin fichier Json
-#Json="/etc/spotnik/config.json"
 
 #routine ouverture fichier de config
 config = ConfigParser.RawConfigParser()
@@ -82,22 +79,7 @@ chargecpu = str(cpu)+"%"
 
 
 #Envoi des infos sur le Nextion
-
-#print'                                                 \x1b[7;30;47m'"oo" +'\x1b[0m'                                                
-#print'\x1b[7;30;47m'+" `::::::::::::::::::::::::::::::::::::::::::::::oooo::::::::::::::::::::::::::::::::::::::::::::::`"+'\x1b[0m' 
-#print'\x1b[7;30;47m'+" .oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo."+'\x1b[0m' 
-#print'\x1b[7;30;43m'+" -:::::- ::::::.  -::::-` -:::::: -:::. .:: -:: ::-   .::`     ::::-.     -::`  ::- ::::`  .::: -::`"+'\x1b[0m'
-#print'\x1b[7;30;43m'+" //:---. ///.:// -//:-/// --://:- :////`:// /// ///  .//:      ---///-    ://.  //: ////- `//// ://."+'\x1b[0m'
-#print'\x1b[7;30;43m'+" //:--.` ///`-// ://. ///   -//`  :////::// /// ///-///.        .///.     ://---//: /////`-//// ://."+'\x1b[0m'
-#print'\x1b[7;30;43m'+" `.-:/// ///://: ://. ///   -//`  ://-///// /// ///-:///       -///:`     ://:--//: //::/://.// ://."+'\x1b[0m'
-#print'\x1b[7;30;43m'+" ...-/// ///     ://:.///   -//`  ://.-//// /// ///  `///      ////-..    ://.  //: //:`///:`// ://."+'\x1b[0m'
-#print'\x1b[7;30;43m'+" :::::-` ::-     `-::::-.   .::`  -::` -::: -:: ::-   ::-      :::::::    -::`  ::- ::- -::` :: -::`"+'\x1b[0m'
-#print'\x1b[7;30;47m'+" .oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo."+'\x1b[0m' 
-#print'\x1b[7;30;47m'+" `::::::::::::::::::::::::::::::::::::::::::::::oooo::::::::::::::::::::::::::::::::::::::::::::::`"+'\x1b[0m' 
-#print'                                                 \x1b[7;30;47m'"oo"+'\x1b[0m'                 
-#print'\x1b[7;30;47m'"                Version :" +versionDash+"                    "           '\x1b[0m'+'\x1b[7;30;47m' + "          TEAM:"+ '\x1b[0m' +'\x1b[3;37;44m' + "/F0DEI"+ '\x1b[0m' +'\x1b[6;30;47m' + "/F5SWB"+ '\x1b[0m' + '\x1b[6;37;41m' + "/F8ASB"+ '\x1b[0m'
-#print 
-#print  
+  
 logo(versionDash)
 print "Proc: "+(str(cpu))+"%   " + "CPU: "+cputemp+"°C" 
 print "Station: "+callsign
@@ -159,9 +141,10 @@ while 1:
 	else:
 		ecrire("trafic.t0.txt","PERROQUET")
 	a.close()
-#Gestion status TRX
-	
 
+#
+#Gestion status TRX
+#	
 # adresse sur le hotspot
 # Salon TEC	url = "http://rrf.f5nlg.ovh:82"
 # Salon	RRF  	url = "http://rrf.f5nlg.ovh"
@@ -201,59 +184,12 @@ while 1:
        			dimsend ='dim='+str(rdim)+eof
                         setdim(rdim)
 	
-	if tn.find("el") != -1:
-		i=0
-		logfile = open(svxlogfile)
-		loglines = follow(logfile)
-		for line in loglines:
-        	#print line
-        		if "transmitter ON" in line:
-                		print "TX ON"
-
-        		elif "transmitter OFF" in line:
-                		print "TX OFF"
-
-        		elif "Shutting down application" in line:
-                		print "SHUTTING DOWN SVX"
-			elif "The squelch is OPEN"  in line:
-                		print "SQUELCH OPEN"
-
-        		elif "The squelch is CLOSED" in line:
-                		print "SQUELCH CLOSED"
-			elif "ECHO4: Frankfurt, Germany" in line:
-                		print "Echolink Connexion Frankfurt"
-			elif ">" in line:
-                		print "info station"
-                		call= line.split(">")
-                		print call[1]
-			elif StrRepeater+": Activating module " + StrEcholink  in line:
-                		print StrEcholink+" module activated on "+StrRepeater
-        		elif StrRepeater+": Deactivating module " + StrEcholink in line:
-                		print StrEcholink+" module desactivated on "+StrRepeater
-			elif StrSimplex+": Activating module " + StrEcholink  in line:
-                		print StrEcholink+" module activated on "+StrSimplex
-                	elif StrSimplex+": Deactivating module " + StrEcholink in line:
-                		print StrEcholink+" module desactivated on "+StrSimplex
-                	#elif "EchoLink QSO state changed to CONNECTED" in line:
-            		#	ch =  line.split(':')
-            		#	Last_Echolink_station = ch[0]
-           # Echok_Station_conn = 1
-            		#	print "ECHOLINK STATION CONNECTED"
-            		#	print Last_Echolink_station= ch[0]
-
-        		elif "EchoLink QSO state changed to BYE_RECEIVED" in line:
-           # Echok_Station_conn = 0
-            			print "ECHOLINK STATION DISCONNECTED"
-       # port.write(heure)
+	
 	ecrire("trafic.t1.txt",TxStation)
 
 #Gestion des commandes serie reception du Nextion
-#	global port
-#	rcv = port.readline()
-#       value = (rcv)
-#        myString = str(value)
 	s = hmiReadline()
-#	s = myString
+
 	if len(s)<59 and len(s)>0:
 		print s
 		#print len(s)
@@ -308,15 +244,6 @@ while 1:
 		page("trafic")
 		dtmf("96#")
                 
-#OUICONNEXIONNODE#
-#        if s.find("ouiconnectenode")== -1:
-#                ecrire("page200.t3.txt","Mode autonome")
-#        else:
-#                print "QSY SUR LE NODE"
-#                numpadvalue ='get keypadnum.va0.txt' +eof
-#                port.write(numpadvalue)
-#		page("echolink")
-
 #OUIDECONNECTIONNODE#
         if s.find("ouideconnectenode")== -1:
                 ecrire("page200.t3.txt","Mode autonome")
@@ -324,6 +251,9 @@ while 1:
                 print "DECONNECTE NODE"
                 page("echolink")
                 dtmf("#")
+#
+#Gestion commande du Nextion
+#
                                                                               
 #STOP		
 	
@@ -445,13 +375,7 @@ while 1:
 				print "Envoi PASS actuel sur Nextion: "+wifi_pass
  				ecrire("wifi.t1.txt",str(wifi_ssid))
 				ecrire("wifi.t0.txt",str(wifi_pass))
-				wifistatut = 1
-
-	#Gestion des commande DTMF
-# 	b = open("/tmp/svxlink_dtmf_ctrl_pty","a")
-# 	s = myString
-#	b.write(myString)
-# 	b.close()	
+				wifistatut = 1	
 
 #ECHOLINK#
         if s.find("echolink")== -1:
@@ -463,13 +387,6 @@ while 1:
                 ecrire("page200.t3.txt","Mode autonome")
         else:
                 print "Page clavier numerique"
-#Quitte Echolink#
-#        if s.find("quittecho")== -1:
-#                ecrire("page200.t3.txt","Mode autonome")
-#        else:
-#                print "Bouton quitter echolink"
-#		page("confirm")
-#                ecrire("confirm.t0.txt","QUITTER ECHOLINK?")	
 	
 #Connect Echolink#
         if s.find("connexionecho")== -1:
