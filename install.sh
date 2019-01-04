@@ -57,7 +57,7 @@ PORT=$(whiptail --title "Choix du Port de communication" --radiolist \
 exitstatus=$?
 if [ $exitstatus = 0 ]; then
 
-sed -i '/make start/a \python /opt/spotnik/spotnik2hmi/spotnik2hmi.py' $PORT '9600' /etc/rc.local
+sed -i '/make start/a \python /opt/spotnik/spotnik2hmi/spotnik2hmi.py '$PORT' 9600' /etc/rc.local
 else
     echo "Vous avez annuler"
 fi
