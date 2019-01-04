@@ -15,4 +15,4 @@ http://f8asb.com/spotnik2hmi
 
 ENJOY ;)
 
-TEAM: F0DEI,F5SWB,F8ASB
+TEAM: F0DEI, F5SWB, F8ASB
