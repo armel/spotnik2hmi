@@ -313,7 +313,7 @@ while 1:
 		cput = '"'+cputemp+' C'+'"' 
 		ecrire("info.t14.txt",cputemp)
 		print "Station: "+callsign
-		Freq = freq+ ' Mhz'
+		Freq = str(freq)+ ' Mhz'
 		print "Frequence: "+freq
 		ecrire("info.t15.txt",Freq)
 		print "Spotnik: "+version

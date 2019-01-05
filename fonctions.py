@@ -219,7 +219,7 @@ def get_meteo():
         fichier.close()
 
         result = console('/opt/spotnik/spotnik2hmi/python-metar/get_report.py '+ airport+ '>> /tmp/meteo.txt')
-
+	print result
         #routine ouverture fichier de config
         config = ConfigParser.RawConfigParser()
         config.read('/tmp/meteo.txt')
@@ -238,7 +238,7 @@ def get_meteo():
         ecrire("meteo.t1.txt",temperature)
         ecrire("meteo.t3.txt",heure[4])
         ecrire("meteo.t4.txt",rose)
-        Pression = pression[:-2]+' hPa'
+        Pression = pression[:-2]+'hPa'
         ecrire("meteo.t2.txt",Pression)
 
 def logo(Current_version):
