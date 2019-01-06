@@ -1,6 +1,6 @@
 # spotnik2hmi
 Software for Nextion and Spotnik Hamradio RRF
-
+![alt tag](http://blog.f8asb.com/wp-content/uploads/2019/01/boot.jpg)
 Le projet est née sur une idée de Dimitri F5SWB, Toufik F0DEI est venu aider Dimitri en proposant
 les premiers scripts pour communiquer avec l’écran Nextion.
 Le projet était d’ajouter un écran Nextion à la distribution du Spotnik distribuée par F5NLG.
