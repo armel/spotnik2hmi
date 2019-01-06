@@ -70,12 +70,11 @@ t = f.readline ()
 cputemp = t[0:2]+"." + t[3:4]
 
 #Memoire SD libre
-disk = psutil.disk_usage('/').percent
+disk= getDiskSpace()
 occupdisk = str(disk)+"%"
 
 #Utilisation CPU
 chargecpu= getCPUuse()
-print str(chargecpu) 
 
 
 #Envoi des infos sur le Nextion

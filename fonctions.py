@@ -97,7 +97,19 @@ def getCPUuse():
     return(str(os.popen("top -n1 | awk '/Cpu\(s\):/ {print $2}'").readline().strip(\
 )))
 
-
+#Return information sur espace disque                     
+# Index 0: total disk space                                                         
+# Index 1: used disk space                                                          
+# Index 2: remaining disk space                                                     
+# Index 3: percentage of disk used                                                  
+def getDiskSpace():
+    p = os.popen("df -h /")
+    i = 0
+    while 1:
+        i = i +1
+        line = p.readline()
+        if i==2:
+            return(line.split()[1:5])
 
 #Fonction de control d'extension au demarrage
 def usage():
