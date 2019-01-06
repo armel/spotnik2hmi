@@ -32,7 +32,7 @@ eof = "\xff\xff\xff"
 today = datetime.now()
 url = "http://rrf.f5nlg.ovh"
 url2 = "http://rrf.f5nlg.ovh:82"
-versionDash = "1.060119"
+versionDash = "1.060119b"
 wifistatut = 0
 
 #Reglage de luminosite
@@ -71,7 +71,7 @@ cputemp = t[0:2]+"." + t[3:4]
 
 #Memoire SD libre
 disk= getDiskSpace()
-occupdisk = str(disk)+"%"
+occupdisk = str(disk)
 
 #Utilisation CPU
 chargecpu= getCPUuse()
