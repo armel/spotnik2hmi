@@ -62,8 +62,8 @@ from subprocess import Popen, PIPE
 def portcom(portserie,vitesse):
 	global port
 	port=serial.Serial(port='/dev/'+portserie,baudrate=vitesse,timeout=1, writeTimeout=1)
-	print portserie
-	print vitesse
+	print "Port serie: " +portserie+" Vitesse: "+vitesse
+	
 	
 def resetHMI():
 	global port
