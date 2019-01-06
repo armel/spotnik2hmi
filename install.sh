@@ -38,14 +38,14 @@ pip install psutil
 echo "INSTALLATION COMPLETE !"
 
 echo "INSTALLATION scripts python"
-git clone https://github.com/F8ASB/spotnik2hmi.git /opt/spotnik/
+git clone https://github.com/F8ASB/spotnik2hmi.git /opt/spotnik/spotnik2hmi/
 
 chmod +x /opt/spotnik/spotnik2hmi/spotnik2hmi.py
 
 echo "INSTALLATION COMPLETE !"
 
 echo "INSTALLATION UTILITAIRE METAR"
-git clone https://github.com/python-metar/python-metar.git /opt/spotnik/spotnik2hmi/
+git clone https://github.com/python-metar/python-metar.git /opt/spotnik/spotnik2hmi/python-metar/
 echo "INSTALLATION COMPLETE !"
 
 PORT=$(whiptail --title "Choix du Port de communication" --radiolist \
