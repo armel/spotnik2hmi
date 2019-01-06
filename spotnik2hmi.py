@@ -22,7 +22,7 @@ import io
 import json
 #Pour ouverture nomenclature
 import csv
-import psutil
+#import psutil
 import os
 
 portcom(sys.argv[1],sys.argv[2])
@@ -74,14 +74,14 @@ disk = psutil.disk_usage('/').percent
 occupdisk = str(disk)+"%"
 
 #Utilisation CPU
-cpu = psutil.cpu_percent(interval=1)
-chargecpu = str(cpu)+"%"
+chargecpu= getCPUuse()
+print str(chargecpu) 
 
 
 #Envoi des infos sur le Nextion
   
 logo(versionDash)
-print "Proc: "+(str(cpu))+"%   " + "CPU: "+cputemp+"°C" 
+print "Proc: "+(str(chargecpu))+"%   " + "CPU: "+cputemp+"°C" 
 print "Station: "+callsign
 print "Frequence: "+freq+" Mhz"
 print "Spotnik: Version:"+version
@@ -324,8 +324,8 @@ while 1:
 		ecrire("info.t13.txt",occupdisk)
 		print "IP: "+ip
 		ecrire("info.t0.txt",ip)
-		print "occupation systeme: "+(chargecpu)
-                ecrire("info.t12.txt",chargecpu)
+		print "occupation systeme: "+str(chargecpu)
+                ecrire("info.t12.txt",str(chargecpu))
 		dtmf("*#")
 #METEO#
 	if s.find("meteo")== -1:

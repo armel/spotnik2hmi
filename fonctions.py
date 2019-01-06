@@ -93,7 +93,10 @@ def hmiReadline():
 	rcv = port.readline()
         myString = str(rcv)
         return myString
-	
+def getCPUuse():
+    return(str(os.popen("top -n1 | awk '/Cpu\(s\):/ {print $2}'").readline().strip(\
+)))
+
 
 
 #Fonction de control d'extension au demarrage
