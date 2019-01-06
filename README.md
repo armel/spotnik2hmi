@@ -2,6 +2,7 @@
 Software for Nextion and Spotnik Hamradio RRF
 
 ![alt tag](http://blog.f8asb.com/wp-content/uploads/2019/01/boot.jpg)
+![alt tag](http://blog.f8asb.com/wp-content/uploads/2019/01/Trafic.jpg)
 
 Le projet est née sur une idée de Dimitri F5SWB, Toufik F0DEI est venu aider Dimitri en proposant
 les premiers scripts pour communiquer avec l’écran Nextion.
