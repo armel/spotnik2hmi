@@ -44,7 +44,7 @@ echo "INSTALLATION COMPLETE !"
 PORT=$(whiptail --title "Choix du Port de communication" --radiolist \
 "Sur quoi raccorder vous le Nextion?" 15 60 4 \
 "ttyAMA0" "Sur Raspberry Pi " ON \
-"ttySS0" "Sur Orange Pi " OFF \
+"ttyS0" "Sur Orange Pi " OFF \
 "ttyUSB0" "Orange Pi ou Raspberry Pi " OFF 3>&1 1>&2 2>&3)
 
 exitstatus=$?
