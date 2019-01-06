@@ -28,13 +28,6 @@ echo "UPGRADE COMPLETED !"
  
 echo "INSTALLATION DEPENDANCE PYTHON"
 install -y gcc python-dev python-pip python-setuptools
-
-echo "INSTALLATION COMPLETE !"
-
-# PIP
-echo "INSTALLATION PIP"
-wget https://bootstrap.pypa.io/get-pip.py -O – | python
-pip install psutil
 echo "INSTALLATION COMPLETE !"
 
 echo "INSTALLATION scripts python"
