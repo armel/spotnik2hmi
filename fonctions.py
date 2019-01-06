@@ -14,7 +14,6 @@
 #     			        	      TEAM: F0DEI,F5SWB,F8ASB	   #	
 ############################################################################
 #import echolink
-import psutil
 import serial
 import time
 import os
