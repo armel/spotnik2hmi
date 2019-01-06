@@ -22,12 +22,12 @@ if [ $INSTALL = "SPOTNIK2HMI" ]; then
 # MAJ
 echo "UPGRADE IN PROGRESS..."
 apt-get -y update
-apt-get -y dist-upgrade
+#apt-get -y dist-upgrade
 apt-get -y upgrade
 echo "UPGRADE COMPLETED !"
  
 echo "INSTALLATION DEPENDANCE PYTHON"
-apt-get -y install gcc python-dev python-pip python-setuptools
+install -y gcc python-dev python-pip python-setuptools
 
 echo "INSTALLATION COMPLETE !"
 
@@ -38,50 +38,52 @@ pip install psutil
 echo "INSTALLATION COMPLETE !"
 
 echo "INSTALLATION scripts python"
-git clone https://github.com/F8ASB/spotnik2hmi.git /opt/spotnik/spotnik2hmi/
+git clone https://github.com/F8ASB/spotnik2hmi.git /opt/spotnik/
 
 chmod +x /opt/spotnik/spotnik2hmi/spotnik2hmi.py
 
 echo "INSTALLATION COMPLETE !"
 
 echo "INSTALLATION UTILITAIRE METAR"
-git clone https://github.com/python-metar/python-metar.git /opt/spotnik/spotnik2hmi/python-metar/
+git clone https://github.com/python-metar/python-metar.git /opt/spotnik/spotnik2hmi/
 echo "INSTALLATION COMPLETE !"
 
 PORT=$(whiptail --title "Choix du Port de communication" --radiolist \
 "Sur quoi raccorder vous le Nextion?" 15 60 4 \
 "ttyAMA0" "Sur Raspberry Pi " ON \
-"ttyS0" "Sur Orange Pi " OFF \
+"ttySS0" "Sur Orange Pi " OFF \
 "ttyUSB0" "Orange Pi ou Raspberry Pi " OFF 3>&1 1>&2 2>&3)
 
 exitstatus=$?
 if [ $exitstatus = 0 ]; then
 
-sed -i '/make start/a \python /opt/spotnik/spotnik2hmi/spotnik2hmi.py '$PORT' 9600' /etc/rc.local
+echo 'python /opt/spotnik/spotnik2hmi.spotnik2hmi.py' $PORT '9600' >> /etc/rc.local
 else
-    echo "Vous avez annuler"
+    echo "Vous avez annulé"
 fi
 exit
 
 else
 
-PORT2=$(whiptail --title "Choix du Port de communication" --radiolist \
+PORT=$(whiptail --title "Choix du Port de communication" --radiolist \
 "Sur quoi raccorder vous le Nextion?" 15 60 4 \
 "ttyAMA0" "Sur Raspberry Pi " ON \
-"ttyS0" "Sur Orange Pi " OFF \
+"ttySS0" "Sur Orange Pi " OFF \
 "ttyUSB0" "Orange Pi ou Raspberry Pi " OFF 3>&1 1>&2 2>&3)
  
 exitstatus=$?
 if [ $exitstatus = 0 ]; then
-    echo "Port du Nextion :" $PORT2
+    echo "Port du Nextion :" $PORT
 else
-    echo "Vous avez annuler"
+    echo "Vous avez annulé"
 fi
 
 ECRAN=$(whiptail --title "Choix type d'ecran NEXTION" --radiolist \
 "Quel Type d'ecran ?" 15 60 4 \
 "NX3224K024.tft" "Ecran 2,4 Enhanced (non dispo)" OFF \
 "NX3224T024.tft" "Ecran 2,4 Basic (non dipo)" OFF \
+"NX4024K032.tft" "Ecran 3,2 Enhanced" OFF \
+"NX4024T032.tft" "Ecran 3,2 Basic" OFF \
 "NX4832K035.tft" "Ecran 3,5 Enhanced" OFF \
 "NX4832T035.tft" "Ecran 3,5 Basic" ON \
 "NX8048K050.tft" "Ecran 5,0 Enhanced" OFF \
@@ -90,7 +92,8 @@ ECRAN=$(whiptail --title "Choix type d'ecran NEXTION" --radiolist \
 exitstatus=$?
 if [ $exitstatus = 0 ]; then
     echo "Type d'écran :" $ECRAN
-python /opt/spotnik/spotnik2hmi/nextion/nextion.py '/opt/spotnik/spotnik2hmi/nextion/'$ECRAN '/dev/'$PORT   
+python /opt/spotnik/spotnik2hmi/nextion/nextion.py '/opt/spotnik/spotnik2hmi/nextion/'$ECRAN '/dev/'$PORT
+
 else
     echo "Vous avez annulé"
 fi

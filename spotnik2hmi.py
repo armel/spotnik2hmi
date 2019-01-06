@@ -32,7 +32,7 @@ eof = "\xff\xff\xff"
 today = datetime.now()
 url = "http://rrf.f5nlg.ovh"
 url2 = "http://rrf.f5nlg.ovh:82"
-versionDash = "1.040119"
+versionDash = "1.060119"
 wifistatut = 0
 
 #Reglage de luminosite
@@ -48,7 +48,6 @@ conf="/etc/NetworkManager/system-connections/SPOTNIK"
 
 #Chemin log a suivre
 svxlogfile = "/tmp/svxlink.log"   #SVXLink log file 
-
 
 #routine ouverture fichier de config
 config = ConfigParser.RawConfigParser()
@@ -222,6 +221,7 @@ while 1:
         else:
                 print "REDEMARRAGE"
                 dtmf("96#")
+		page("system")
                 
 #OUIARRET#
         if s.find("ouiarret")== -1:
@@ -326,7 +326,7 @@ while 1:
 		ecrire("info.t0.txt",ip)
 		print "occupation systeme: "+(chargecpu)
                 ecrire("info.t12.txt",chargecpu)
-
+		dtmf("*#")
 #METEO#
 	if s.find("meteo")== -1:
                 ecrire("page200.t3.txt","Mode autonome")
