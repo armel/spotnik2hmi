@@ -221,8 +221,8 @@ while 1:
                 ecrire("page200.t3.txt","Mode autonome")
         else:
                 print "REDEMARRAGE"
-                os.system('bash /etc/spotnik/restart.rrf')
-                exit()
+                dtmf("96#")
+                
 #OUIARRET#
         if s.find("ouiarret")== -1:
                 ecrire("page200.t3.txt","Mode autonome")
