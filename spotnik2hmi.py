@@ -24,8 +24,7 @@ import json
 import csv
 #import psutil
 import os
-#pour ouverture page web
-import requests
+
 
 portcom(sys.argv[1],sys.argv[2])
 
@@ -161,14 +160,10 @@ while 1:
 # Salon	RRF  	url = "http://rrf.f5nlg.ovh"
 
 #lecture du code source de la page
-	try:
-            r = requests.get(url, verify = False, timeout = 10)
-            page = r.content
 
-        except requests.exceptions.ConnectionError as errc:
-            print ('Error Connecting:', errc)
-        except requests.exceptions.Timeout as errt:
-            print ('Timeout Error:', errt)
+	req = urllib2.Request(url)
+	response = urllib2.urlopen(req)
+	page = response.read()
 	
 #controle si page Dashboard RRF ou TEC
 	if tn.find("rrf") != -1:
