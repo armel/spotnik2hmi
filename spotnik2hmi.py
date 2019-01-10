@@ -34,7 +34,7 @@ today = datetime.now()
 url = "http://rrf.f5nlg.ovh"
 url2 = "http://rrf.f5nlg.ovh:82"
 url3 = "http://fon.f1tzo.com:81"
-versionDash = "1.060119b"
+versionDash = "1.100119"
 wifistatut = 0
 
 #Reglage de luminosite
