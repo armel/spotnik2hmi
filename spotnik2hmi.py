@@ -24,6 +24,8 @@ import json
 import csv
 #import psutil
 import os
+#pour ouverture page web
+import requests
 
 portcom(sys.argv[1],sys.argv[2])
 
@@ -32,6 +34,7 @@ eof = "\xff\xff\xff"
 today = datetime.now()
 url = "http://rrf.f5nlg.ovh"
 url2 = "http://rrf.f5nlg.ovh:82"
+url3 = "http://fon.f1tzo.com:81"
 versionDash = "1.060119b"
 wifistatut = 0
 
@@ -75,9 +78,17 @@ occupdisk = str(disk)
 
 #Utilisation CPU
 chargecpu= getCPUuse()
+#Detection carte
 
+tmp = os.popen("uname -a").readline()
+if 'sun8i' in tmp:
+	board = 'Orange Pi'
+else:
+        board = 'Raspberry Pi'
+	
+print board
 
-#Envoi des infos sur le Nextion
+#Envoi des infos 
   
 logo(versionDash)
 print "Proc: "+(str(chargecpu))+"%   " + "CPU: "+cputemp+"°C" 
@@ -126,6 +137,7 @@ while 1:
 	else:
 		
 		ecrire("trafic.t0.txt","RESEAU FON")	
+		url = url3
 	if tn.find("tec") == -1:
                 
  		ecrire("page200.t3.txt","Mode autonome")
@@ -149,40 +161,62 @@ while 1:
 # Salon	RRF  	url = "http://rrf.f5nlg.ovh"
 
 #lecture du code source de la page
+	try:
+            r = requests.get(url, verify = False, timeout = 10)
+            page = r.content
 
-	req = urllib2.Request(url)
-	response = urllib2.urlopen(req)
-	the_page = response.read()
+        except requests.exceptions.ConnectionError as errc:
+            print ('Error Connecting:', errc)
+        except requests.exceptions.Timeout as errt:
+            print ('Timeout Error:', errt)
+	
 #controle si page Dashboard RRF ou TEC
 	if tn.find("rrf") != -1:
-		fincall= the_page.find ('</strong><!-- react-text: 18 --> <!-- /react-text --><img height="28" src="../static/receive.svg"')
+		fincall= page.find ('"transmitter":"')
 		if fincall >0:
-      	  		tramecall= (the_page[(fincall-30):fincall])
+      	  		tramecall= (page[(fincall):fincall+30])
                         
- 	    		call = tramecall.split('>')
-      	  		print call[1]
-			TxStation = call[1]
+ 	    		call = tramecall.split('"')
+      	  		print call[3]
+			TxStation = call[3]
 			setdim(txdim)
 			
         	else:
 			TxStation = ""	
 			setdim(rdim)
-	else:
-		fincall= the_page.find ('</strong><img height="28" src="../static/receive.svg')	
+
+	if tn.find("tec") != -1:
+		fincall= page.find ('"transmitter":"')	
 		if fincall >0:
         		
-        		tramecall= (the_page[(fincall-50):fincall])
+        		tramecall= (page[(fincall):fincall+30])
         		
-        		call = tramecall.split('>')
-        		print call[1]
-                	TxStation = call[1]
+        		call = tramecall.split('"')
+        		print call[3]
+                	TxStation = call[3]
 			setdim(txdim)
 		else:
                        
   			TxStation = ""
        			dimsend ='dim='+str(rdim)+eof
                         setdim(rdim)
-	
+
+	if tn.find("fon") != -1:
+                fincall= page.find ('"transmitter":"')
+                if fincall >0:
+
+                        tramecall= (page[(fincall):fincall+30])
+
+                        call = tramecall.split('"')
+                        print call[3]
+                        TxStation = call[3]
+                        setdim(txdim)
+                else:
+
+                        TxStation = ""
+                        dimsend ='dim='+str(rdim)+eof
+                        setdim(rdim)
+
 	
 	ecrire("trafic.t1.txt",TxStation)
 
@@ -191,7 +225,7 @@ while 1:
 
 	if len(s)<59 and len(s)>0:
 		print s
-		#print len(s)
+#		print len(s)
 
 #REBOOT
 	if s.find("reboot")== -1:
@@ -448,5 +482,4 @@ while 1:
                 print "PERROQUET"
                 print "NON DISPONIBLE"
 		#dtmf("")
-
 
