@@ -1,4 +1,3 @@
-#stamp=date(%Y%m%d)
 mv fonctions.py /opt/spotnik/spotnik2hmi/old_version/fonctions`date +%d%m%Y`.py
 mv spotnik2hmi.py /opt/spotnik/spotnik2hmi/old_version/spotnik2hmi`date +%d%m%Y`.py
 mv install.sh /opt/spotnik/spotnik2hmi/old_version/install`date +%d%m%Y`.sh
