@@ -313,11 +313,10 @@ while 1:
         if s.find("maj")== -1:
                 ecrire("page200.t3.txt","Mode autonome")
         else:
-                print "MAJ Wifi...."
-		requete ='get t0.txt' +eof
-		port.write(requete)
-		requete2 ='get t1.txt' +eof
-                port.write(requete2)
+               print "MAJ Wifi...."
+               requete("get t0.txt")
+               requete2("get t1.txt")
+		
 		while 1:
 			rcv = port.readline()
         		value = (rcv)
