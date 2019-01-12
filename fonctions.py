@@ -108,8 +108,8 @@ def getDiskSpace():
         i = i +1
         line = p.readline()
         if i==2:
-	    	
-		return(line.split()[4])
+	    	disk_space=(line.split()[4])
+                return(disk_space[:-1]+" %")	
 
 #Fonction de control d'extension au demarrage
 def usage():
