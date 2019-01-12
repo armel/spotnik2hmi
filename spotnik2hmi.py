@@ -164,13 +164,13 @@ while 1:
 #lecture du code source de la page
 	req = urllib2.Request(url)
 	response = urllib2.urlopen(req)
-	page = response.read()
+	page_web = response.read()
 	
 #controle si page Dashboard RRF ou TEC
 	if tn.find("rrf") != -1:
-		fincall= page.find ('"transmitter":"')
+		fincall= page_web.find ('"transmitter":"')
 		if fincall >0:
-      	  		tramecall= (page[(fincall):fincall+30])
+      	  		tramecall= (page_web[(fincall):fincall+30])
                         
  	    		call = tramecall.split('"')
       	  		print call[3]
@@ -182,10 +182,10 @@ while 1:
 			setdim(rdim)
 
 	if tn.find("tec") != -1:
-		fincall= page.find ('"transmitter":"')	
+		fincall= page_web.find ('"transmitter":"')	
 		if fincall >0:
         		
-        		tramecall= (page[(fincall):fincall+30])
+        		tramecall= (page_web[(fincall):fincall+30])
         		
         		call = tramecall.split('"')
         		print call[3]
@@ -198,10 +198,10 @@ while 1:
                         setdim(rdim)
 
 	if tn.find("fon") != -1:
-                fincall= page.find ('"transmitter":"')
+                fincall= page_web.find ('"transmitter":"')
                 if fincall >0:
 
-                        tramecall= (page[(fincall):fincall+30])
+                        tramecall= (page_web[(fincall):fincall+30])
 
                         call = tramecall.split('"')
                         print call[3]
