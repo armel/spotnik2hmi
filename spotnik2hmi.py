@@ -36,7 +36,7 @@ url = "http://rrf.f5nlg.ovh"
 #url2 = "http://rrf.f5nlg.ovh:82"
 url2 = "https://127.0.0.1"
 url3 = "http://fon.f1tzo.com:81"
-versionDash = "1.100119b"
+versionDash = "1.120119"
 wifistatut = 0
 
 #Reglage de luminosite
@@ -245,7 +245,7 @@ while 1:
                 page("boot")
                 os.system('reboot')
 #OUIRESTART#
-        if s.find("ouirestart")== -1:
+        if s.find("ouiredem")== -1:
                 ecrire("page200.t3.txt","Mode autonome")
         else:
                 print "REDEMARRAGE"
