@@ -92,9 +92,15 @@ def hmiReadline():
 	rcv = port.readline()
         myString = str(rcv)
         return myString
+
 def getCPUuse():
-    return(str(os.popen("top -n1 | awk '/Cpu\(s\):/ {print $2}'").readline().strip(\
-)))
+#    return(str(os.popen("sudo top -n1 | awk '/Cpu\(s\):/ {print $2}'").readline().strip(\
+#)))
+        CPU_Pct=str(round(float(os.popen('''grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage }' ''').readline()),2))
+
+    #print results
+        print("CPU Usage = " + CPU_Pct)
+        return(CPU_Pct)
 
 #Return information sur espace disque                     
 # Index 0: total disk space                                                         
