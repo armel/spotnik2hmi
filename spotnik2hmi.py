@@ -36,7 +36,7 @@ url = "http://rrf.f5nlg.ovh"
 #url2 = "http://rrf.f5nlg.ovh:82"
 url2 = "https://127.0.0.1"
 url3 = "http://fon.f1tzo.com:81"
-versionDash = "1.120119"
+versionDash = "1.120119b"
 wifistatut = 0
 
 #Reglage de luminosite
