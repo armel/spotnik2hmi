@@ -316,7 +316,6 @@ while 1:
                print "MAJ Wifi...."
                requete("get t0.txt")
                requete2("get t1.txt")
-		
 	       while 1:
 			rcv = port.readline()
         		value = (rcv)
