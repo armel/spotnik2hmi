@@ -76,6 +76,12 @@ def setdim(dimv):
 
 	dimsend ='dim='+str(dimv)+eof
 	port.write(dimsend)
+	
+#Fonction requete du nextion
+def requete(valeur):
+
+        requetesend = str(valeur)+eof
+        port.write(requetesend)	
 
 #Fonction suivre le log svxlink
 def follow(thefile):
