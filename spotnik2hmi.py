@@ -250,7 +250,7 @@ while 1:
         else:
                 print "REDEMARRAGE"
                 dtmf("96#")
-		page("system")
+		page("trafic")
                 
 #OUIARRET#
         if s.find("ouiarret")== -1:
@@ -354,7 +354,7 @@ while 1:
 		print "IP: "+ip
 		ecrire("info.t0.txt",ip)
 		print "occupation systeme: "+str(chargecpu)
-                ecrire("info.t12.txt",str(chargecpu))
+                ecrire("info.t12.txt",str(chargecpu)+" %")
 		dtmf("*#")
 #METEO#
 	if s.find("meteo")== -1:
