@@ -73,8 +73,10 @@ fi
 
 ECRAN=$(whiptail --title "Choix type d'ecran NEXTION" --radiolist \
 "Quel Type d'ecran ?" 15 60 4 \
-"NX3224K024.tft" "Ecran 2,4 Enhanced (non dispo)" OFF \
-"NX3224T024.tft" "Ecran 2,4 Basic (non dipo)" OFF \
+"NX3224K024.tft" "Ecran 2,4 Enhanced" OFF \
+"NX3224T024.tft" "Ecran 2,4 Basic" OFF \
+"NX3224K028.tft" "Ecran 2,8 Enhanced" OFF \
+"NX3224T028.tft" "Ecran 2,8 Basic" OFF \
 "NX4024K032.tft" "Ecran 3,2 Enhanced" OFF \
 "NX4024T032.tft" "Ecran 3,2 Basic" OFF \
 "NX4832K035.tft" "Ecran 3,5 Enhanced" OFF \
