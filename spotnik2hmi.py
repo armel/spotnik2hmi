@@ -71,7 +71,7 @@ s.close()
 #temperature CPU
 f = open("/sys/class/thermal/thermal_zone0/temp", "r")
 t = f.readline ()
-cputemp = t[0:2]+"." + t[3:4]
+cputemp = t[0:2]
 
 #Memoire SD libre
 disk= getDiskSpace()
