@@ -313,7 +313,7 @@ while 1:
         if s.find("maj")== -1:
                 ecrire("page200.t3.txt","Mode autonome")
         else:
-               print "MAJ Wifi...."
+                print "MAJ Wifi...."
                 requete ='get t0.txt' +eof
                 port.write(requete)
                 requete2 ='get t1.txt' +eof
