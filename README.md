@@ -104,7 +104,7 @@ Les informations affichées sur le Nextion sont reprises de ce qui est entré da
 Vérifier que les dashboard sont fonctionnels:
 
 * RRF:<http://rrf.f5nlg.ovh>
-* TEC:https://adresse P du hotspot ou sur <http://rrf.f5nlg.ovh:82>
+* TEC:https://adresse IP du hotspot ou sur <http://rrf.f5nlg.ovh:82>
 * FON:<http://fon.f1tzo.com:81>
 
 ### Quelle est le temps de chargement du fichier sur l'écran Nextion?
