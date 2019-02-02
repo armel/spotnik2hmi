@@ -1,5 +1,5 @@
 #!/bin/bash
-whiptail --title "INFORMATION:" --msgbox "Ce script considere que vous partez d une image disponible par F5NLG du Spotnik 1.9 et fonctionnelle sur Raspberry ou Orange Pi.Il permet d ajouter un ecran Nextion a la distribution. Plus d'informations sur http://blog.f8asb.com/spotnik2hmi.                                                                                         Team F0DEI/F5SWB/F8ASB" 15 60
+whiptail --title "INFORMATION:" --msgbox "Ce script considere que vous partez d une image disponible par F5NLG du Spotnik 1.9 et fonctionnelle sur Raspberry ou Orange Pi. Il permet d’ajouter un écran Nextion a la distribution. Plus d informations sur http://blog.f8asb.com/spotnik2hmi.                                                                                         Team F0DEI/F5SWB/F8ASB" 15 60
 
 
 #!/bin/bash
@@ -49,8 +49,10 @@ PORT=$(whiptail --title "Choix du Port de communication" --radiolist \
 
 exitstatus=$?
 if [ $exitstatus = 0 ]; then
-sed -i '/make start/a \sleep 10
+
 sed -i '/make start/a \python /opt/spotnik/spotnik2hmi/spotnik2hmi.py '$PORT' 9600' /etc/rc.local
+
+sed -i '/make start/a \sleep 10' /etc/rc.local
 else
     echo "Vous avez annulé"
 fi
@@ -68,7 +70,7 @@ exitstatus=$?
 if [ $exitstatus = 0 ]; then
     echo "Port du Nextion :" $PORT
 else
-    echo "Vous avez annulé"
+    echo "Vous avez annule"
 fi
 
 ECRAN=$(whiptail --title "Choix type d'ecran NEXTION" --radiolist \
@@ -92,7 +94,7 @@ if [ $exitstatus = 0 ]; then
 python /opt/spotnik/spotnik2hmi/nextion/nextion.py '/opt/spotnik/spotnik2hmi/nextion/'$ECRAN '/dev/'$PORT
 
 else
-    echo "Vous avez annulé"
+    echo "Vous avez annule"
 fi
 fi
 
