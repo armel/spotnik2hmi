@@ -116,7 +116,7 @@ Il peut y avoir un problème de script, rebooter votre installation.<br />Le mo
 Le bluetooth prend la main sur la liaison et empêche l'utilisation du port.Il faut désactivé  le bluetooth.
 Voici la commande:
 ```
-sudo echo "dtoverlay=pi3-disable-bt" &gt;&gt; /boot/config.txt<br 
+sudo echo "dtoverlay=pi3-disable-bt" &gt;&gt; /boot/config.txt 
 ```
 suivi d'un 
 ```
