@@ -113,7 +113,9 @@ Pour gagner du temps, il est possible de copier le fichier .tft sur une carte mi
 #### Mon écran ne réagit pas ou les commandes sont pas prises en compte?
 Il peut y avoir un problème de script, rebooter votre installation.<br />Le moyen simple est de regarder l'heure sur la page, le script l'actualise, si celle-ci n'est pas en phase, c'est que le script est arrêté.
 #### Je suis sur un Raspberry Pi 3B ou B+ et je n'arrive pas à programmer l'écran malgré que tous les câblages soient bons.
-Le bluetooth prend la main sur la liaison et empêche l'utilisation du port.Il faut désactivé  le bluetooth.
+Utiliser la commande raspi-config aller dans le menu5 Interfacing Option valider par Enter, choisir P6 Serial valider par Enter, repondre Non à la premiere question puis Oui à la deuxieme question.
+
+Il y a également le bluetooth qui prend la main sur la liaison et empêche l'utilisation du port. Il faut désactivé  le bluetooth.
 Voici la commande:
 ```
 sudo echo "dtoverlay=pi3-disable-bt" >> /boot/config.txt 
