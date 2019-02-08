@@ -110,9 +110,9 @@ Vérifier que les dashboard sont fonctionnels:
 ### Quelle est le temps de chargement du fichier sur l'écran Nextion?
 Si on utilise le menu le temps de chargement est d'environ 10min selon le type d'écran.L'interêt de cette installation c'est qu'elle est simple et qu'elle vous permet de valider que l'écran communique bien avec votre système.
 Pour gagner du temps, il est possible de copier le fichier .tft sur une carte micro sd et l'insérer sur le lecteur de carte. L'installation démarrera automatiquement.Les fichiers .tft se trouvent dans le répertoire /opt/spotnik/spotnik2hmi/nextion/ après installation.Vous pouvez aussi les retrouver sur Github ou le projet y est hébergé(répertoire nextion).
-#### Mon écran ne réagit pas ou les commandes sont pas prises en compte?
+### Mon écran ne réagit pas ou les commandes sont pas prises en compte?
 Il peut y avoir un problème de script, rebooter votre installation.<br />Le moyen simple est de regarder l'heure sur la page, le script l'actualise, si celle-ci n'est pas en phase, c'est que le script est arrêté.
-#### Je suis sur un Raspberry Pi 3B ou B+ et je n'arrive pas à programmer l'écran malgré que tous les câblages soient bons.
+### Je suis sur un Raspberry Pi 3B ou B+ et je n'arrive pas à programmer l'écran malgré que tous les câblages soient bons.
 Utiliser la commande raspi-config aller dans le menu5 Interfacing Option valider par Enter, choisir P6 Serial valider par Enter, repondre Non à la premiere question puis Oui à la deuxieme question.
 
 Il y a également le bluetooth qui prend la main sur la liaison et empêche l'utilisation du port. Il faut désactivé  le bluetooth.
@@ -124,13 +124,13 @@ suivi d'un
 ```
 sudo reboot
 ```
-#### Je suis sur Orange Pi Zero, l'écran a bien été programmé, mais il reste sur la page de démarrage
+### Je suis sur Orange Pi Zero, l'écran a bien été programmé, mais il reste sur la page de démarrage
 Il est probable que le problème soit lié au fait que le GUI n'est pas lancé.Dans le doute, saisissez les commandes suivantes:
 ```
 cd /opt/spotnik/gui
 make restart
 ```
-#### Je lance le script à la main et je reçois une erreur
+### Je lance le script à la main et je reçois une erreur
 
 ![alt tag](http://blog.f8asb.com/wp-content/uploads/2019/01/erreur-lancement.png")
 
@@ -138,12 +138,12 @@ Quand vous lancer le script le port et la vitesse sont des variables qui doivent
 
 
 
-#### Comment mettre à jour mon script spotnik2hmi et mon écran?
+### Comment mettre à jour mon script spotnik2hmi et mon écran?
 Il suffit de se positionner dans le répertoire du script  /opt/spotnik/spotnik2hmi/ et de lancer la commande
 ```
 git pull
 ```
 Toutefois il sera nécessaire de mettre à jour également le programme de l'écran si celui-ci à évolué. Pour ce faire relancer la procédure d'installation et choisissez uniquement la partie nextion. Ce qui écrasera l'ancienne version automatique lors du chargement dans celui-ci.
 
-#### Je constate une latence avant que l'indicatif s'affiche sur l'écran.
+### Je constate une latence avant que l'indicatif s'affiche sur l'écran.
 Le script va lire la page du Dashboard pour extraire l'indicatif, votre qualité de connexion internet et le temps de traitement explique cette latence</p>
