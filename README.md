@@ -36,7 +36,7 @@ Il y a 2 pin avec du 5V à vous de choisir celui que vous souhaitez utiliser
 ## INSTALLATION LOGICIEL
 
 
-Cette documentation considère que vous partez de l'installation d’une image du **Spotnik 1.9** disponible sur le site de F5NLG et fonctionnelle sur Raspberry ou Orange Pi.
+Cette documentation considère que vous partez de l'installation d’une image du **Spotnik 1.9** disponible sur le site de F5NLG et fonctionnelle sur Raspberry ou Orange Pi. Penser à etendre la carte SD par le menu raspi-config et selectionner 7 - Advanced option puis A1 Expand filesystem
 
 Télécharger le fichier **install.sh**
 
@@ -72,6 +72,8 @@ Une fois que tout est fini faire un reboot du système en tapant:
 ```
 reboot
 ```
+Rendez-vous sur le GUI, pour entrer votre indicatif.
+
 ## INTERFACE LOGICIEL D'INSTALLATION
 ![alt tag](http://blog.f8asb.com/wp-content/uploads/2019/01/choix_install.png)
 ![alt tag](http://blog.f8asb.com/wp-content/uploads/2019/01/type_ecran.png)
