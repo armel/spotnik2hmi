@@ -511,8 +511,8 @@ while 1:
     else:
         print "Reglage DIM recu"
         rxdim = s[9:-3]
-        print rdim
-        rdmi= rxdim
+        rdim= rxdim
+	print rdim
 		
 #QSYSALONRRF#
     if s.find("qsyrrf")== -1:
