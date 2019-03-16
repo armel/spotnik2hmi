@@ -35,7 +35,7 @@ url = "http://rrf.f5nlg.ovh"
 #url2 = "http://rrf.f5nlg.ovh:82"
 url2 = "https://127.0.0.1"
 url3 = "http://fon.f1tzo.com:81"
-versionDash = "1.10"
+versionDash = "1.20"
 wifistatut = 0
 dashlist = ""
 
@@ -200,10 +200,10 @@ while 1:
             #dashlist= tramedash.replace('"','')
             #print "dashlist:"+dashlist
             TxStation = call[3]
-            setdim(txdim)
+           # setdim(txdim)
         else:
             TxStation = ""
-            setdim(rdim)
+            #setdim(rdim)
 
     if tn.find("tec") != -1:
         fincall= page_web.find ('"transmitter":"')	
@@ -219,11 +219,11 @@ while 1:
             dashlist=dashfiltre.replace(',TEC','')
             print "dashlist:"+dashlist
             TxStation = call[3]
-            setdim(txdim)
+            #setdim(txdim)
         else:
             TxStation = ""
-            dimsend ='dim='+str(rdim)+eof
-            setdim(rdim)
+            #dimsend ='dim='+str(rdim)+eof
+            #setdim(rdim)
     if tn.find("urg") != -1:
         fincall= page_web.find ('"transmitter":"')  
         dashdebut= page_web.find ('"nodes":[')
@@ -237,11 +237,11 @@ while 1:
             dashlist= tramedash.replace('"','')
             print "dashlist:"+dashlist
             TxStation = call[3]
-            setdim(txdim)
+            #setdim(txdim)
         else:
             TxStation = ""
-            dimsend ='dim='+str(rdim)+eof
-            setdim(rdim)
+            #dimsend ='dim='+str(rdim)+eof
+            #setdim(rdim)
     
     if tn.find("stv") != -1:
         fincall= page_web.find ('"transmitter":"')  
@@ -256,11 +256,11 @@ while 1:
             dashlist= tramedash.replace('"','')
             print "dashlist:"+dashlist
             TxStation = call[3]
-            setdim(txdim)
+            #setdim(txdim)
         else:
             TxStation = ""
-            dimsend ='dim='+str(rdim)+eof
-            setdim(rdim)
+            #dimsend ='dim='+str(rdim)+eof
+            #setdim(rdim)
 
     if tn.find("cd2") != -1:
         fincall= page_web.find ('"transmitter":"')  
@@ -275,11 +275,11 @@ while 1:
             dashlist= tramedash.replace('"','')
             print "dashlist:"+dashlist
             TxStation = call[3]
-            setdim(txdim)
+            #setdim(txdim)
         else:
             TxStation = ""
-            dimsend ='dim='+str(rdim)+eof
-            setdim(rdim)        
+            #dimsend ='dim='+str(rdim)+eof
+            #setdim(rdim)        
 
     if tn.find("fon") != -1:
         fincall= page_web.find ('"transmitter":"')
@@ -291,11 +291,11 @@ while 1:
             print call[3]
           
             TxStation = call[3]
-            setdim(txdim)
+            #setdim(txdim)
         else:
             TxStation = ""
-            dimsend ='dim='+str(rdim)+eof
-            setdim(rdim)
+            #dimsend ='dim='+str(rdim)+eof
+            #setdim(rdim)
     ecrire("trafic.t1.txt",TxStation)
 
 #Gestion des commandes serie reception du Nextion
@@ -511,8 +511,8 @@ while 1:
     else:
         print "Reglage DIM recu"
         rxdim = s[9:-3]
-        rdim= rxdim
-	print rdim
+        print rdim
+        rdmi= rxdim
 		
 #QSYSALONRRF#
     if s.find("qsyrrf")== -1:
