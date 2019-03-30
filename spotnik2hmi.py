@@ -31,11 +31,14 @@ portcom(sys.argv[1],sys.argv[2])
 #Variables
 eof = "\xff\xff\xff"
 today = datetime.now()
-url = "http://rrf.f5nlg.ovh"
-#url2 = "http://rrf.f5nlg.ovh:82"
+url = ""
+url1 = "http://rrf.f5nlg.ovh/api/svxlink/RRF"
 url2 = "https://127.0.0.1"
 url3 = "http://fon.f1tzo.com:81"
-versionDash = "1.20"
+url4 = "http://rrf.f5nlg.ovh/api/svxlink/technique"
+url5 = "http://rrf.f5nlg.ovh/api/svxlink/satellite"
+
+versionDash = "1.30"
 wifistatut = 0
 dashlist = ""
 
@@ -129,7 +132,7 @@ while 1:
         ecrire("page200.t3.txt","Mode autonome")
     else:
         ecrire("trafic.t0.txt","RESEAU RRF")
-        url = "http://rrf.f5nlg.ovh"
+        url = url1
 		
     if tn.find("fon") == -1:
         ecrire("page200.t3.txt","Mode autonome")
@@ -141,7 +144,7 @@ while 1:
         ecrire("page200.t3.txt","Mode autonome")
     else:
         ecrire("trafic.t0.txt","SALON TECHNIQUE")
-        url = url2
+        url = url4
     
     if tn.find("urg") == -1:
         ecrire("page200.t3.txt","Mode autonome")
@@ -169,6 +172,7 @@ while 1:
         ecrire("page200.t3.txt","Mode autonome")
     else:
         ecrire("trafic.t0.txt","SALON SATELLITE")    
+	url = url5	
     a.close()
 
 #
