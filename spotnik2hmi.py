@@ -38,7 +38,7 @@ url3 = "http://fon.f1tzo.com:81"
 url4 = "http://rrf.f5nlg.ovh/api/svxlink/technique"
 url5 = "http://rrf.f5nlg.ovh/api/svxlink/satellite"
 
-versionDash = "1.30"
+versionDash = "1.31"
 wifistatut = 0
 dashlist = ""
 
@@ -212,7 +212,7 @@ while 1:
     if tn.find("tec") != -1:
         fincall= page_web.find ('"transmitter":"')	
         dashdebut= page_web.find ('"nodes":[')
-        dashfin= page_web.find ('],"transmit"')
+        dashfin= page_web.find ('","TECHNIQUE"]')
 		
         if fincall >0:
             tramecall= (page_web[(fincall):fincall+30])
