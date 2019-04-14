@@ -153,4 +153,5 @@ Le script va lire la page du Dashboard pour extraire l'indicatif, votre qualité
 W: Une erreur s'est produite lors du contrôle de la signature. Le dépôt n'est pas mis à jour et les fichiers d'index précédents seront utilisés. Erreur de GPG : https://packages.sury.org jessie InRelease : Les signatures suivantes n'ont pas pu être vérifiées car la clé publique n'est pas disponible : NO_PUBKEY B188E2B695BD4743
 
 Lancer la commande suivante:
+
 sudo wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg--2019-03-18 21:28:18 https://packages.sury.org/php/apt.gpg
