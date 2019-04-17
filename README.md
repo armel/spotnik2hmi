@@ -155,6 +155,18 @@ W: Une erreur s'est produite lors du contrôle de la signature. Le dépôt n'est
 Lancer la commande suivante:
 
 ```sudo wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg```
+Si le problème persiste:
+1- Editer le fichier etc/apt/sources.list
+Taper: ```nano etc/apt/sources.list```
+2- Mettre un # devant chaque ligne et ajouter les lignes suivantes:
+
+```deb http://mirrordirector.raspbian.org/raspbian/ jessie main contrib non-free rpi```
+
+```deb-src http://archive.raspbian.org/raspbian/ jessie main contrib non-free rpi```
+Pour quitter faire: CTRL X et répondre O ou Y selon la langue de votre système.
+
+3-Lancer ```apt-get update```
+
 ### Au lancement manuel du script pour test, j'ai le message suivant: /opt/spotnik/spotnik2hmi/spotnik2hmi.py ,line 13, in<module> no module named requests
  
 Votre installation ne s'est pas bien deroulé, il vous manque le module request, faite une mise à jour de votre distribution, supprimer le repertoire déja installé avec la commande ```rm -fr spotnik2hmi ```et relancer l'installation. 
