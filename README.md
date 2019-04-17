@@ -156,8 +156,10 @@ Lancer la commande suivante:
 
 ```sudo wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg```
 Si le problème persiste:
+
 1- Editer le fichier etc/apt/sources.list
 Taper: ```nano etc/apt/sources.list```
+
 2- Mettre un # devant chaque ligne et ajouter les lignes suivantes:
 
 ```deb http://mirrordirector.raspbian.org/raspbian/ jessie main contrib non-free rpi```
