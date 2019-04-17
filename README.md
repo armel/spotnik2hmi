@@ -150,7 +150,7 @@ Toutefois il sera nécessaire de mettre à jour également le programme de l'éc
 ### Je constate une latence avant que l'indicatif s'affiche sur l'écran.
 Le script va lire la page du Dashboard pour extraire l'indicatif, votre qualité de connexion internet et le temps de traitement explique cette latence</p>
 ### J'ai une erreur lors de la mise à jour du Raspberry
-W: Une erreur s'est produite lors du contrôle de la signature. Le dépôt n'est pas mis à jour et les fichiers d'index précédents seront utilisés. Erreur de GPG : https://packages.sury.org jessie InRelease : Les signatures suivantes n'ont pas pu être vérifiées car la clé publique n'est pas disponible : NO_PUBKEY B188E2B695BD4743
+W: Une erreur s'est produite lors du contrôle de la signature. Le dépôt n'est pas mis à jour et les fichiers d'index précédents seront utilisés. Erreur de GPG : https:// packages. sury. org jessie InRelease : Les signatures suivantes n'ont pas pu être vérifiées car la clé publique n'est pas disponible : NO_PUBKEY B188E2B695BD4743
 
 Lancer la commande suivante:
 
