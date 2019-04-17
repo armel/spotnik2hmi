@@ -165,7 +165,10 @@ Taper: ```nano etc/apt/sources.list```
 ```deb http://mirrordirector.raspbian.org/raspbian/ jessie main contrib non-free rpi```
 
 ```deb-src http://archive.raspbian.org/raspbian/ jessie main contrib non-free rpi```
-Pour quitter faire: CTRL X et répondre O ou Y selon la langue de votre système.
+
+Pour quitter faire: 
+
+CTRL X et répondre O ou Y selon la langue de votre système.
 
 3-Lancer ```apt-get update```
 
