@@ -175,3 +175,15 @@ CTRL X et répondre O ou Y selon la langue de votre système.
 ### Au lancement manuel du script pour test, j'ai le message suivant: /opt/spotnik/spotnik2hmi/spotnik2hmi.py ,line 13, in<module> no module named requests
  
 Votre installation ne s'est pas bien deroulé, il vous manque le module request, faite une mise à jour de votre distribution, supprimer le repertoire déja installé avec la commande ```rm -fr spotnik2hmi ```et relancer l'installation. 
+
+### L'ecran ne repond pas.
+Verifier le cablage le TX USB -> RX Nextion et RX USB -> TX Nextion
+Editer le fichier rc.local
+```
+nano /etc/rc.local
+```
+Verifier que vous n'avez pas plusieurs ligne de lancement de script en fin de fichier
+Verifier que la ligne de lancement de script est correspond au branchement USB ou GPIO
+
+Ligne de commande selon configuration:
+
