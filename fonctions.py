@@ -141,7 +141,7 @@ else:
 #Fonction envoyer un code DTMF au system
 def dtmf(code):
 	
-        b = open("/tmp/svxlink_dtmf_ctrl_pty","a")
+        b = open("/tmp/dtmf_uhf","a")
         b.write(code)
 	print "code DTMF: "+code
         b.close()

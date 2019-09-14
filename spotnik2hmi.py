@@ -33,10 +33,8 @@ eof = "\xff\xff\xff"
 today = datetime.now()
 url = ""
 url1 = "http://rrf.f5nlg.ovh/api/svxlink/RRF"
-url2 = "https://127.0.0.1"
-url3 = "http://fon.f1tzo.com:81"
-url4 = "http://rrf.f5nlg.ovh/api/svxlink/technique"
-url5 = "http://rrf.f5nlg.ovh/api/svxlink/satellite"
+url2 = "http://127.0.0.1"
+url3 = "http://rrf.f5nlg.ovh/api/svxlink/FON"
 
 versionDash = "1.31"
 wifistatut = 0
@@ -85,7 +83,7 @@ chargecpu= getCPUuse()
 #Detection carte
 
 tmp = os.popen("uname -a").readline()
-if 'sun8i' in tmp:
+if '*sun8i*' in tmp:
     board = 'Orange Pi'
 else:
     board = 'Raspberry Pi'
@@ -144,23 +142,23 @@ while 1:
         ecrire("page200.t3.txt","Mode autonome")
     else:
         ecrire("trafic.t0.txt","SALON TECHNIQUE")
-        url = url4
+        url = url2
     
-    if tn.find("urg") == -1:
+    if tn.find("bav") == -1:
+        ecrire("page200.t3.txt","Mode autonome")
+    else:
+        ecrire("trafic.t0.txt","SALON BAVARDAGE")
+        url = url2
+    
+    if tn.find("loc") == -1:
+        ecrire("page200.t3.txt","Mode autonome")
+    else:
+        ecrire("trafic.t0.txt","SALON LOCAL")
+        url = url2
+    if tn.find("int") == -1:
         ecrire("page200.t3.txt","Mode autonome")
     else:
         ecrire("trafic.t0.txt","SALON INTER.")
-        url = url2
-    
-    if tn.find("stv") == -1:
-        ecrire("page200.t3.txt","Mode autonome")
-    else:
-        ecrire("trafic.t0.txt","SALON SSTV")
-        url = url2
-    if tn.find("cd2") == -1:
-        ecrire("page200.t3.txt","Mode autonome")
-    else:
-        ecrire("trafic.t0.txt","SALON CODEC2")
         url = url2    
 
     if tn.find("default") == -1:
@@ -168,11 +166,11 @@ while 1:
     else:
         ecrire("trafic.t0.txt","PERROQUET")
 
-    if tn.find("el") == -1:
+    if tn.find("sat") == -1:
         ecrire("page200.t3.txt","Mode autonome")
     else:
         ecrire("trafic.t0.txt","SALON SATELLITE")    
-	url = url5	
+	url = url2	
     a.close()
 
 #
@@ -228,7 +226,7 @@ while 1:
             TxStation = ""
             #dimsend ='dim='+str(rdim)+eof
             #setdim(rdim)
-    if tn.find("urg") != -1:
+    if tn.find("int") != -1:
         fincall= page_web.find ('"transmitter":"')  
         dashdebut= page_web.find ('"nodes":[')
         dashfin= page_web.find ('],"transmit"')
@@ -247,7 +245,7 @@ while 1:
             #dimsend ='dim='+str(rdim)+eof
             #setdim(rdim)
     
-    if tn.find("stv") != -1:
+    if tn.find("bav") != -1:
         fincall= page_web.find ('"transmitter":"')  
         dashdebut= page_web.find ('"nodes":[')
         dashfin= page_web.find ('],"transmit"')
@@ -266,7 +264,7 @@ while 1:
             #dimsend ='dim='+str(rdim)+eof
             #setdim(rdim)
 
-    if tn.find("cd2") != -1:
+    if tn.find("loc") != -1:
         fincall= page_web.find ('"transmitter":"')  
         dashdebut= page_web.find ('"nodes":[')
         dashfin= page_web.find ('],"transmit"')
@@ -350,6 +348,7 @@ while 1:
     else:
         wifi(newssid,newpass)
         page("wifi")
+
 #OUIQUITTERECOLINK#
     if s.find("ouiquitecho")== -1:
         ecrire("page200.t3.txt","Mode autonome")
@@ -540,25 +539,25 @@ while 1:
     if s.find("qsyinter")== -1:
         ecrire("page200.t3.txt","Mode autonome")
     else:
-        print "QSY INTER"
+        print "QSY SALON INTER"
         dtmf("99#")
-#QSYSSTV#
+#QSYBAV#
     if s.find("qsysstv")== -1:
         ecrire("page200.t3.txt","Mode autonome")
     else:
-        print "QSY SSTV"
-        dtmf("100#")
-#QSYCODECS#
-    if s.find("qsycodec2")== -1:
+        print "QSY SALON LOCAL"
+        dtmf("101#")
+#QSYLOCAL#
+    if s.find("qsybav")== -1:
         ecrire("page200.t3.txt","Mode autonome")
     else:
-        print "QSY CODEC2"
-        dtmf("101#")
+        print "QSY SALON BAVARDAGE"
+        dtmf("100#")
 #QSYSAT#
     if s.find("qsysat")== -1:
         ecrire("page200.t3.txt","Mode autonome")
     else:
-        print "QSY SAT"
+        print "QSY SALON SAT"
         dtmf("102#")
 
 #DONNMETEO#
