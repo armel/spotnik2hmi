@@ -33,10 +33,15 @@ eof = "\xff\xff\xff"
 today = datetime.now()
 url = ""
 url1 = "http://rrf.f5nlg.ovh/api/svxlink/RRF"
-url2 = "http://127.0.0.1"
-url3 = "http://rrf.f5nlg.ovh/api/svxlink/FON"
+url2 = "http://rrf.f5nlg.ovh/api/svxlink/FON"
+url3 = "http://rrf.f5nlg.ovh/api/svxlink/technique"
+url4 = "http://rrf.f5nlg.ovh/api/svxlink/international"
+url5 = "http://rrf.f5nlg.ovh/api/svxlink/bavardage"
+url6 = "http://rrf.f5nlg.ovh/api/svxlink/local"
+url7 = "http://rrf.f5nlg.ovh/api/svxlink/satellite"
+url8 = "http://127.0.0.1"
 
-versionDash = "1.31"
+versionDash = "1.33"
 wifistatut = 0
 dashlist = ""
 
@@ -136,41 +141,49 @@ while 1:
         ecrire("page200.t3.txt","Mode autonome")
     else:
         ecrire("trafic.t0.txt","RESEAU FON")	
-        url = url3
+        url = url2
 	
     if tn.find("tec") == -1:
         ecrire("page200.t3.txt","Mode autonome")
     else:
         ecrire("trafic.t0.txt","SALON TECHNIQUE")
-        url = url2
-    
-    if tn.find("bav") == -1:
-        ecrire("page200.t3.txt","Mode autonome")
-    else:
-        ecrire("trafic.t0.txt","SALON BAVARDAGE")
-        url = url2
-    
-    if tn.find("loc") == -1:
-        ecrire("page200.t3.txt","Mode autonome")
-    else:
-        ecrire("trafic.t0.txt","SALON LOCAL")
-        url = url2
+        url = url3
+
     if tn.find("int") == -1:
         ecrire("page200.t3.txt","Mode autonome")
     else:
         ecrire("trafic.t0.txt","SALON INTER.")
-        url = url2    
+        url = url4    
+
+    if tn.find("bav") == -1:
+        ecrire("page200.t3.txt","Mode autonome")
+    else:
+        ecrire("trafic.t0.txt","SALON BAVARDAGE")
+        url = url5
+
+    if tn.find("loc") == -1:
+        ecrire("page200.t3.txt","Mode autonome")
+    else:
+        ecrire("trafic.t0.txt","SALON LOCAL")
+        url = url6
+
+    if tn.find("sat") == -1:
+        ecrire("page200.t3.txt","Mode autonome")
+    else:
+        ecrire("trafic.t0.txt","SALON SATELLITE")    
+	url = url7	
+
+    if tn.find("reg") == -1:
+        ecrire("page200.t3.txt","Mode autonome")
+    else:
+        ecrire("trafic.t0.txt","SALON REGIONAL")    
+	url = url8	
 
     if tn.find("default") == -1:
         ecrire("page200.t3.txt","Mode autonome")
     else:
         ecrire("trafic.t0.txt","PERROQUET")
 
-    if tn.find("sat") == -1:
-        ecrire("page200.t3.txt","Mode autonome")
-    else:
-        ecrire("trafic.t0.txt","SALON SATELLITE")    
-	url = url2	
     a.close()
 
 #
@@ -559,6 +572,13 @@ while 1:
     else:
         print "QSY SALON SAT"
         dtmf("102#")
+
+#QSYSAT#
+    if s.find("qsyreg")== -1:
+        ecrire("page200.t3.txt","Mode autonome")
+    else:
+        print "QSY SALON REGIONAL"
+        dtmf("104#")
 
 #DONNMETEO#
     if s.find("dmeteo")== -1:
