@@ -27,7 +27,7 @@ apt-get -y upgrade
 echo "UPGRADE COMPLETED !"
  
 echo "INSTALLATION DEPENDANCE PYTHON"
-install gcc python-dev python-setuptools
+apt-get install gcc python-dev python-setuptools
 apt-get install python-pip
 pip install requests
 echo "INSTALLATION COMPLETE !"
