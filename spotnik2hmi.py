@@ -41,12 +41,13 @@ url6 = "http://rrf.f5nlg.ovh/api/svxlink/local"
 url7 = "http://rrf.f5nlg.ovh/api/svxlink/satellite"
 url8 = "http://127.0.0.1"
 
-versionDash = "2.00b"
+versionDash = "1.33"
 wifistatut = 0
 dashlist = ""
 
 a = open("/etc/spotnik/network","r")
-    tn = a.read()
+tn = a.read()
+
 if tn.find("sat") == -1:
 	 os.system('echo "rrf" > /etc/spotnik/network')
 
@@ -107,6 +108,7 @@ if revision !="0000":
     f = open("/sys/class/thermal/thermal_zone0/temp", "r")
     t = f.readline ()
     cputemp = t[0:2]
+print board
 
 #Envoi des infos 
   
