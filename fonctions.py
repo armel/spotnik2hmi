@@ -59,6 +59,23 @@ config.read(svxconfig)
 
 from subprocess import Popen, PIPE
 
+#regarde la version Raspberry
+def getrevision():
+
+  # Extract board revision from cpuinfo file
+    myrevision = "0000"
+    try:
+        f = open('/proc/cpuinfo','r')
+        for line in f:
+            if line[0:8]=='Revision':
+                length=len(line)
+                myrevision = line[11:length-1]
+        f.close()
+    except:
+        myrevision = "0000"
+
+    return myrevision 
+
 def portcom(portserie,vitesse):
 	global port
 	port=serial.Serial(port='/dev/'+portserie,baudrate=vitesse,timeout=1, writeTimeout=1)

@@ -45,6 +45,12 @@ versionDash = "1.33"
 wifistatut = 0
 dashlist = ""
 
+a = open("/etc/spotnik/network","r")
+    tn = a.read()
+if tn.find("sat") == -1:
+	 os.system('echo "rrf" > /etc/spotnik/network')
+
+        
 #Reglage de luminosite
 rdim = 10 #ecran sans reception signal
 txdim = 80 # ecran avec reception station
@@ -87,12 +93,20 @@ occupdisk = str(disk)
 chargecpu= getCPUuse()
 #Detection carte
 
-tmp = os.popen("uname -a").readline()
-if '*sun8i*' in tmp:
+#Detection carte
+revision=getrevision()
+if revision =="0000":
     board = 'Orange Pi'
-else:
+    #temperature CPU
+    f = open("/sys/devices/virtual/thermal/thermal_zone0/temp", "r")
+    t = f.readline ()
+    cputemp = t[0:2]
+if revision !="0000":
     board = 'Raspberry Pi'
-print board
+    #temperature CPU
+    f = open("/sys/class/thermal/thermal_zone0/temp", "r")
+    t = f.readline ()
+    cputemp = t[0:2]
 
 #Envoi des infos 
   
@@ -121,10 +135,10 @@ while 1:
     today = datetime.now()
     locale.setlocale(locale.LC_TIME,'')	
     date = (today.strftime('%d-%m-%Y'))
-    #heure = (today.strftime('%H:%M'))
-    heureS =(today.strftime('%H:%M:%S'))
+    heure = (today.strftime('%H:%M'))
+    #heureS =(today.strftime('%H:%M:%S'))
     ecrire("trafic.t18.txt",date)
-    ecrire("trafic.t8.txt",heureS)
+    ecrire("trafic.V_heure.txt",heure)
     requete("vis p9,0")
     #ecrire("trafic.t15.txt",heure)
     #Definition et affichage link actif	
@@ -297,6 +311,22 @@ while 1:
             #setdim(rdim)        
 
     if tn.find("fon") != -1:
+        fincall= page_web.find ('"transmitter":"')
+      
+        if fincall >0:
+            tramecall= (page_web[(fincall):fincall+30])
+         
+            call = tramecall.split('"')
+            print call[3]
+          
+            TxStation = call[3]
+            #setdim(txdim)
+        else:
+            TxStation = ""
+            #dimsend ='dim='+str(rdim)+eof
+            #setdim(rdim)
+    ecrire("trafic.t1.txt",TxStation)
+    if tn.find("sat") != -1:
         fincall= page_web.find ('"transmitter":"')
       
         if fincall >0:
