@@ -52,6 +52,7 @@ if tn.find("sat") == -1:
     print "NETWORK OK"
 else:
     os.system('echo "rrf" > /etc/spotnik/network')
+    os.system('/etc/spotnik/restart')
     print "NETWORK CHANGE"
         
 #Reglage de luminosite
