@@ -242,7 +242,7 @@ while 1:
     if tn.find("int") != -1:
         fincall= page_web.find ('"transmitter":"')  
         dashdebut= page_web.find ('"nodes":[')
-        dashfin= page_web.find ('],"transmit"')
+        dashfin= page_web.find (',"INTERNATIONAL"]')
         
         if fincall >0:
             tramecall= (page_web[(fincall):fincall+30])
@@ -261,7 +261,7 @@ while 1:
     if tn.find("bav") != -1:
         fincall= page_web.find ('"transmitter":"')  
         dashdebut= page_web.find ('"nodes":[')
-        dashfin= page_web.find ('],"transmit"')
+        dashfin= page_web.find (',"BAVARDAGE"]')
         
         if fincall >0:
             tramecall= (page_web[(fincall):fincall+30])
@@ -280,7 +280,7 @@ while 1:
     if tn.find("loc") != -1:
         fincall= page_web.find ('"transmitter":"')  
         dashdebut= page_web.find ('"nodes":[')
-        dashfin= page_web.find ('],"transmit"')
+        dashfin= page_web.find (',"LOCAL"]')
         
         if fincall >0:
             tramecall= (page_web[(fincall):fincall+30])
@@ -352,7 +352,7 @@ while 1:
         ecrire("page200.t3.txt","Mode autonome")
     else:
         print "ARRET DU SYSTEM"
-        page("boot")
+        page("arret")
         os.system('shutdown -h now')
 
 #OUIWIFI
@@ -555,7 +555,7 @@ while 1:
         print "QSY SALON INTER"
         dtmf("99#")
 #QSYBAV#
-    if s.find("qsysstv")== -1:
+    if s.find("qsyloc")== -1:
         ecrire("page200.t3.txt","Mode autonome")
     else:
         print "QSY SALON LOCAL"
