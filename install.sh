@@ -36,6 +36,7 @@ echo "INSTALLATION scripts python"
 git clone https://github.com/F8ASB/spotnik2hmi.git /opt/spotnik/spotnik2hmi/
 
 chmod +x /opt/spotnik/spotnik2hmi/spotnik2hmi.py
+chmod +x /opt/spotnik/spotnik2hmi/python-metar/get_report.py
 
 echo "INSTALLATION COMPLETE !"
 
