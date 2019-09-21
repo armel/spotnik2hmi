@@ -48,7 +48,7 @@ dashlist = ""
 a = open("/etc/spotnik/network","r")
 tn = a.read()
 
-if tn.find("sat") == -1:
+if tn.find("sat") or tn.find("default") == -1:
     print "NETWORK OK"
 else:
     os.system('echo "rrf" > /etc/spotnik/network')
@@ -141,11 +141,12 @@ while 1:
     locale.setlocale(locale.LC_TIME,'')	
     date = (today.strftime('%d-%m-%Y'))
     heure = (today.strftime('%H:%M'))
-    #heureS =(today.strftime('%H:%M:%S'))
+    heureS =(today.strftime('%H:%M:%S'))
     ecrire("trafic.t18.txt",date)
+    ecrire("trafic.t8.txt",heureS)
     ecrire("trafic.V_heure.txt",heure)
     requete("vis p9,0")
-    #ecrire("trafic.t15.txt",heure)
+    ecrire("trafic.t15.txt",heure)
     #Definition et affichage link actif	
     a = open("/etc/spotnik/network","r")
     tn = a.read()
