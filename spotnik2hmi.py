@@ -41,14 +41,21 @@ url6 = "http://rrf.f5nlg.ovh/api/svxlink/local"
 url7 = "http://rrf.f5nlg.ovh/api/svxlink/satellite"
 url8 = "http://127.0.0.1"
 
-versionDash = "2.00b"
+versionDash = "2.10b"
 wifistatut = 0
 dashlist = ""
 
 a = open("/etc/spotnik/network","r")
 tn = a.read()
 
-if tn.find("sat") or tn.find("default") == -1:
+if tn.find("default") == -1:
+    print "NETWORK OK"
+else:
+    os.system('echo "rrf" > /etc/spotnik/network')
+    os.system('/etc/spotnik/restart')
+    print "NETWORK CHANGE"
+
+if tn.find("sat") == -1:
     print "NETWORK OK"
 else:
     os.system('echo "rrf" > /etc/spotnik/network')
