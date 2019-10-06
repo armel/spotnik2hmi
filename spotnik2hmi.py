@@ -41,7 +41,7 @@ url6 = "http://rrf.f5nlg.ovh/api/svxlink/local"
 url7 = "http://rrf.f5nlg.ovh/api/svxlink/satellite"
 url8 = "http://127.0.0.1"
 
-versionDash = "2.20b"
+versionDash = "2.30b"
 wifistatut = 0
 dashlist = ""
 
@@ -150,6 +150,9 @@ ecrire("boot.vaip.txt",str(ip))
 print "Maj version ..."
 print version
 ecrire("boot.vaverspotnik.txt",str(version))
+print "Maj version script..."
+print versionDash
+ecrire("boot.vascript.txt",str(versionDash))
 
 #Affichage de la page Dashboard
 print "Page trafic ..."
