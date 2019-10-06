@@ -149,7 +149,7 @@ print "ip"
 ecrire("boot.vaip.txt",str(ip))
 print "Maj version ..."
 print "version"
-ecrire("boot.vaip.txt",str(version))
+ecrire("boot.vaverspotnik.txt",str(version))
 
 #Affichage de la page Dashboard
 print "Page trafic ..."
