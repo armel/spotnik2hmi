@@ -30,6 +30,10 @@ echo "INSTALLATION DEPENDANCE PYTHON"
 apt-get install gcc python-dev python-setuptools
 apt-get install python-pip
 pip install requests
+apt-get update
+apt-get upgrade
+apt-get install python-serial
+
 echo "INSTALLATION COMPLETE !"
 
 echo "INSTALLATION scripts python"
@@ -84,12 +88,7 @@ ECRAN=$(whiptail --title "Choix type d'ecran NEXTION" --radiolist \
 "NX3224T028.tft" "Ecran 2,8 Basic" OFF \
 "NX4024K032.tft" "Ecran 3,2 Enhanced" OFF \
 "NX4024T032.tft" "Ecran 3,2 Basic" OFF \
-"NX4832K035.tft" "Ecran 3,5 Enhanced" OFF \
-"NX4832T035.tft" "Ecran 3,5 Basic" ON \
-"NX8048K050.tft" "Ecran 5,0 Enhanced" OFF \
-"NX8048T050.tft" "Ecran 5,0 Basic" OFF \
-"NX8048K070.tft" "Ecran 7,0 Enhanced" OFF \
-"NX8048T070.tft" "Ecran 7,0 Basic" OFF 3>&1 1>&2 2>&3)
+"NX4832T035.tft" "Ecran 3,5 Basic" ON 3>&1 1>&2 2>&3)
  
 exitstatus=$?
 if [ $exitstatus = 0 ]; then
