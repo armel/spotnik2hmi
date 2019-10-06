@@ -182,7 +182,7 @@ def get_frequency():
                         afind= json.load(c)
                         frequence=afind['rx_qrg']
 			
-	return(frequence)
+	return(frequence +" Mhz")
 #recuperation indicatif dans Json		
 def get_callsign():
 	global indicatif
