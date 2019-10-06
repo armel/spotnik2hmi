@@ -134,7 +134,7 @@ resetHMI()
 
 sleep(5);
 
-#envoi indicatif
+#envoi information systeme
 print "Maj Call ..."
 print "callsign"
 ecrire("boot.va0.txt",str(callsign))
@@ -147,6 +147,9 @@ ecrire("boot.vafreq.txt",str(freq))
 print "Maj ip ..."
 print "ip"
 ecrire("boot.vaip.txt",str(ip))
+print "Maj version ..."
+print "version"
+ecrire("boot.vaip.txt",str(version))
 
 #Affichage de la page Dashboard
 print "Page trafic ..."
