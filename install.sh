@@ -88,7 +88,7 @@ ECRAN=$(whiptail --title "Choix type d'ecran NEXTION" --radiolist \
 "NX3224T028.tft" "Ecran 2,8 Basic" OFF \
 "NX4024K032.tft" "Ecran 3,2 Enhanced" OFF \
 "NX4024T032.tft" "Ecran 3,2 Basic" OFF \
-"NX4832T035.tft" "Ecran 3,5 Basic" ON 3>&1 1>&2 2>&3)
+"NX4832T035.tft" "Ecran 3,5 Basic" OFF 3>&1 1>&2 2>&3)
  
 exitstatus=$?
 if [ $exitstatus = 0 ]; then
