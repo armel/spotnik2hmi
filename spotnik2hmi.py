@@ -41,7 +41,7 @@ url6 = "http://rrf.f5nlg.ovh/api/svxlink/local"
 url7 = "http://rrf.f5nlg.ovh/api/svxlink/satellite"
 url8 = "http://127.0.0.1"
 
-versionDash = "2.10b"
+versionDash = "2.20b"
 wifistatut = 0
 dashlist = ""
 
