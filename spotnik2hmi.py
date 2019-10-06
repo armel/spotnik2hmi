@@ -474,20 +474,20 @@ while 1:
     else:
         print "Detection bouton info"
         cput = '"'+cputemp+' C'+'"' 
+	Freq = str(freq)+ ' Mhz'
         ecrire("info.t14.txt",cputemp)
-        print "Station: "+callsign
-        Freq = str(freq)+ ' Mhz'
-        print "Frequence: "+freq
         ecrire("info.t15.txt",Freq)
-        print "Spotnik: "+version
         ecrire("info.t10.txt",version)
+        print "Frequence: "+freq
+	print "Station: "+callsign
+        print "Spotnik: "+version
         print "Script Version: "+versionDash
+	print "Occupation disk: "+(occupdisk)
+	print "IP: "+ip
+	print "occupation systeme: "+str(chargecpu)
         ecrire("info.t16.txt",versionDash)
-        print "Occupation disk: "+(occupdisk)
         ecrire("info.t13.txt",occupdisk)
-        print "IP: "+ip
         ecrire("info.t0.txt",ip)
-        print "occupation systeme: "+str(chargecpu)
         ecrire("info.t12.txt",str(chargecpu)+" %")
         dtmf("*#")
 #METEO#
