@@ -140,13 +140,13 @@ print "callsign"
 ecrire("boot.va0.txt",str(callsign))
 print "Maj info disk ..."
 print"occupdisk"
-ecrire("boot.vasd.txt",occupdisk)
+ecrire("boot.vasd.txt",str(occupdisk))
 print "Maj info freq ..."
 print "freq"
-ecrire("boot.vafreq.txt",freq)
+ecrire("boot.vafreq.txt",str(freq))
 print "Maj ip ..."
 print "ip"
-ecrire("boot.vaip.txt",ip)
+ecrire("boot.vaip.txt",str(ip))
 
 #Affichage de la page Dashboard
 print "Page trafic ..."
