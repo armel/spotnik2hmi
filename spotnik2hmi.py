@@ -136,19 +136,19 @@ sleep(5);
 
 #envoi information systeme
 print "Maj Call ..."
-print "callsign"
+print callsign
 ecrire("boot.va0.txt",str(callsign))
 print "Maj info disk ..."
-print"occupdisk"
+print occupdisk
 ecrire("boot.vasd.txt",str(occupdisk))
 print "Maj info freq ..."
-print "freq"
+print freq
 ecrire("boot.vafreq.txt",str(freq))
 print "Maj ip ..."
-print "ip"
+print ip
 ecrire("boot.vaip.txt",str(ip))
 print "Maj version ..."
-print "version"
+print version
 ecrire("boot.vaverspotnik.txt",str(version))
 
 #Affichage de la page Dashboard
