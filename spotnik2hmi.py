@@ -136,7 +136,18 @@ sleep(5);
 
 #envoi indicatif
 print "Maj Call ..."
+print "callsign"
 ecrire("boot.va0.txt",str(callsign))
+print "Maj info disk ..."
+print"occupdisk"
+ecrire("boot.vasd.txt",occupdisk)
+print "Maj info freq ..."
+print "freq"
+ecrire("boot.vafreq.txt",freq)
+print "Maj ip ..."
+print "ip"
+ecrire("boot.vaip.txt",ip)
+
 #Affichage de la page Dashboard
 print "Page trafic ..."
 page("trafic")
@@ -473,22 +484,22 @@ while 1:
         ecrire("page200.t3.txt","Mode autonome")
     else:
         print "Detection bouton info"
-        cput = '"'+cputemp+' C'+'"' 
-	Freq = str(freq)+ ' Mhz'
-        ecrire("info.t14.txt",cputemp)
-        ecrire("info.t15.txt",Freq)
-        ecrire("info.t10.txt",version)
-        print "Frequence: "+freq
-	print "Station: "+callsign
-        print "Spotnik: "+version
-        print "Script Version: "+versionDash
-	print "Occupation disk: "+(occupdisk)
-	print "IP: "+ip
-	print "occupation systeme: "+str(chargecpu)
-        ecrire("info.t16.txt",versionDash)
-        ecrire("info.t13.txt",occupdisk)
-        ecrire("info.t0.txt",ip)
-        ecrire("info.t12.txt",str(chargecpu)+" %")
+        #cput = '"'+cputemp+' C'+'"' 
+	#Freq = str(freq)+ ' Mhz'
+        #ecrire("info.t14.txt",cputemp)
+        #ecrire("info.t15.txt",Freq)
+        #ecrire("info.t10.txt",version)
+        #print "Frequence: "+freq
+	#print "Station: "+callsign
+        #print "Spotnik: "+version
+        #print "Script Version: "+versionDash
+	#print "Occupation disk: "+(occupdisk)
+	#print "IP: "+ip
+	#print "occupation systeme: "+str(chargecpu)
+        #ecrire("info.t16.txt",versionDash)
+        #ecrire("info.t13.txt",occupdisk)
+        #ecrire("info.t0.txt",ip)
+        #ecrire("info.t12.txt",str(chargecpu)+" %")
         dtmf("*#")
 #METEO#
     if s.find("meteo")== -1:
