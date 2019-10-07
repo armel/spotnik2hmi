@@ -152,10 +152,6 @@ print 'Station : '+ call_sign
 print 'Frequence : ' + frequency
 print 'Spotnik Version : ' + version
 
-get_city()
-
-exit(0)
-
 #Reset ecran Nextion
 
 reset_hmi()

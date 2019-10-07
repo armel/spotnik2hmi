@@ -183,7 +183,6 @@ def get_city():
     # Lecture ville dans fichier icao.cfg   
 
     icao2city = ConfigParser.RawConfigParser()
-    print icao2city
     config.read(icao)
     result_city = config.get('icao2city', airport)
     ecrire("meteo.t0.txt", result_city) 
