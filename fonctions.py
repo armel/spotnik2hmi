@@ -155,15 +155,10 @@ def get_frequency():
 
 #recuperation indicatif dans Json       
 def get_call_sign():
-    global indicatif
     #recherche code IMAO dans config.json
     with open(Json, 'r') as d:
-        afind= json.load(d)
-        call=afind['callsign']
-        dept = afind['Departement']
-        band = afind['band_type']           
-    indicatif = '(' + dept + ') ' + call + ' ' + band
-    return(indicatif)        
+        tmp = json.load(d)
+    return '(' + tmp['Departement'] + ') ' + tmp['callsign'] + ' ' + tmp['band_type']
 
 #Fonction envoyer des commande console
 def console(cmd):
