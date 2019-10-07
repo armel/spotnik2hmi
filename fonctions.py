@@ -199,7 +199,7 @@ def page(nompage):
     eof = '\xff\xff\xff'
     appelpage = 'page ' + nompage + eof
     port.write(appelpage)
-    print appelpage.strip()
+    print appelpage.replace(eof, '')
 
 #Fonction recherche de nom de ville selon code ICAO
 def get_city():
