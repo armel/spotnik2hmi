@@ -218,8 +218,8 @@ while true:
 #controle si page Dashboard RRF ou TEC
     if tn.find('rrf') != -1:
         fincall= page_web.find ('"transmitter":"')
-        dashdebut= page_web.find (''nodes':[')
-        dashfin= page_web.find ('],'transmit'')
+        dashdebut= page_web.find ('"nodes":[')
+        dashfin= page_web.find ('],"transmit"')
 
         if fincall >0:
             tramecall= (page_web[(fincall):fincall+30])
@@ -236,7 +236,7 @@ while true:
 
     if tn.find('tec') != -1:
         fincall= page_web.find ('"transmitter":"')	
-        dashdebut= page_web.find (''nodes':[')
+        dashdebut= page_web.find ('"nodes":[')
         dashfin= page_web.find ('","TECHNIQUE"]')
 
         if fincall >0:
@@ -255,7 +255,7 @@ while true:
             #setdim(rdim)
     if tn.find('int') != -1:
         fincall= page_web.find ('"transmitter":"')  
-        dashdebut= page_web.find (''nodes':[')
+        dashdebut= page_web.find ('"nodes":[')
         dashfin= page_web.find (',"INTERNATIONAL"]')
         
         if fincall >0:
@@ -274,7 +274,7 @@ while true:
     
     if tn.find('bav') != -1:
         fincall= page_web.find ('"transmitter":"')  
-        dashdebut= page_web.find (''nodes':[')
+        dashdebut= page_web.find ('"nodes":[')
         dashfin= page_web.find (',"BAVARDAGE"]')
         
         if fincall >0:
@@ -293,7 +293,7 @@ while true:
 
     if tn.find('loc') != -1:
         fincall= page_web.find ('"transmitter":"')  
-        dashdebut= page_web.find (''nodes':[')
+        dashdebut= page_web.find ('"nodes":[')
         dashfin= page_web.find (',"LOCAL"]')
         
         if fincall >0:
