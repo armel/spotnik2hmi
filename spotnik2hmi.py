@@ -224,10 +224,10 @@ while True:
         if fincall >0:
             tramecall= (page_web[(fincall):fincall+30])
             tramedash= (page_web[(dashdebut):(dashfin)])
-            call = tramecall.split(''')
+            call = tramecall.split('"')
             print call[3]
-            #dashlist= tramedash.replace(''','')
-            #print 'dashlist:'+dashlist
+            dashlist= tramedash.replace('"','')
+            print 'dashlist:'+dashlist
             TxStation = call[3]
            # setdim(txdim)
         else:
@@ -242,9 +242,9 @@ while True:
         if fincall >0:
             tramecall= (page_web[(fincall):fincall+30])
             tramedash= (page_web[(dashdebut+10):(dashfin)])
-            call = tramecall.split(''')
+            call = tramecall.split('"')
             print call[3]
-            dashfiltre= tramedash.replace(''','')
+            dashfiltre= tramedash.replace('"','')
             dashlist=dashfiltre.replace(',TEC','')
             print 'dashlist:'+dashlist
             TxStation = call[3]
@@ -261,9 +261,9 @@ while True:
         if fincall >0:
             tramecall= (page_web[(fincall):fincall+30])
             tramedash= (page_web[(dashdebut+10):(dashfin)])
-            call = tramecall.split(''')
+            call = tramecall.split('"')
             print call[3]
-            dashlist= tramedash.replace(''','')
+            dashlist= tramedash.replace('"','')
             print 'dashlist:'+dashlist
             TxStation = call[3]
             #setdim(txdim)
@@ -280,9 +280,9 @@ while True:
         if fincall >0:
             tramecall= (page_web[(fincall):fincall+30])
             tramedash= (page_web[(dashdebut+10):(dashfin)])
-            call = tramecall.split(''')
+            call = tramecall.split('"')
             print call[3]
-            dashlist= tramedash.replace(''','')
+            dashlist= tramedash.replace('"','')
             print 'dashlist:'+dashlist
             TxStation = call[3]
             #setdim(txdim)
@@ -299,9 +299,9 @@ while True:
         if fincall >0:
             tramecall= (page_web[(fincall):fincall+30])
             tramedash= (page_web[(dashdebut+10):(dashfin)])
-            call = tramecall.split(''')
+            call = tramecall.split('"')
             print call[3]
-            dashlist= tramedash.replace(''','')
+            dashlist= tramedash.replace('"','')
             print 'dashlist:'+dashlist
             TxStation = call[3]
             #setdim(txdim)
