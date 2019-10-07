@@ -219,7 +219,7 @@ while True:
         print 'Reboot command....'
         page('confirm')
         ecrire('confirm.t0.txt','CONFIRMER LE REBOOT GENERAL ?')
-    elif 'ouireboot' in s;
+    elif 'ouireboot' in s:
         print 'Rebbot'
         page('boot')
         os.system('reboot')
