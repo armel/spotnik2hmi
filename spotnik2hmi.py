@@ -207,11 +207,8 @@ while True:
 
     # Gestion des commandes serie reception du Nextion
     s = hmi_read_line()
-
-    if len(s)<59 and len(s)>0:
-        print s
     s=''.join(e for e in s if e.isalnum())
-    print 'Armel' + s
+    print s
 
     # Gestion des interactions Nextion
 
@@ -339,5 +336,5 @@ while True:
     if s.find('listdash') == -1 and tn!='rrf' and tn!='fon':
         ecrire('page200.t3.txt', 'Mode autonome')
     else:
-        print 'ENVOI DASH'
+        print 'Envoi dash'
         ecrire('trafic.g0.txt',dashlist)
