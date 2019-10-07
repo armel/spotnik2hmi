@@ -112,17 +112,12 @@ config.read(svxconfig)
 call_sign = get_call_sign()
 frequency = get_frequency()
 
-# Adresse IP
-s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-s.connect(('8.8.8.8', 80))
-ip= (s.getsockname()[0])
-s.close()
-
-# Utilisation memoire SD, charge CPU, temperature et type de carte
+# Utilisation memoire SD, charge CPU, temperature CPU, IP et type de carte
 disk_usage = get_disk_usage()
 cpu_usage = get_cpu_usage()
-board = get_board()
 cpu_temp = get_cpu_temp()
+ip = get_ip()
+board = get_board()
 
 # Envoi des infos 
 logo(versionDash)
@@ -160,7 +155,7 @@ page('trafic')
 
 while True:
     
-    # Gestion date et heure (en FR)	
+    # Gestion date et heure (en FR) 
     dashlist = ''
     today = datetime.datetime.now()
     locale.setlocale(locale.LC_TIME,'')
@@ -170,7 +165,7 @@ while True:
     requete('vis p9,0')
     ecrire('trafic.t15.txt', today.strftime('%H:%M'))
 
-    # Definition et affichage link actif	
+    # Definition et affichage link actif    
     a = open('/etc/spotnik/network','r')
     tn = a.read().strip()
 
@@ -194,7 +189,7 @@ while True:
     except requests.exceptions.Timeout as errt:
         print ('Timeout Error:', errt)
         ecrire('trafic.t1.txt','DASH HS')
-	
+    
     # Controle si page Dashboard RRF ou TEC
 
     if tn in room_list:
@@ -290,7 +285,7 @@ while True:
     else:
         print 'Shutdown command....'
         page('confirm')
-        ecrire('confirm.t0.txt','CONFIRMER UN ARRET TOTAL ?')			
+        ecrire('confirm.t0.txt','CONFIRMER UN ARRET TOTAL ?')           
 #RESTART
     if s.find('restart')== -1:
         ecrire('page200.t3.txt', 'Mode autonome')
@@ -326,8 +321,8 @@ while True:
                 wifistatut = 0
                 break
         page('confirm')
-        ecrire('confirm.t0.txt','CONFIRMER LA MAJ WIFI ?')		
-#INFO#	
+        ecrire('confirm.t0.txt','CONFIRMER LA MAJ WIFI ?')      
+#INFO#  
     if s.find('info')== -1:
         ecrire('page200.t3.txt', 'Mode autonome')
     else:
@@ -347,19 +342,19 @@ while True:
         print 'Node choisi'
         print s[s.find('nodeqsy')+7:s.find('nodeqsy')+13]+'#'
         dtmf(s[s.find('nodeqsy')+7:s.find('nodeqsy')+13]+'#')
-        page('echolink')							
-#TRAFIC#		
+        page('echolink')                            
+#TRAFIC#        
     if s.find('trafic')== -1:
         ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'Page trafic'
-		
+        
 #DASHBOARD#
     if s.find('dashboard')== -1:
         ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'Page dashboard'
-		
+        
 #MENU#
     if s.find('menu')== -1:
         ecrire('page200.t3.txt', 'Mode autonome')
@@ -380,7 +375,7 @@ while True:
                 print 'Envoi PASS actuel sur Nextion: ' + wifi_pass
                 ecrire('wifi.t1.txt', str(wifi_ssid))
                 ecrire('wifi.t0.txt', str(wifi_pass))
-                wifistatut = 1	
+                wifistatut = 1  
 
 #ECHOLINK#
     if s.find('echolink')== -1:
@@ -392,14 +387,14 @@ while True:
         ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'Page clavier numerique'
-	
+    
 #Connect Echolink#
     if s.find('connexionecho')== -1:
         ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'Bouton connexion echolink'
-		
-		
+        
+        
 #Deconnect Echolink#
     if s.find('deconnectioncho')== -1:
         ecrire('page200.t3.txt', 'Mode autonome')
