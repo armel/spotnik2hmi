@@ -37,27 +37,43 @@ url = ''
 room_list = {
     'rrf': {
         'url': 'http://rrf.f5nlg.ovh/api/svxlink/RRF',
-        'message': 'RESEAU RRF'
+        'message': 'RESEAU RRF',
+        'dtmf': '96#'
     },
     'fon': {
         'url': 'http://rrf.f5nlg.ovh/api/svxlink/FON',
-        'message': 'RESEAU FON'
+        'message': 'RESEAU FON',
+        'dtmf': '97#'
     },
     'tec': {
         'url': 'http://rrf.f5nlg.ovh/api/svxlink/technique',
-        'message': 'SALON TECHNIQUE'
+        'message': 'SALON TECHNIQUE',
+        'dtmf': '98#'
     },
     'int': {
         'url': 'http://rrf.f5nlg.ovh/api/svxlink/international',
-        'message': 'SALON INTER.'
+        'message': 'SALON INTER.',
+        'dtmf': '99#'
     },
     'bav': {
         'url': 'http://rrf.f5nlg.ovh/api/svxlink/bavardage',
-        'message': 'SALON BAVARDAGE'
+        'message': 'SALON BAVARDAGE',
+        'dtmf': '100#'
     },
     'loc': {
         'url': 'http://rrf.f5nlg.ovh/api/svxlink/local',
-        'message': 'SALON LOCAL'
+        'message': 'SALON LOCAL',
+        'dtmf': '101#'
+    },
+    'sat': {
+        'url': '',
+        'message': 'SALON SAT',
+        'dtmf': '102#'
+    },
+    'reg': {
+        'url': '',
+        'message': 'SALON REGIONAL',
+        'dtmf': '104#'
     },
     'default': {
         'url': '',
@@ -542,56 +558,14 @@ while True:
         rxdim = s[9:-3]
         print rdim
         rdmi= rxdim
-		
-#QSYSALONRRF#
-    if s.find('qsyrrf')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
-    else:
-        print 'QSY SALON RRF'
-        dtmf('96#')
-#QSYFON#
-    if s.find('qsyfon')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
-    else:
-        print 'QSY FON'
-        dtmf('97#')
-#QSYSALONTECH#
-    if s.find('qsytech')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
-    else:
-        print 'QSY SALON TECH'
-        dtmf('98#')
-#QSYINTER#
-    if s.find('qsyinter')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
-    else:
-        print 'QSY SALON INTER'
-        dtmf('99#')
-#QSYBAV#
-    if s.find('qsyloc')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
-    else:
-        print 'QSY SALON LOCAL'
-        dtmf('101#')
-#QSYLOCAL#
-    if s.find('qsybav')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
-    else:
-        print 'QSY SALON BAVARDAGE'
-        dtmf('100#')
-#QSYSAT#
-    if s.find('qsysat')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
-    else:
-        print 'QSY SALON SAT'
-        dtmf('102#')
 
-#QSYSAT#
-    if s.find('qsyreg')== -1:
+#QSYSALON
+
+    if s[-3:] not in room_list:
         ecrire('page200.t3.txt','Mode autonome')
     else:
-        print 'QSY SALON REGIONAL'
-        dtmf('104#')
+        print 'QSY ' + room_list[s[-3:]]['messsage']
+        dtmf(room_list[s[-3:]]['dtmf'])
 
 #DONNMETEO#
     if s.find('dmeteo')== -1:
