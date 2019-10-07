@@ -170,7 +170,7 @@ print 'Spotnik Version : ' + version
 
 resetHMI()
 
-sleep(5);
+time.sleep(5);
 
 #envoi information systeme
 print 'Maj Call : ' + callsign
