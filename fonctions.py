@@ -145,17 +145,14 @@ def dtmf(code):
 #recuperation Frequence dans JSON
 
 def get_frequency():
-    global frequence
-    #recherche code IMAO dans config.json
-    with open(Json, 'r') as c:
-        afind= json.load(c)
-        frequence=afind['rx_qrg']
-            
-    return(frequence + ' Mhz')
+    # Recherche fréquence dans config.json
+    with open(Json, 'r') as d:
+        tmp= json.load(c)            
+    return tmp['rx_qrg'] + ' Mhz'
 
 #recuperation indicatif dans Json       
 def get_call_sign():
-    #recherche code IMAO dans config.json
+    # Recherche callsign dans config.json
     with open(Json, 'r') as d:
         tmp = json.load(d)
     return '(' + tmp['Departement'] + ') ' + tmp['callsign'] + ' ' + tmp['band_type']
