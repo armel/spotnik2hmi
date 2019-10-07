@@ -127,7 +127,7 @@ def getCPUuse():
 
 def getDiskSpace():
     df_output = [s.split() for s in os.popen('df -h /').read().splitlines()]
-    return(df_output[1][4] + ' %')    
+    return(df_output[1][4])    
 
 #Fonction de control d'extension au demarrage
 def usage():
