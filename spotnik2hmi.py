@@ -65,7 +65,7 @@ room_list = {
     'loc': {
         'url': 'http://rrf.f5nlg.ovh/api/svxlink/local',
         'message': 'SALON LOCAL'
-    }
+    },
     'default': {
         'url': '',
         'message': 'PERROQUET'
