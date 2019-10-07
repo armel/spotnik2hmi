@@ -31,15 +31,7 @@ portcom(sys.argv[1],sys.argv[2])
 #Variables
 eof = "\xff\xff\xff"
 today = datetime.now()
-url = ""
-url1 = "http://rrf.f5nlg.ovh/api/svxlink/RRF"
-url2 = "http://rrf.f5nlg.ovh/api/svxlink/FON"
-url3 = "http://rrf.f5nlg.ovh/api/svxlink/technique"
-url4 = "http://rrf.f5nlg.ovh/api/svxlink/international"
-url5 = "http://rrf.f5nlg.ovh/api/svxlink/bavardage"
-url6 = "http://rrf.f5nlg.ovh/api/svxlink/local"
-url7 = "http://rrf.f5nlg.ovh/api/svxlink/satellite"
-url8 = "http://127.0.0.1"
+url = ''
 
 room_list = {
     'rrf': {
