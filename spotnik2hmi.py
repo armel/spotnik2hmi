@@ -188,7 +188,7 @@ while True:
     
     # Gestion date et heure (en FR)	
     dashlist = ''
-    today = datetime.now()
+    today = datetime.datetime.now()
     locale.setlocale(locale.LC_TIME,'')
     ecrire('trafic.t18.txt', today.strftime('%d-%m-%Y'))
     ecrire('trafic.t8.txt', today.strftime('%H:%M:%S'))
