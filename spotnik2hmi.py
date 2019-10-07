@@ -17,9 +17,6 @@ import socket
 #pour json
 import json
 import os
-import ssl
-
-ssl._create_default_https_context = ssl._create_unverified_context
 
 portcom(sys.argv[1],sys.argv[2])
 
