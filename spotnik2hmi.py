@@ -201,7 +201,7 @@ while True:
             if tn not in ['rrf', 'fon', 'sat']:
                 tramedash= (page_web[(dashdebut+10):(dashfin)])
                 dashlist= tramedash.replace('"','')
-                print 'dashlist:'+dashlist
+                print 'dashlist:' + dashlist
             TxStation = call[3]
         else:
             TxStation = ''
@@ -209,7 +209,7 @@ while True:
     # Gestion des commandes serie reception du Nextion
     s = hmi_read_line()
     s=''.join(e for e in s if e.isalnum())
-    print s
+    #print s
     print '------'
 
     # Gestion des interactions Nextion
