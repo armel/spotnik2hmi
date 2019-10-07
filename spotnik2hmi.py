@@ -205,9 +205,9 @@ while 1:
     ecrire("trafic.t15.txt",heure)
     #Definition et affichage link actif	
     a = open("/etc/spotnik/network","r")
-    tn = a.read()
+    tn = a.read().strip()
 
-    if tn.strip() in room_list:
+    if tn in room_list:
         ecrire("trafic.t0.txt",room_list[tn]['message'])
         url = room_list[tn]['url']
     else:
