@@ -3,18 +3,13 @@
 #Parametrage port serie
 
 from fonctions import *
-#import echolink
 
 import serial
 import sys
 import datetime
 import time
 import requests
-#pour lecture fichier de config
 import ConfigParser, os
-#pour adresse ip
-import socket
-#pour json
 import json
 import os
 
