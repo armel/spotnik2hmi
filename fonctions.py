@@ -161,17 +161,7 @@ def dtmf(code):
     b.write(code)
     print "code DTMF: "+code
     b.close()
-
-#Fonction envoyer le prenom selon le call
-def prenom(Searchcall):
-    callcut = Searchcall.split (' ')
-    Searchprenom = callcut[1]
-    print Searchprenom
-    lines = csv.reader(open('amat_annuaire.csv','rb'),delimiter=';')
-
-    for indicatif,nom,prenom,adresse,ville,cp in lines:
-        if indicatif==Searchprenom:
-            print prenom                    
+    
 #recuperation Frequence dans JSON
 
 def get_frequency():
