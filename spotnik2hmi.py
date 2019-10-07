@@ -72,7 +72,7 @@ room_list = {
         'filter': '","LOCAL"]'
     },
     'sat': {
-        'url': '',
+        'url': 'http://rrf.f5nlg.ovh/api/svxlink/satellite',
         'message': 'SALON SAT',
         'dtmf': '102#'
     },
@@ -241,7 +241,7 @@ while True:
 
     if tn in room_list:
         fincall= page_web.find ('"transmitter":"')
-        if tn not in ['rrf', 'fon']:
+        if tn not in ['rrf', 'fon', 'sat']:
             dashdebut= page_web.find ('"nodes":[')
             dashfin= page_web.find (room_list[tn]['filter'])
         
@@ -249,7 +249,7 @@ while True:
             tramecall= (page_web[(fincall):fincall+30])
             call = tramecall.split('"')
             print call[3]
-            if tn not in ['rrf', 'fon']:
+            if tn not in ['rrf', 'fon', 'sat']:
                 tramedash= (page_web[(dashdebut+10):(dashfin)])
                 dashlist= tramedash.replace('"','')
                 print 'dashlist:'+dashlist
@@ -257,30 +257,13 @@ while True:
         else:
             TxStation = ''
 
-    ecrire('trafic.t1.txt',TxStation)
-    if tn.find('sat') != -1:
-        fincall= page_web.find ('"transmitter":"')
-      
-        if fincall >0:
-            tramecall= (page_web[(fincall):fincall+30])
-         
-            call = tramecall.split('"')
-            print call[3]
-          
-            TxStation = call[3]
-            #setdim(txdim)
-        else:
-            TxStation = ''
-            #dimsend ='dim='+str(rdim)+eof
-            #setdim(rdim)
-    ecrire('trafic.t1.txt',TxStation)
-
 #Gestion des commandes serie reception du Nextion
     s = hmiReadline()
 
     if len(s)<59 and len(s)>0:
         print s
-#		print len(s)
+    s=''.join(e for e in s if e.isalnum())
+        print 'Armel' + s
 
 #REBOOT
     if s.find('reboot')== -1:
@@ -374,7 +357,7 @@ while True:
         requete('get t0.txt')
         requete('get t1.txt')
 
-        while 1:
+        while True:
             s = hmiReadline()
             if len(s)<71:
                 test= s.split('p')
@@ -477,8 +460,14 @@ while True:
 
 #QSYSALON
 
-    s = ''.join(e for e in s if e.isalnum())
+    s=''.join(e for e in s if e.isalnum())
+
+    if s=='qsyinter':         # Fix me
+        s='qsyint'
+    elif s=='qsytech':        # Fix me
+        s='qsytec'
     print '>>>>>>>' + s, s[-3:]
+    
     if s[-3:] not in room_list:
         ecrire('page200.t3.txt','Mode autonome')
     else:
