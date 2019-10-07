@@ -162,10 +162,10 @@ print board
 #Envoi des infos 
   
 logo(versionDash)
-print 'Proc: ' + (str(chargecpu)) + '%\t' + 'CPU: ' + cputemp + '°C' 
-print 'Station: '+callsign
-print 'Frequence: '+freq+' Mhz'
-print 'Spotnik: Version:'+version
+print 'Proc : ' + (str(chargecpu)) + '%\t' + 'CPU : ' + cputemp + '°C' 
+print 'Station : '+ callsign
+print 'Frequence : ' + freq + ' Mhz'
+print 'Spotnik Version : ' + version
 
 #Reset ecran Nextion
 
