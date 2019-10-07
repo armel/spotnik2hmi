@@ -149,8 +149,6 @@ print 'Page trafic ...'
 page('trafic')
 
 while True:
-    
-    print '<<<<'
     # Gestion date et heure (en FR) 
     dashlist = ''
     today = datetime.datetime.now()
@@ -209,9 +207,8 @@ while True:
     # Gestion des commandes serie reception du Nextion
     s = hmi_read_line()
     s=''.join(e for e in s if e.isalnum())
-    #print s
-    print '------'
-
+    print s
+    
     # Gestion des interactions Nextion
 
     if 'reboot' in s:
@@ -334,6 +331,7 @@ while True:
         dtmf(room_list[s[-3:]]['dtmf'])
 
     # Dashboard
+        ecrire('trafic.g0.txt',dashlist)
 
     if s.find('listdash') == -1 and tn!='rrf' and tn!='fon':
         ecrire('page200.t3.txt', 'Mode autonome')
