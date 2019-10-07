@@ -122,7 +122,6 @@ config.read(svxconfig)
 #recuperation indicatif et frequence    
 callsign = get_callsign()
 freq = get_frequency()
-#print indicatif
 
 #adresse IP
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -141,7 +140,6 @@ occupdisk = str(disk)
 
 #Utilisation CPU
 chargecpu= getCPUuse()
-#Detection carte
 
 #Detection carte
 revision=getrevision()
@@ -151,18 +149,20 @@ if revision =='0000':
     f = open('/sys/devices/virtual/thermal/thermal_zone0/temp', 'r')
     t = f.readline ()
     cputemp = t[0:2]
-if revision !='0000':
+else: 
     board = 'Raspberry Pi'
     #temperature CPU
     f = open('/sys/class/thermal/thermal_zone0/temp', 'r')
     t = f.readline ()
     cputemp = t[0:2]
-print board
 
 #Envoi des infos 
   
 logo(versionDash)
-print 'Proc : ' + (str(chargecpu)) + '%\t' + 'CPU : ' + cputemp + '°C' 
+
+print 'Carte : ' + board
+print 'Proc : ' + (str(chargecpu)) + '%'
+print 'CPU : ' + cputemp + '°C' 
 print 'Station : '+ callsign
 print 'Frequence : ' + freq + ' Mhz'
 print 'Spotnik Version : ' + version
@@ -174,23 +174,17 @@ resetHMI()
 sleep(5);
 
 #envoi information systeme
-print 'Maj Call ...'
-print callsign
+print 'Maj Call : ' + callsign
 ecrire('boot.va0.txt',str(callsign))
-print 'Maj info disk ...'
-print occupdisk
+print 'Maj info disk : ' + occupdisk
 ecrire('boot.vasd.txt',str(occupdisk))
-print 'Maj info freq ...'
-print freq
+print 'Maj info freq : ' + freq
 ecrire('boot.vafreq.txt',str(freq))
-print 'Maj ip ...'
-print ip
+print 'Maj ip : ' + ip
 ecrire('boot.vaip.txt',str(ip))
-print 'Maj version ...'
-print version
+print 'Maj version : '+ version
 ecrire('boot.vaverspotnik.txt',str(version))
-print 'Maj version script...'
-print versionDash
+print 'Maj version script : ' + versionDash
 ecrire('boot.vascript.txt',str(versionDash))
 
 #Affichage de la page Dashboard

@@ -117,8 +117,7 @@ def hmiReadline():
     return myString
 
 def getCPUuse():
-    CPU_Pct=str(round(float(os.popen('''grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage }' ''').readline()),2))
-    return(CPU_Pct)
+    return str(round(float(os.popen('''grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage }' ''').readline()),2))
 
 #Return information sur espace disque                     
 # Index 0: total disk space                                                         
