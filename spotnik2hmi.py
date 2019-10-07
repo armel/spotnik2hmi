@@ -223,7 +223,7 @@ while True:
 
         if fincall >0:
             tramecall= (page_web[(fincall):fincall+30])
-            tramedash= (page_web[(dashdebut):(dashfin)])
+            #tramedash= (page_web[(dashdebut):(dashfin)])
             call = tramecall.split('"')
             print call[3]
             #dashlist= tramedash.replace('"','')
