@@ -149,7 +149,7 @@ print 'Carte : ' + board
 print 'Proc : ' + cpu_usage + '%'
 print 'CPU : ' + cpu_temp + '°C' 
 print 'Station : '+ call_sign
-print 'Frequence : ' + frequency + ' Mhz'
+print 'Frequence : ' + frequency
 print 'Spotnik Version : ' + version
 
 #Reset ecran Nextion
