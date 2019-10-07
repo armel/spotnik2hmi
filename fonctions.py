@@ -126,18 +126,8 @@ def getCPUuse():
 # Index 3: percentage of disk used    
 
 def getDiskSpace():
-    df_output_lines = [s.split() for s in os.popen('df -h /').read().splitlines()]
-
-    print df_output_lines
-
-    p = os.popen('df -h /')
-    i = 0
-    while 1:
-        i = i +1
-        line = p.readline()
-        if i==2:
-            disk_space=(line.split()[4])
-            return(disk_space[:-1] + ' %')    
+    df_output = [s.split() for s in os.popen('df -h /').read().splitlines()]
+    return(df_output[4] + ' %')    
 
 #Fonction de control d'extension au demarrage
 def usage():
