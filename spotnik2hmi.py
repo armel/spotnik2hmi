@@ -150,6 +150,7 @@ page('trafic')
 
 while True:
     
+    print '<<<<'
     # Gestion date et heure (en FR) 
     dashlist = ''
     today = datetime.datetime.now()
