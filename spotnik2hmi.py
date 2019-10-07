@@ -208,8 +208,8 @@ while 1:
     tn = a.read()
 
     if tn in room_list:
-        ecrire("trafic.t0.txt",room_list[tn][message])
-        url = room_list[tn][url]
+        ecrire("trafic.t0.txt",room_list[tn]['message'])
+        url = room_list[tn]['url']
     else:
         ecrire("page200.t3.txt","Mode autonome")
 
