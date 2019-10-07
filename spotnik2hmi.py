@@ -218,16 +218,16 @@ while True:
 #controle si page Dashboard RRF ou TEC
     if tn.find('rrf') != -1:
         fincall= page_web.find ('"transmitter":"')
-        dashdebut= page_web.find ('"nodes":[')
-        dashfin= page_web.find ('],"transmit"')
+        #dashdebut= page_web.find ('"nodes":[')
+        #dashfin= page_web.find ('],"transmit"')
 
         if fincall >0:
             tramecall= (page_web[(fincall):fincall+30])
             tramedash= (page_web[(dashdebut):(dashfin)])
             call = tramecall.split('"')
             print call[3]
-            dashlist= tramedash.replace('"','')
-            print 'dashlist:'+dashlist
+            #dashlist= tramedash.replace('"','')
+            #print 'dashlist:'+dashlist
             TxStation = call[3]
            # setdim(txdim)
         else:
