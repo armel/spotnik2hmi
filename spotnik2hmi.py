@@ -162,7 +162,6 @@ print board
 #Envoi des infos 
   
 logo(versionDash)
-print ('Proc: %s \tCPU: %s °C') % ((str(chargecpu), cputemp)
 print 'Proc: ' + (str(chargecpu)) + '% ' + 'CPU: ' + cputemp + '°C' 
 print 'Station: '+callsign
 print 'Frequence: '+freq+' Mhz'
