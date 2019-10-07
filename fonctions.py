@@ -127,6 +127,8 @@ def getCPUuse():
 
 def getDiskSpace():
     p = os.popen('df -h /')
+
+    print p
     i = 0
     while 1:
         i = i +1
