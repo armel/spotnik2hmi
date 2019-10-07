@@ -50,8 +50,8 @@ svxconfig='/etc/spotnik/svxlink.cfg'
 config = ConfigParser.RawConfigParser()
 config.read(svxconfig)
 
-# Regarde la version de la carte
-def get_revision():
+# Fonction detection carte
+def get_board():
     # Extract board revision from cpuinfo file
     myrevision = '0000'
     try:
@@ -64,7 +64,10 @@ def get_revision():
     except:
         pass
 
-    return myrevision 
+    if revision == '0000':
+        return 'Orange Pi'
+    else:
+        return 'Raspberry Pi' 
 
 def portcom(portserie, vitesse):
     global port
@@ -89,14 +92,30 @@ def hmi_read_line():
     myString = str(rcv)
     return myString
 
-# Fonction utilisation du CPU
+# Fonction utilisation CPU
 def get_cpu_usage():
     return str(round(float(os.popen('''grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage }' ''').readline()),2))
 
-# Fonction utilisation du espace disque                     
+# Fonction utilisation Memoire SD                 
 def get_disk_usage():
     df_output = [s.split() for s in os.popen('df -h /').read().splitlines()]
     return(df_output[1][4])
+
+# Fonction temperature
+def get_cpu_temp():
+    board = get_board()
+    if board == 'Orange Pi':
+        #temperature CPU
+        f = open('/sys/devices/virtual/thermal/thermal_zone0/temp', 'r')
+        t = f.readline ()
+        cpu_temp = t[0:2]
+    else: 
+        #temperature CPU
+        f = open('/sys/class/thermal/thermal_zone0/temp', 'r')
+        t = f.readline ()
+        cpu_temp = t[0:2]
+
+    return cpu_temp
 
 # Fonction de control d'extension au demarrage
 def usage():

@@ -124,22 +124,11 @@ disk_usage = get_disk_usage()
 # Utilisation CPU
 cpu_usage = get_cpu_usage()
 
-#Detection carte
-revision = get_revision()
+# Detection carte
+board = get_board()
 
 # Temperature
-if revision =='0000':
-    board = 'Orange Pi'
-    #temperature CPU
-    f = open('/sys/devices/virtual/thermal/thermal_zone0/temp', 'r')
-    t = f.readline ()
-    cpu_temp = t[0:2]
-else: 
-    board = 'Raspberry Pi'
-    #temperature CPU
-    f = open('/sys/class/thermal/thermal_zone0/temp', 'r')
-    t = f.readline ()
-    cpu_temp = t[0:2]
+cpu_temp = get_cpu_temp()
 
 #Envoi des infos 
   
@@ -148,7 +137,7 @@ logo(versionDash)
 print 'Carte : ' + board
 print 'Proc : ' + cpu_usage + '%'
 print 'CPU : ' + cpu_temp + '°C' 
-print 'Station : '+ call_sign
+print 'Station : ' + call_sign
 print 'Frequence : ' + frequency
 print 'Spotnik Version : ' + version
 
@@ -160,17 +149,17 @@ time.sleep(5);
 
 #envoi information systeme
 print 'Maj Call : ' + call_sign
-ecrire('boot.va0.txt',str(call_sign))
+ecrire('boot.va0.txt', str(call_sign))
 print 'Maj info disk : ' + disk_usage
-ecrire('boot.vasd.txt',str(disk_usage))
+ecrire('boot.vasd.txt', str(disk_usage))
 print 'Maj info freq : ' + frequency
-ecrire('boot.vafreq.txt',str(frequency))
+ecrire('boot.vafreq.txt', str(frequency))
 print 'Maj ip : ' + ip
-ecrire('boot.vaip.txt',str(ip))
+ecrire('boot.vaip.txt', str(ip))
 print 'Maj version : '+ version
-ecrire('boot.vaverspotnik.txt',str(version))
+ecrire('boot.vaverspotnik.txt', str(version))
 print 'Maj version script : ' + versionDash
-ecrire('boot.vascript.txt',str(versionDash))
+ecrire('boot.vascript.txt', str(versionDash))
 
 # Affichage de la page Dashboard
 print 'Page trafic ...'
