@@ -152,9 +152,13 @@ print 'Station : '+ call_sign
 print 'Frequence : ' + frequency
 print 'Spotnik Version : ' + version
 
+get_city()
+
+exit(0)
+
 #Reset ecran Nextion
 
-resetHMI()
+reset_hmi()
 
 time.sleep(5);
 
@@ -234,7 +238,7 @@ while True:
             TxStation = ''
 
     # Gestion des commandes serie reception du Nextion
-    s = hmiReadline()
+    s = hmi_read_line()
 
     if len(s)<59 and len(s)>0:
         print s
@@ -334,7 +338,7 @@ while True:
         requete('get t1.txt')
 
         while True:
-            s = hmiReadline()
+            s = hmi_readl_ine()
             if len(s)<71:
                 test= s.split('p')
                 newpass= test[1][:-3]

@@ -39,9 +39,9 @@ import io
 import json
 from subprocess import Popen, PIPE
 
-#Variables:
+# Variables:
 eof = '\xff\xff\xff'
-port= 0 
+port = 0 
 #Chemin fichier Json
 Json='/etc/spotnik/config.json'
 icao='/opt/spotnik/spotnik2hmi/datas/icao.cfg'
@@ -50,7 +50,7 @@ svxconfig='/etc/spotnik/svxlink.cfg'
 config = ConfigParser.RawConfigParser()
 config.read(svxconfig)
 
-#regarde la version Raspberry
+# Regarde la version de la carte
 def get_revision():
     # Extract board revision from cpuinfo file
     myrevision = '0000'
@@ -66,60 +66,39 @@ def get_revision():
 
     return myrevision 
 
-def portcom(portserie,vitesse):
+def portcom(portserie, vitesse):
     global port
     port = serial.Serial(port='/dev/' + portserie, baudrate=vitesse, timeout=1, writeTimeout=1)
     print 'Port serie: ' + portserie + ' Vitesse: ' + vitesse
     
-    
-def resetHMI():
+# Reset HMI
+def reset_hmi():
     global port
     print 'Reset HMI ...'
-    reset ='rest' +eof  
+    reset ='rest' + eof  
     port.write(reset)
 
-#Fonction reglage dim du nextion
-def setdim(dimv):
-
-    dimsend ='dim='+str(dimv)+eof
-    port.write(dimsend)
-
-#Fonction requete du nextion
+# Fonction requete du nextion
 def requete(valeur):
-
     requetesend = str(valeur)+eof
     port.write(requetesend)
 
-#Fonction suivre le log svxlink
-def follow(thefile):
-    thefile.seek(0,2)      # Go to the end of the file
-    while True:
-         line = thefile.readline()
-         if not line:
-             time.sleep(0.1)    # Sleep briefly
-             continue
-         yield line
-
-def hmiReadline():
+def hmi_read_line():
     global port
     rcv = port.readline()
     myString = str(rcv)
     return myString
 
+# Fonction utilisation du CPU
 def get_cpu_usage():
     return str(round(float(os.popen('''grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage }' ''').readline()),2))
 
-#Return information sur espace disque                     
-# Index 0: total disk space                                                         
-# Index 1: used disk space                                                          
-# Index 2: remaining disk space                                                     
-# Index 3: percentage of disk used    
-
+# Fonction utilisation du espace disque                     
 def get_disk_usage():
     df_output = [s.split() for s in os.popen('df -h /').read().splitlines()]
     return(df_output[1][4])
 
-#Fonction de control d'extension au demarrage
+# Fonction de control d'extension au demarrage
 def usage():
     program = os.path.basename(sys.argv[0])
     print ""    
@@ -135,7 +114,7 @@ if len(sys.argv) > 2:
 else:
     usage()
 
-#Fonction envoyer un code DTMF au system
+# Fonction envoyer un code DTMF au system
 def dtmf(code):
     b = open('/tmp/dtmf_uhf','a')
     b.write(code)
@@ -143,15 +122,14 @@ def dtmf(code):
     b.close()
     return 0
 
-#recuperation Frequence dans JSON
-
+# Recuperation Frequence dans JSON
 def get_frequency():
     # Recherche fréquence dans config.json
     with open(Json, 'r') as d:
         tmp= json.load(d)            
     return tmp['rx_qrg'] + ' Mhz'
 
-#recuperation indicatif dans Json       
+# Recuperation indicatif dans Json       
 def get_call_sign():
     # Recherche callsign dans config.json
     with open(Json, 'r') as d:
@@ -196,19 +174,19 @@ def page(nompage):
     print appelpage 
 
 #Fonction recherche de nom de ville selon code ICAO
-def getcity():
-    #lecture valeur icao dans config.json       
-    with open(Json, 'r') as b:
-            afind= json.load(b)
-            airport =afind['airport_code']
+def get_city():
+    # Lecture valeur icao dans config.json       
+    with open(Json, 'r') as d:
+        tmp = json.load(d)
+    airport = tmp['airport_code']
         
-    #lecture ville dans fichier icao.cfg        
+    # Lecture ville dans fichier icao.cfg   
+
     icao2city = ConfigParser.RawConfigParser()
     config.read(icao)
-    Result_city = config.get('icao2city', airport)
-    #city= '"'+Result_city+'"'
-    ecrire("meteo.t0.txt",Result_city) 
-    print "Aeroport de: " +Result_city  
+    result_city = config.get('icao2city', airport)
+    ecrire("meteo.t0.txt", result_city) 
+    print "Aeroport de: " + result_city  
 
 #Fonction Meteo Lecture des donnees Metar + envoi Nextion
 def get_meteo():
@@ -218,7 +196,7 @@ def get_meteo():
         airport =afind['airport_code']
     #Info ville Aéroport
     print "Le code ICAO est: "+airport
-    getcity()
+    get_city()
 
     fichier = open("/tmp/meteo.txt", "w")
     fichier.write("[rapport]")
