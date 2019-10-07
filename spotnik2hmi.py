@@ -213,8 +213,8 @@ while 1:
     else:
         ecrire("page200.t3.txt","Mode autonome")
 
-    print tn, message, url
-    
+    print tn, url
+
     a.close()
 
 #
