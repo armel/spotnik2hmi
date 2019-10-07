@@ -162,7 +162,8 @@ print board
 #Envoi des infos 
   
 logo(versionDash)
-print 'Proc: '+(str(chargecpu))+'%   ' + 'CPU: '+cputemp+'°C' 
+print ('Proc: %s %%\tCPU: %s °C') % ((str(chargecpu), cputemp)
+print 'Proc: ' + (str(chargecpu)) + '% ' + 'CPU: ' + cputemp + '°C' 
 print 'Station: '+callsign
 print 'Frequence: '+freq+' Mhz'
 print 'Spotnik: Version:'+version
@@ -462,9 +463,9 @@ while True:
 
     s=''.join(e for e in s if e.isalnum())
 
-    if s=='qsyinter':         # Fix me
+    if s=='qsyinter':         # Fix me !!!
         s='qsyint'
-    elif s=='qsytech':        # Fix me
+    elif s=='qsytech':        # Fix me !!!
         s='qsytec'
     print '>>>>>>>' + s, s[-3:]
     
