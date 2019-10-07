@@ -41,6 +41,38 @@ url6 = "http://rrf.f5nlg.ovh/api/svxlink/local"
 url7 = "http://rrf.f5nlg.ovh/api/svxlink/satellite"
 url8 = "http://127.0.0.1"
 
+room_list = {
+    'rrf': {
+        'url': 'http://rrf.f5nlg.ovh/api/svxlink/RRF',
+        'message': 'RESEAU RRF'
+    },
+    'fon': {
+        'url': 'http://rrf.f5nlg.ovh/api/svxlink/FON',
+        'message': 'RESEAU FON'
+    },
+    'tec': {
+        'url': 'http://rrf.f5nlg.ovh/api/svxlink/technique',
+        'message': 'SALON TECHNIQUE'
+    },
+    'int': {
+        'url': 'http://rrf.f5nlg.ovh/api/svxlink/international',
+        'message': 'SALON INTER.'
+    },
+    'bav': {
+        'url': 'http://rrf.f5nlg.ovh/api/svxlink/bavardage',
+        'message': 'SALON BAVARDAGE'
+    },
+    'loc': {
+        'url': 'http://rrf.f5nlg.ovh/api/svxlink/local',
+        'message': 'SALON LOCAL'
+    }
+    'default': {
+        'url': '',
+        'message': 'PERROQUET'
+    }
+}
+
+
 versionDash = "3.00L"
 wifistatut = 0
 dashlist = ""
@@ -175,58 +207,11 @@ while 1:
     a = open("/etc/spotnik/network","r")
     tn = a.read()
 
-    if tn.find("rrf") == -1:
-        ecrire("page200.t3.txt","Mode autonome")
+    if tn in room_list:
+        ecrire("trafic.t0.txt",room_list[tn][message])
+        url = room_list[tn][url]
     else:
-        ecrire("trafic.t0.txt","RESEAU RRF")
-        url = url1
-		
-    if tn.find("fon") == -1:
         ecrire("page200.t3.txt","Mode autonome")
-    else:
-        ecrire("trafic.t0.txt","RESEAU FON")	
-        url = url2
-	
-    if tn.find("tec") == -1:
-        ecrire("page200.t3.txt","Mode autonome")
-    else:
-        ecrire("trafic.t0.txt","SALON TECHNIQUE")
-        url = url3
-
-    if tn.find("int") == -1:
-        ecrire("page200.t3.txt","Mode autonome")
-    else:
-        ecrire("trafic.t0.txt","SALON INTER.")
-        url = url4    
-
-    if tn.find("bav") == -1:
-        ecrire("page200.t3.txt","Mode autonome")
-    else:
-        ecrire("trafic.t0.txt","SALON BAVARDAGE")
-        url = url5
-
-    if tn.find("loc") == -1:
-        ecrire("page200.t3.txt","Mode autonome")
-    else:
-        ecrire("trafic.t0.txt","SALON LOCAL")
-        url = url6
-
-    if tn.find("sat") == -1:
-        ecrire("page200.t3.txt","Mode autonome")
-    else:
-        ecrire("trafic.t0.txt","SALON SATELLITE")    
-	url = url7	
-
-    if tn.find("reg") == -1:
-        ecrire("page200.t3.txt","Mode autonome")
-    else:
-        ecrire("trafic.t0.txt","SALON REGIONAL")    
-	url = url8	
-
-    if tn.find("default") == -1:
-        ecrire("page200.t3.txt","Mode autonome")
-    else:
-        ecrire("trafic.t0.txt","PERROQUET")
 
     a.close()
 
