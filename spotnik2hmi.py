@@ -263,7 +263,7 @@ while True:
     if len(s)<59 and len(s)>0:
         print s
     s=''.join(e for e in s if e.isalnum())
-        print 'Armel' + s
+    print 'Armel' + s
 
 #REBOOT
     if s.find('reboot')== -1:
