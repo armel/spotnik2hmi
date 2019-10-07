@@ -81,9 +81,9 @@ tn = a.read().strip()
 if tn in ['default', 'sat']:
     os.system('echo "rrf" > /etc/spotnik/network')
     os.system('/etc/spotnik/restart')
-    print 'NETWORK CHANGE'
+    print 'Network Change'
 else: 
-    print 'NETWORK OK'
+    print 'Network Ok'
         
 # Reglage de luminosite
 rdim = 10   #ecran sans reception signal
@@ -213,98 +213,49 @@ while True:
     s=''.join(e for e in s if e.isalnum())
     print 'Armel' + s
 
-    #REBOOT
-    if s.find('reboot')== -1:
-        ecrire('page200.t3.txt', 'Mode autonome')
-    else:
-        print 'Reboot command....'
+    # Gestion des interactions Nextion
 
-    #
-    #GESTION DU OUI DE LA PAGE CONFIRM
-    #
-
-    #OUIREBOOT#
-    if s.find('ouireboot')== -1:
-        ecrire('page200.t3.txt', 'Mode autonome')
-    else:
-        print 'REBOOT'
-        page('boot')
-        os.system('reboot')
-
-#OUIRESTART#
-    if s.find('ouiredem')== -1:
-        ecrire('page200.t3.txt', 'Mode autonome')
-    else:
-        print 'REDEMARRAGE'
-        dtmf('96#')
-        page('trafic')
-                
-#OUIARRET#
-    if s.find('ouiarret')== -1:
-        ecrire('page200.t3.txt', 'Mode autonome')
-    else:
-        print 'ARRET DU SYSTEM'
-        page('arret')
-        os.system('shutdown -h now')
-
-#OUIWIFI
-    if s.find('ouimajwifi')== -1:
-        ecrire('page200.t3.txt', 'Mode autonome')
-    else:
-        wifi(newssid,newpass)
-        page('wifi')
-
-#OUIQUITTERECOLINK#
-    if s.find('ouiquitecho')== -1:
-        ecrire('page200.t3.txt', 'Mode autonome')
-    else:
-        print 'OUI QUITTE ECHOLINK'
-        dtmf('#')
-        page('trafic')
-        dtmf('96#')
-                
-#OUIDECONNECTIONNODE#
-    if s.find('ouideconnectenode')== -1:
-        ecrire('page200.t3.txt', 'Mode autonome')
-    else:
-        print 'DECONNECTE NODE'
-        page('echolink')
-        dtmf('#')
-#
-#Gestion commande du Nextion
-#
-                                                                              
-#STOP
-    if s.find('shutdown')== -1:
-        ecrire('page200.t3.txt', 'Mode autonome')
-    else:
-        print 'Shutdown command....'
-        page('confirm')
-        ecrire('confirm.t0.txt','CONFIRMER UN ARRET TOTAL ?')           
-#RESTART
-    if s.find('restart')== -1:
-        ecrire('page200.t3.txt', 'Mode autonome')
-    else:
-        print 'Restart command....'
-        page('confirm')
-        ecrire('confirm.t0.txt','CONFIRMER LE REDEMARRAGE LOGICIEL ?')
-
-#REBOOT
-    if s.find('reboot')== -1:
-        ecrire('page200.t3.txt', 'Mode autonome')
-    else:
+    if 'reboot' in s:
         print 'Reboot command....'
         page('confirm')
         ecrire('confirm.t0.txt','CONFIRMER LE REBOOT GENERAL ?')
-
-#MAJWIFI
-    if s.find('maj')== -1:
-        ecrire('page200.t3.txt', 'Mode autonome')
-    else:
+    elif 'ouireboot' in s;
+        print 'Rebbot'
+        page('boot')
+        os.system('reboot')
+    elif 'ouiredem' in s:
+        print 'Redemarrage'
+        dtmf('96#')
+        page('trafic')
+    elif 'ouiarret' in s:
+        print 'Arret du system'
+        page('arret')
+        os.system('shutdown -h now')
+    elif 'ouimajwifi' in s:
+        print 'Wifi'
+        wifi(newssid,newpass)
+        page('wifi')
+    elif 'ouiquitecho' in s:
+        print 'Oui quitte Echolink'
+        dtmf('#')
+        page('trafic')
+        dtmf('96#')
+    elif 'ouideconnectenode' in s:   
+        print 'Deconnecte Node'
+        page('echolink')
+        dtmf('#')
+    elif 'shutdown' in s:
+        print 'Shutdown command....'
+        page('confirm')
+        ecrire('confirm.t0.txt','CONFIRMER UN ARRET TOTAL ?')           
+    elif 'restart' in s:       
+        print 'Restart command....'
+        page('confirm')
+        ecrire('confirm.t0.txt','CONFIRMER LE REDEMARRAGE LOGICIEL ?')
+    elif 'maj' in s:
         print 'MAJ Wifi....'
         requete('get t0.txt')
         requete('get t1.txt')
-
         while True:
             s = hmi_readl_ine()
             if len(s)<71:
@@ -316,49 +267,25 @@ while True:
                 wifistatut = 0
                 break
         page('confirm')
-        ecrire('confirm.t0.txt','CONFIRMER LA MAJ WIFI ?')      
-#INFO#  
-    if s.find('info')== -1:
-        ecrire('page200.t3.txt', 'Mode autonome')
-    else:
+        ecrire('confirm.t0.txt','CONFIRMER LA MAJ WIFI ?') 
+    elif 'info' in s:
         print 'Detection bouton info'
         dtmf('*#')
-#METEO#
-    if s.find('meteo')== -1:
-        ecrire('page200.t3.txt', 'Mode autonome')
-    else:
+    elif 'meteo' in s:
         print 'Detection bouton meteo'
-        #METEO
         get_meteo()
-#NODE#
-    if s.find('nodeqsy')== -1:
-        ecrire('page200.t3.txt', 'Mode autonome')
-    else:
+    elif 'nodeqsy' in s:
         print 'Node choisi'
         print s[s.find('nodeqsy')+7:s.find('nodeqsy')+13]+'#'
         dtmf(s[s.find('nodeqsy')+7:s.find('nodeqsy')+13]+'#')
-        page('echolink')                            
-#TRAFIC#        
-    if s.find('trafic')== -1:
-        ecrire('page200.t3.txt', 'Mode autonome')
-    else:
+        page('echolink')
+    elif 'trafic' in s:
         print 'Page trafic'
-        
-#DASHBOARD#
-    if s.find('dashboard')== -1:
-        ecrire('page200.t3.txt', 'Mode autonome')
-    else:
+    elif 'dashboard' in s:
         print 'Page dashboard'
-        
-#MENU#
-    if s.find('menu')== -1:
-        ecrire('page200.t3.txt', 'Mode autonome')
-    else:
+    elif 'menu' in s:
         print 'Page menu'
-#WIFI#
-    if s.find('wifi')== -1:
-        ecrire('page200.t3.txt', 'Mode autonome')
-    else:
+    elif 'wifi' in s:
         print 'Page wifi'
         Json='/etc/spotnik/config.json'
         if wifistatut == 0:
@@ -371,50 +298,34 @@ while True:
                 ecrire('wifi.t1.txt', str(wifi_ssid))
                 ecrire('wifi.t0.txt', str(wifi_pass))
                 wifistatut = 1  
-
-#ECHOLINK#
-    if s.find('echolink')== -1:
-        ecrire('page200.t3.txt', 'Mode autonome')
-    else:
+    elif 'echolink' in s:
         print 'Page echolink'
-#Numkaypad#
-    if s.find('keypadnum')== -1:
-        ecrire('page200.t3.txt', 'Mode autonome')
-    else:
+    elif 'keypadnum' in s:
         print 'Page clavier numerique'
-    
-#Connect Echolink#
-    if s.find('connexionecho')== -1:
-        ecrire('page200.t3.txt', 'Mode autonome')
-    else:
+    elif 'connexionecho' in s:
         print 'Bouton connexion echolink'
-        
-        
-#Deconnect Echolink#
-    if s.find('deconnectioncho')== -1:
-        ecrire('page200.t3.txt', 'Mode autonome')
-    else:
+    elif 'deconnectioncho' in s:
         print 'Bouton deconnexion echolink'
-                
-
-#Reglage DIM#
-    if s.find('regdim')== -1:
-        ecrire('page200.t3.txt', 'Mode autonome')
-    else:
+    elif 'regdim' in s:
         print 'Reglage DIM recu'
         rxdim = s[9:-3]
         print rdim
         rdmi= rxdim
+    elif 'dmeteo' in s:
+        print 'Bulletin Meteo'
+        dtmf('*51#')
+    elif 'qsyperroquet' in s:
+        print 'QSY Perroquet'
+        dtmf('95#')
+    else:
+        ecrire('page200.t3.txt', 'Mode autonome')
 
-#QSYSALON
-
-    s=''.join(e for e in s if e.isalnum())
+    # QSY Salon
 
     if s=='qsyinter':         # Fix me !!!
         s='qsyint'
     elif s=='qsytech':        # Fix me !!!
         s='qsytec'
-    print '>>>>>>>' + s, s[-3:]
     
     if s[-3:] not in room_list:
         ecrire('page200.t3.txt', 'Mode autonome')
@@ -423,20 +334,9 @@ while True:
         print room_list[s[-3:]]['dtmf']
         dtmf(room_list[s[-3:]]['dtmf'])
 
-#DONNMETEO#
-    if s.find('dmeteo')== -1:
-        ecrire('page200.t3.txt', 'Mode autonome')
-    else:
-        print 'BULETIN METEO'
-        dtmf('*51#')
-#PERROQUET
-    if s.find('qsyperroquet')== -1:
-        ecrire('page200.t3.txt', 'Mode autonome')
-    else:
-        print 'QSY PERROQUET'
-        dtmf('95#')
-#DASHBOARD#
-    if s.find('listdash')== -1 and tn!='rrf' and tn!='fon':
+    # Dashboard
+
+    if s.find('listdash') == -1 and tn!='rrf' and tn!='fon':
         ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'ENVOI DASH'
