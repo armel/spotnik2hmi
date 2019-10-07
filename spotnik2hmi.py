@@ -30,7 +30,6 @@ portcom(sys.argv[1],sys.argv[2])
 
 #Variables
 eof = '\xff\xff\xff'
-today = datetime.now()
 url = ''
 
 room_list = {
@@ -198,6 +197,10 @@ while True:
     date = (today.strftime('%d-%m-%Y'))
     heure = (today.strftime('%H:%M'))
     heureS =(today.strftime('%H:%M:%S'))
+
+    print date 
+    print '-----'
+
     ecrire('trafic.t18.txt',date)
     ecrire('trafic.t8.txt',heureS)
     ecrire('trafic.V_heure.txt',heure)
