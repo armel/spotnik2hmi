@@ -331,8 +331,6 @@ while True:
         dtmf(room_list[s[-3:]]['dtmf'])
 
     # Dashboard
-        ecrire('trafic.g0.txt',dashlist)
-
     if s.find('listdash') == -1 and tn!='rrf' and tn!='fon':
         ecrire('page200.t3.txt', 'Mode autonome')
     else:
