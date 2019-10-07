@@ -24,24 +24,20 @@ import socket
 import fcntl
 import struct
 from datetime import  *
-import time
-from time import time,sleep
 import locale
 import mmap
 #partie dashboard
 import urllib2
 import ssl
-url = 'http://rrf.f5nlg.ovh'
 #pour lecture fichier de config
-import ConfigParser, os
+import ConfigParser
 #pour adresse ip
 import socket
 #pour CPU
 import io
 #pour json
 import json
-#Pour ouverture nomenclature
-import csv
+from subprocess import Popen, PIPE
 
 #Variables:
 eof = '\xff\xff\xff'
@@ -54,15 +50,9 @@ svxconfig='/etc/spotnik/svxlink.cfg'
 config = ConfigParser.RawConfigParser()
 config.read(svxconfig)
 
-
-#Fonction pour lancement routin console
-
-from subprocess import Popen, PIPE
-
 #regarde la version Raspberry
 def getrevision():
-
-  # Extract board revision from cpuinfo file
+    # Extract board revision from cpuinfo file
     myrevision = '0000'
     try:
         f = open('/proc/cpuinfo','r')
@@ -72,7 +62,7 @@ def getrevision():
                 myrevision = line[11:length-1]
         f.close()
     except:
-        myrevision = '0000'
+        pass
 
     return myrevision 
 
@@ -127,7 +117,7 @@ def getCPUuse():
 
 def getDiskSpace():
     df_output = [s.split() for s in os.popen('df -h /').read().splitlines()]
-    return(df_output[1][4])    
+    return(df_output[1][4])
 
 #Fonction de control d'extension au demarrage
 def usage():

@@ -9,7 +9,6 @@ import serial
 import sys
 from datetime import  *
 import time
-from time import time,sleep
 import requests
 #pour lecture fichier de config
 import ConfigParser, os
