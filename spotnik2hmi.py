@@ -213,6 +213,8 @@ while 1:
     else:
         ecrire("page200.t3.txt","Mode autonome")
 
+    print url
+
     a.close()
 
 #
