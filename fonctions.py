@@ -148,7 +148,7 @@ def dtmf(code):
 def get_frequency():
     # Recherche fréquence dans config.json
     with open(Json, 'r') as d:
-        tmp= json.load(c)            
+        tmp= json.load(d)            
     return tmp['rx_qrg'] + ' Mhz'
 
 #recuperation indicatif dans Json       
