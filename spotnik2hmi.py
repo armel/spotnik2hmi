@@ -208,8 +208,9 @@ while 1:
     tn = a.read()
 
     print room_list
-    
+
     if tn in room_list:
+        print 'oui'
         ecrire("trafic.t0.txt",room_list[tn]['message'])
         url = room_list[tn]['url']
     else:
