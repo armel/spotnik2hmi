@@ -207,15 +207,12 @@ while 1:
     a = open("/etc/spotnik/network","r")
     tn = a.read()
 
-    if tn in room_list:
+    if tn.strip() in room_list:
         ecrire("trafic.t0.txt",room_list[tn]['message'])
         url = room_list[tn]['url']
     else:
         ecrire("page200.t3.txt","Mode autonome")
 
-    print tn, url, len(tn)
-
-    exit(0)
     a.close()
 
 #
