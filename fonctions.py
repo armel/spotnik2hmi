@@ -126,9 +126,11 @@ def getCPUuse():
 # Index 3: percentage of disk used    
 
 def getDiskSpace():
-    p = os.popen('df -h /')
+    df_output_lines = [s.split() for s in os.popen('df -h /').read().splitlines()]
 
-    print p
+    print df_output_lines
+
+    p = os.popen('df -h /')
     i = 0
     while 1:
         i = i +1
