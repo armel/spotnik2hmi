@@ -7,20 +7,15 @@ from fonctions import *
 
 import serial
 import sys
-from datetime import  *
+from datetime
 import time
 import requests
 #pour lecture fichier de config
 import ConfigParser, os
 #pour adresse ip
 import socket
-#pour CPU
-import io
 #pour json
 import json
-#Pour ouverture nomenclature
-import csv
-#import psutil
 import os
 import ssl
 
@@ -185,28 +180,23 @@ ecrire('boot.vaverspotnik.txt',str(version))
 print 'Maj version script : ' + versionDash
 ecrire('boot.vascript.txt',str(versionDash))
 
-#Affichage de la page Dashboard
+# Affichage de la page Dashboard
 print 'Page trafic ...'
 page('trafic')
 
 while True:
-#Gestion Date et heure (en FR)	
+    
+    # Gestion date et heure (en FR)	
     dashlist = ''
     today = datetime.now()
-    locale.setlocale(locale.LC_TIME,'')	
-    date = (today.strftime('%d-%m-%Y'))
-    heure = (today.strftime('%H:%M'))
-    heureS =(today.strftime('%H:%M:%S'))
-
-    print date 
-    print '-----'
-
-    ecrire('trafic.t18.txt',date)
-    ecrire('trafic.t8.txt',heureS)
-    ecrire('trafic.V_heure.txt',heure)
+    locale.setlocale(locale.LC_TIME,'')
+    ecrire('trafic.t18.txt', today.strftime('%d-%m-%Y'))
+    ecrire('trafic.t8.txt', today.strftime('%H:%M:%S'))
+    ecrire('trafic.V_heure.txt', today.strftime('%H:%M'))
     requete('vis p9,0')
-    ecrire('trafic.t15.txt',heure)
-    #Definition et affichage link actif	
+    ecrire('trafic.t15.txt', today.strftime('%H:%M'))
+
+    # Definition et affichage link actif	
     a = open('/etc/spotnik/network','r')
     tn = a.read().strip()
 
@@ -218,11 +208,9 @@ while True:
 
     a.close()
 
-#
-#Gestion status TRX
-#	
+    # Gestion status TRX
 
-# Request HTTP datas
+    # Request HTTP datas
     try:
         r = requests.get(url, verify=False, timeout=10)
         page_web = r.content
@@ -233,7 +221,7 @@ while True:
         print ('Timeout Error:', errt)
         ecrire('trafic.t1.txt','DASH HS')
 	
-#controle si page Dashboard RRF ou TEC
+    # Controle si page Dashboard RRF ou TEC
 
     if tn in room_list:
         fincall= page_web.find ('"transmitter":"')
@@ -253,7 +241,7 @@ while True:
         else:
             TxStation = ''
 
-#Gestion des commandes serie reception du Nextion
+    # Gestion des commandes serie reception du Nextion
     s = hmiReadline()
 
     if len(s)<59 and len(s)>0:
@@ -261,17 +249,17 @@ while True:
     s=''.join(e for e in s if e.isalnum())
     print 'Armel' + s
 
-#REBOOT
+    #REBOOT
     if s.find('reboot')== -1:
         ecrire('page200.t3.txt','Mode autonome')
     else:
         print 'Reboot command....'
 
-#
-#GESTION DU OUI DE LA PAGE CONFIRM
-#
+    #
+    #GESTION DU OUI DE LA PAGE CONFIRM
+    #
 
-#OUIREBOOT#
+    #OUIREBOOT#
     if s.find('ouireboot')== -1:
         ecrire('page200.t3.txt','Mode autonome')
     else:
