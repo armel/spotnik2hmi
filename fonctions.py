@@ -51,7 +51,7 @@ config = ConfigParser.RawConfigParser()
 config.read(svxconfig)
 
 #regarde la version Raspberry
-def getrevision():
+def get_revision():
     # Extract board revision from cpuinfo file
     myrevision = '0000'
     try:
@@ -106,7 +106,7 @@ def hmiReadline():
     myString = str(rcv)
     return myString
 
-def getCPUuse():
+def get_cpu_usage():
     return str(round(float(os.popen('''grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage }' ''').readline()),2))
 
 #Return information sur espace disque                     
@@ -115,7 +115,7 @@ def getCPUuse():
 # Index 2: remaining disk space                                                     
 # Index 3: percentage of disk used    
 
-def getDiskSpace():
+def get_disk_usage():
     df_output = [s.split() for s in os.popen('df -h /').read().splitlines()]
     return(df_output[1][4])
 
@@ -152,8 +152,9 @@ def get_frequency():
         frequence=afind['rx_qrg']
             
     return(frequence + ' Mhz')
+
 #recuperation indicatif dans Json       
-def get_callsign():
+def get_call_sign():
     global indicatif
     #recherche code IMAO dans config.json
     with open(Json, 'r') as d:

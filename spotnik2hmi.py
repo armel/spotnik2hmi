@@ -79,7 +79,6 @@ room_list = {
 
 versionDash = '3.00L'
 wifistatut = 0
-dashlist = ''
 
 a = open('/etc/spotnik/network','r')
 tn = a.read().strip()
@@ -110,8 +109,8 @@ config = ConfigParser.RawConfigParser()
 config.read(svxconfig)
 
 #recuperation indicatif et frequence    
-callsign = get_callsign()
-freq = get_frequency()
+call_sign = get_call_sign()
+frequency = get_frequency()
 
 #adresse IP
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -119,42 +118,38 @@ s.connect(('8.8.8.8', 80))
 ip= (s.getsockname()[0])
 s.close()
 
-#temperature CPU
-f = open('/sys/class/thermal/thermal_zone0/temp', 'r')
-t = f.readline ()
-cputemp = t[0:2]
+# Utilisation Memoire SD
+disk_usage = get_disk_usage()
 
-#Memoire SD libre
-disk= getDiskSpace()
-occupdisk = str(disk)
-
-#Utilisation CPU
-chargecpu= getCPUuse()
+# Utilisation CPU
+cpu_usage = get_cpu_usage()
 
 #Detection carte
-revision=getrevision()
+revision = get_revision()
+
+# Temperature
 if revision =='0000':
     board = 'Orange Pi'
     #temperature CPU
     f = open('/sys/devices/virtual/thermal/thermal_zone0/temp', 'r')
     t = f.readline ()
-    cputemp = t[0:2]
+    cpu_temp = t[0:2]
 else: 
     board = 'Raspberry Pi'
     #temperature CPU
     f = open('/sys/class/thermal/thermal_zone0/temp', 'r')
     t = f.readline ()
-    cputemp = t[0:2]
+    cpu_temp = t[0:2]
 
 #Envoi des infos 
   
 logo(versionDash)
 
 print 'Carte : ' + board
-print 'Proc : ' + (str(chargecpu)) + '%'
-print 'CPU : ' + cputemp + '°C' 
-print 'Station : '+ callsign
-print 'Frequence : ' + freq + ' Mhz'
+print 'Proc : ' + cpu_usage + '%'
+print 'CPU : ' + cpu_temp + '°C' 
+print 'Station : '+ call_sign
+print 'Frequence : ' + frequency + ' Mhz'
 print 'Spotnik Version : ' + version
 
 #Reset ecran Nextion
@@ -164,12 +159,12 @@ resetHMI()
 time.sleep(5);
 
 #envoi information systeme
-print 'Maj Call : ' + callsign
-ecrire('boot.va0.txt',str(callsign))
-print 'Maj info disk : ' + occupdisk
-ecrire('boot.vasd.txt',str(occupdisk))
-print 'Maj info freq : ' + freq
-ecrire('boot.vafreq.txt',str(freq))
+print 'Maj Call : ' + call_sign
+ecrire('boot.va0.txt',str(call_sign))
+print 'Maj info disk : ' + disk_usage
+ecrire('boot.vasd.txt',str(disk_usage))
+print 'Maj info freq : ' + frequency
+ecrire('boot.vafreq.txt',str(frequency))
 print 'Maj ip : ' + ip
 ecrire('boot.vaip.txt',str(ip))
 print 'Maj version : '+ version
@@ -399,10 +394,10 @@ while True:
                 infojson = json.load(a)
                 wifi_ssid = infojson['wifi_ssid']
                 wifi_pass = infojson['wpa_key']
-                print 'Envoi SSID actuel sur Nextion: '+wifi_ssid
-                print 'Envoi PASS actuel sur Nextion: '+wifi_pass
-                ecrire('wifi.t1.txt',str(wifi_ssid))
-                ecrire('wifi.t0.txt',str(wifi_pass))
+                print 'Envoi SSID actuel sur Nextion: ' + wifi_ssid
+                print 'Envoi PASS actuel sur Nextion: ' + wifi_pass
+                ecrire('wifi.t1.txt', str(wifi_ssid))
+                ecrire('wifi.t0.txt', str(wifi_pass))
                 wifistatut = 1	
 
 #ECHOLINK#
