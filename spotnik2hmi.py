@@ -38,32 +38,38 @@ room_list = {
     'rrf': {
         'url': 'http://rrf.f5nlg.ovh/api/svxlink/RRF',
         'message': 'RESEAU RRF',
-        'dtmf': '96#'
+        'dtmf': '96#',
+        'filter': '","RRF"]'
     },
     'fon': {
         'url': 'http://rrf.f5nlg.ovh/api/svxlink/FON',
         'message': 'RESEAU FON',
-        'dtmf': '97#'
+        'dtmf': '97#',
+        'filter': '","FON"]'
     },
     'tec': {
         'url': 'http://rrf.f5nlg.ovh/api/svxlink/technique',
         'message': 'SALON TECHNIQUE',
-        'dtmf': '98#'
+        'dtmf': '98#',
+        'filter': '","TECHNIQUE"]'
     },
     'int': {
         'url': 'http://rrf.f5nlg.ovh/api/svxlink/international',
         'message': 'SALON INTER.',
-        'dtmf': '99#'
+        'dtmf': '99#',
+        'filter': '","INTERNATIONAL"]'
     },
     'bav': {
         'url': 'http://rrf.f5nlg.ovh/api/svxlink/bavardage',
         'message': 'SALON BAVARDAGE',
-        'dtmf': '100#'
+        'dtmf': '100#',
+        'filter': '","BAVARDAGE"]'
     },
     'loc': {
         'url': 'http://rrf.f5nlg.ovh/api/svxlink/local',
         'message': 'SALON LOCAL',
-        'dtmf': '101#'
+        'dtmf': '101#',
+        'filter': '","LOCAL"]'
     },
     'sat': {
         'url': '',
@@ -232,115 +238,25 @@ while True:
         ecrire('trafic.t1.txt','DASH HS')
 	
 #controle si page Dashboard RRF ou TEC
-    if tn.find('rrf') != -1:
+
+    if tn in room_list:
         fincall= page_web.find ('"transmitter":"')
-        #dashdebut= page_web.find ('"nodes":[')
-        #dashfin= page_web.find ('],"transmit"')
-
-        if fincall >0:
-            tramecall= (page_web[(fincall):fincall+30])
-            #tramedash= (page_web[(dashdebut):(dashfin)])
-            call = tramecall.split('"')
-            print call[3]
-            #dashlist= tramedash.replace('"','')
-            #print 'dashlist:'+dashlist
-            TxStation = call[3]
-           # setdim(txdim)
-        else:
-            TxStation = ''
-            #setdim(rdim)
-
-    if tn.find('tec') != -1:
-        fincall= page_web.find ('"transmitter":"')	
-        dashdebut= page_web.find ('"nodes":[')
-        dashfin= page_web.find ('","TECHNIQUE"]')
-
-        if fincall >0:
-            tramecall= (page_web[(fincall):fincall+30])
-            tramedash= (page_web[(dashdebut+10):(dashfin)])
-            call = tramecall.split('"')
-            print call[3]
-            dashfiltre= tramedash.replace('"','')
-            dashlist=dashfiltre.replace(',TEC','')
-            print 'dashlist:'+dashlist
-            TxStation = call[3]
-            #setdim(txdim)
-        else:
-            TxStation = ''
-            #dimsend ='dim='+str(rdim)+eof
-            #setdim(rdim)
-    if tn.find('int') != -1:
-        fincall= page_web.find ('"transmitter":"')  
-        dashdebut= page_web.find ('"nodes":[')
-        dashfin= page_web.find (',"INTERNATIONAL"]')
+        if tn not in ['rrf', 'fon']:
+            dashdebut= page_web.find ('"nodes":[')
+            dashfin= page_web.find (room_list[tn]['filter'])
         
         if fincall >0:
             tramecall= (page_web[(fincall):fincall+30])
-            tramedash= (page_web[(dashdebut+10):(dashfin)])
             call = tramecall.split('"')
             print call[3]
-            dashlist= tramedash.replace('"','')
-            print 'dashlist:'+dashlist
+            if tn not in ['rrf', 'fon']:
+                tramedash= (page_web[(dashdebut+10):(dashfin)])
+                dashlist= tramedash.replace('"','')
+                print 'dashlist:'+dashlist
             TxStation = call[3]
-            #setdim(txdim)
         else:
             TxStation = ''
-            #dimsend ='dim='+str(rdim)+eof
-            #setdim(rdim)
-    
-    if tn.find('bav') != -1:
-        fincall= page_web.find ('"transmitter":"')  
-        dashdebut= page_web.find ('"nodes":[')
-        dashfin= page_web.find (',"BAVARDAGE"]')
-        
-        if fincall >0:
-            tramecall= (page_web[(fincall):fincall+30])
-            tramedash= (page_web[(dashdebut+10):(dashfin)])
-            call = tramecall.split('"')
-            print call[3]
-            dashlist= tramedash.replace('"','')
-            print 'dashlist:'+dashlist
-            TxStation = call[3]
-            #setdim(txdim)
-        else:
-            TxStation = ''
-            #dimsend ='dim='+str(rdim)+eof
-            #setdim(rdim)
 
-    if tn.find('loc') != -1:
-        fincall= page_web.find ('"transmitter":"')  
-        dashdebut= page_web.find ('"nodes":[')
-        dashfin= page_web.find (',"LOCAL"]')
-        
-        if fincall >0:
-            tramecall= (page_web[(fincall):fincall+30])
-            tramedash= (page_web[(dashdebut+10):(dashfin)])
-            call = tramecall.split('"')
-            print call[3]
-            dashlist= tramedash.replace('"','')
-            print 'dashlist:'+dashlist
-            TxStation = call[3]
-            #setdim(txdim)
-        else:
-            TxStation = ''
-            #dimsend ='dim='+str(rdim)+eof
-            #setdim(rdim)        
-
-    if tn.find('fon') != -1:
-        fincall= page_web.find ('"transmitter":"')
-      
-        if fincall >0:
-            tramecall= (page_web[(fincall):fincall+30])
-         
-            call = tramecall.split('"')
-            print call[3]
-          
-            TxStation = call[3]
-            #setdim(txdim)
-        else:
-            TxStation = ''
-            #dimsend ='dim='+str(rdim)+eof
-            #setdim(rdim)
     ecrire('trafic.t1.txt',TxStation)
     if tn.find('sat') != -1:
         fincall= page_web.find ('"transmitter":"')
