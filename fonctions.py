@@ -139,8 +139,9 @@ else:
 def dtmf(code):
     b = open('/tmp/dtmf_uhf','a')
     b.write(code)
-    print "code DTMF: "+code
+    print "code DTMF: " + code
     b.close()
+    return 0
 
 #recuperation Frequence dans JSON
 
