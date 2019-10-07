@@ -482,7 +482,7 @@ while True:
     if s[-3:] not in room_list:
         ecrire('page200.t3.txt','Mode autonome')
     else:
-        print 'QSY ' + room_list[s[-3:]]['messsage']
+        print 'QSY ' + room_list[s[-3:]]['message']
         print room_list[s[-3:]]['dtmf']
         dtmf(room_list[s[-3:]]['dtmf'])
 
