@@ -207,6 +207,8 @@ while 1:
     a = open("/etc/spotnik/network","r")
     tn = a.read()
 
+    print room_list
+    
     if tn in room_list:
         ecrire("trafic.t0.txt",room_list[tn]['message'])
         url = room_list[tn]['url']
