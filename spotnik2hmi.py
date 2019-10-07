@@ -73,7 +73,7 @@ a = open('/etc/spotnik/network','r')
 tn = a.read().strip()
 
 if tn in ['default', 'sat']:
-    os.system('echo 'rrf' > /etc/spotnik/network')
+    os.system('echo "rrf" > /etc/spotnik/network')
     os.system('/etc/spotnik/restart')
     print 'NETWORK CHANGE'
 else: 
