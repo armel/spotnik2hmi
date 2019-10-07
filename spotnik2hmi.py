@@ -209,6 +209,7 @@ while True:
     s = hmi_read_line()
     s=''.join(e for e in s if e.isalnum())
     print s
+    print '------'
 
     # Gestion des interactions Nextion
 
