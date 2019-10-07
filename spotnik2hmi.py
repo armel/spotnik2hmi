@@ -477,7 +477,8 @@ while True:
 
 #QSYSALON
 
-    print '>>>>' + s, s[-3:]
+    s = ''.join(e for e in s if e.isalnum())
+    print '>>>>>>>' + s
     if s[-3:] not in room_list:
         ecrire('page200.t3.txt','Mode autonome')
     else:
