@@ -175,7 +175,7 @@ ecrire('boot.vascript.txt',str(versionDash))
 print 'Page trafic ...'
 page('trafic')
 
-while true:
+while True:
 #Gestion Date et heure (en FR)	
     dashlist = ''
     today = datetime.now()
