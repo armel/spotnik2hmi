@@ -90,48 +90,41 @@ if tn in ['default', 'sat']:
 else: 
     print 'NETWORK OK'
         
-#Reglage de luminosite
+# Reglage de luminosite
 rdim = 10   #ecran sans reception signal
 txdim = 80  #ecran avec reception station
 
-#Chemins fichiers
-svxconfig='/etc/spotnik/svxlink.cfg'
-cheminversion= open('/etc/spotnik/version', 'r')
+# Chemins fichiers
+svxconfig = '/etc/spotnik/svxlink.cfg'
+cheminversion = open('/etc/spotnik/version', 'r')
 version = cheminversion.read()
 version = version.strip()
-conf='/etc/NetworkManager/system-connections/SPOTNIK'
+conf = '/etc/NetworkManager/system-connections/SPOTNIK'
 
-#Chemin log a suivre
+# Chemin log a suivre
 svxlogfile = '/tmp/svxlink.log'   #SVXLink log file 
 
-#routine ouverture fichier de config
+# Routine ouverture fichier de config
 config = ConfigParser.RawConfigParser()
 config.read(svxconfig)
 
-#recuperation indicatif et frequence    
+# Recuperation indicatif, frequence
 call_sign = get_call_sign()
 frequency = get_frequency()
 
-#adresse IP
+# Adresse IP
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 s.connect(('8.8.8.8', 80))
 ip= (s.getsockname()[0])
 s.close()
 
-# Utilisation Memoire SD
+# Utilisation memoire SD, charge CPU, temperature et type de carte
 disk_usage = get_disk_usage()
-
-# Utilisation CPU
 cpu_usage = get_cpu_usage()
-
-# Detection carte
 board = get_board()
-
-# Temperature
 cpu_temp = get_cpu_temp()
 
-#Envoi des infos 
-  
+# Envoi des infos 
 logo(versionDash)
 
 print 'Carte : ' + board
@@ -185,7 +178,7 @@ while True:
         ecrire('trafic.t0.txt',room_list[tn]['message'])
         url = room_list[tn]['url']
     else:
-        ecrire('page200.t3.txt','Mode autonome')
+        ecrire('page200.t3.txt', 'Mode autonome')
 
     a.close()
 
@@ -232,7 +225,7 @@ while True:
 
     #REBOOT
     if s.find('reboot')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
+        ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'Reboot command....'
 
@@ -242,7 +235,7 @@ while True:
 
     #OUIREBOOT#
     if s.find('ouireboot')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
+        ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'REBOOT'
         page('boot')
@@ -250,7 +243,7 @@ while True:
 
 #OUIRESTART#
     if s.find('ouiredem')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
+        ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'REDEMARRAGE'
         dtmf('96#')
@@ -258,7 +251,7 @@ while True:
                 
 #OUIARRET#
     if s.find('ouiarret')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
+        ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'ARRET DU SYSTEM'
         page('arret')
@@ -266,14 +259,14 @@ while True:
 
 #OUIWIFI
     if s.find('ouimajwifi')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
+        ecrire('page200.t3.txt', 'Mode autonome')
     else:
         wifi(newssid,newpass)
         page('wifi')
 
 #OUIQUITTERECOLINK#
     if s.find('ouiquitecho')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
+        ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'OUI QUITTE ECHOLINK'
         dtmf('#')
@@ -282,7 +275,7 @@ while True:
                 
 #OUIDECONNECTIONNODE#
     if s.find('ouideconnectenode')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
+        ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'DECONNECTE NODE'
         page('echolink')
@@ -293,14 +286,14 @@ while True:
                                                                               
 #STOP
     if s.find('shutdown')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
+        ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'Shutdown command....'
         page('confirm')
         ecrire('confirm.t0.txt','CONFIRMER UN ARRET TOTAL ?')			
 #RESTART
     if s.find('restart')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
+        ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'Restart command....'
         page('confirm')
@@ -308,7 +301,7 @@ while True:
 
 #REBOOT
     if s.find('reboot')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
+        ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'Reboot command....'
         page('confirm')
@@ -316,7 +309,7 @@ while True:
 
 #MAJWIFI
     if s.find('maj')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
+        ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'MAJ Wifi....'
         requete('get t0.txt')
@@ -336,20 +329,20 @@ while True:
         ecrire('confirm.t0.txt','CONFIRMER LA MAJ WIFI ?')		
 #INFO#	
     if s.find('info')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
+        ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'Detection bouton info'
         dtmf('*#')
 #METEO#
     if s.find('meteo')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
+        ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'Detection bouton meteo'
         #METEO
         get_meteo()
 #NODE#
     if s.find('nodeqsy')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
+        ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'Node choisi'
         print s[s.find('nodeqsy')+7:s.find('nodeqsy')+13]+'#'
@@ -357,24 +350,24 @@ while True:
         page('echolink')							
 #TRAFIC#		
     if s.find('trafic')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
+        ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'Page trafic'
 		
 #DASHBOARD#
     if s.find('dashboard')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
+        ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'Page dashboard'
 		
 #MENU#
     if s.find('menu')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
+        ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'Page menu'
 #WIFI#
     if s.find('wifi')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
+        ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'Page wifi'
         Json='/etc/spotnik/config.json'
@@ -391,32 +384,32 @@ while True:
 
 #ECHOLINK#
     if s.find('echolink')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
+        ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'Page echolink'
 #Numkaypad#
     if s.find('keypadnum')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
+        ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'Page clavier numerique'
 	
 #Connect Echolink#
     if s.find('connexionecho')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
+        ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'Bouton connexion echolink'
 		
 		
 #Deconnect Echolink#
     if s.find('deconnectioncho')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
+        ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'Bouton deconnexion echolink'
                 
 
 #Reglage DIM#
     if s.find('regdim')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
+        ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'Reglage DIM recu'
         rxdim = s[9:-3]
@@ -434,7 +427,7 @@ while True:
     print '>>>>>>>' + s, s[-3:]
     
     if s[-3:] not in room_list:
-        ecrire('page200.t3.txt','Mode autonome')
+        ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'QSY ' + room_list[s[-3:]]['message']
         print room_list[s[-3:]]['dtmf']
@@ -442,19 +435,19 @@ while True:
 
 #DONNMETEO#
     if s.find('dmeteo')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
+        ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'BULETIN METEO'
         dtmf('*51#')
 #PERROQUET
     if s.find('qsyperroquet')== -1:
-        ecrire('page200.t3.txt','Mode autonome')
+        ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'QSY PERROQUET'
         dtmf('95#')
 #DASHBOARD#
     if s.find('listdash')== -1 and tn!='rrf' and tn!='fon':
-        ecrire('page200.t3.txt','Mode autonome')
+        ecrire('page200.t3.txt', 'Mode autonome')
     else:
         print 'ENVOI DASH'
         ecrire('trafic.g0.txt',dashlist)
