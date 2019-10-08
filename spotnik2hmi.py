@@ -198,22 +198,16 @@ while True:
     # Controle si page Dashboard RRF ou TEC
 
     if tn in room_list:
-        fincall= page_web.find ('"transmitter":"')
-        if tn not in ['rrf', 'fon', 'sat', 'default']:
-            dashdebut = page_web.find ('"nodes":[')
-            dashfin = page_web.find (room_list[tn]['filter'])
-        
-        if fincall >0:
-            tramecall = (page_web[(fincall):fincall+30])
-            call = tramecall.split('"')
-            print call[3]
-            if tn not in ['rrf', 'fon', 'sat', 'default']:
-                tramedash = (page_web[(dashdebut+10):(dashfin)])
-                dashlist = tramedash.replace('"','')
-                print 'dashlist:' + dashlist
-            TxStation = call[3]
+        if 'transmitter' in data:
+            TxStation = data['transmitter']
         else:
             TxStation = ''
+        if 'nodes' in data:
+            dashlist = ''
+            for n in data['nodes']:
+                dashlist += n + ' '
+        print TxStation
+        print dashlist
 
     # Gestion des commandes serie reception du Nextion
     s = hmi_read_line()
