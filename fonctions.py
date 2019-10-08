@@ -171,7 +171,7 @@ def console(cmd):
     return (p.returncode, out, err)
 
 #Fonction Wifi ECRITURE
-def wifi(wifiid, wifipass):
+def wifi(conf, wifiid, wifipass):
     cfg = ConfigParser.ConfigParser()
     cfg.read(conf)
     cfg.set('connection', 'id', wifiid)

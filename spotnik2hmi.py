@@ -231,7 +231,7 @@ while True:
         print 'Wifi Update'
         print 'New SSID: ' + newssid
         print 'New PASS: ' + newpass
-        wifi(newssid, newpass)
+        wifi(conf, newssid, newpass)
         page('wifi')
     elif 'ouiquitecho' in s:
         print 'Oui quitte Echolink'
