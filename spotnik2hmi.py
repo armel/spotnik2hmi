@@ -67,8 +67,8 @@ room_list = {
     }
 }
 
-versionDash = '3.01L'
-wifistatut = 0
+version_dash = '3.01L'
+wifi_statut = 0
 
 a = open('/etc/spotnik/network','r')
 tn = a.read().strip()
@@ -110,7 +110,7 @@ ip = get_ip()
 board = get_board()
 
 # Envoi des infos 
-logo(versionDash)
+logo(version_dash)
 
 print 'Carte : ' + board
 print 'Proc : ' + cpu_usage + '%'
@@ -136,8 +136,8 @@ print 'Maj ip : ' + ip
 ecrire('boot.vaip.txt', str(ip))
 print 'Maj version : '+ version
 ecrire('boot.vaverspotnik.txt', str(version))
-print 'Maj version script : ' + versionDash
-ecrire('boot.vascript.txt', str(versionDash))
+print 'Maj version script : ' + version_dash
+ecrire('boot.vascript.txt', str(version_dash))
 
 # Affichage de la page Dashboard
 print 'Page trafic ...'
@@ -176,7 +176,7 @@ while True:
 
     if whereis == 'trafic':
         # Gestion date et heure (en FR) 
-        dashlist = ''
+        node_list = ''
         today = datetime.datetime.now()
         locale.setlocale(locale.LC_TIME,'')
         ecrire('trafic.t18.txt', today.strftime('%d-%m-%Y'))
@@ -190,7 +190,7 @@ while True:
         tn = a.read().strip()
 
         if tn in room_list:
-            ecrire('trafic.t0.txt',room_list[tn]['message'])
+            ecrire('trafic.t0.txt', room_list[tn]['message'])
             if tn != 'default':
                 url = room_list[tn]['url']
 
@@ -214,29 +214,29 @@ while True:
         # Controle si page Dashboard RRF ou TEC
 
         if tn in room_list:
-            TxStation = ''
-            dashlist = ''
+            node_active = ''
+            node_list = ''
             if 'transmitter' in data:
-                TxStation = data['transmitter']
-                TxStation = TxStation.encode('utf-8')
+                node_active = data['transmitter']
+                node_active = node_active.encode('utf-8')
             else:
-                TxStation = ''
+                node_active = ''
             if 'nodes' in data and len(data['nodes']) < 16:
                 for n in ['RRF', 'TECHNIQUE', 'BAVARDAGE', 'INTERNATIONAL', 'LOCAL']:
                     if n in data['nodes']:
                         data['nodes'].remove(n)
                 for n in data['nodes']:
-                    dashlist += n + ' '
-                dashlist = dashlist.encode('utf-8')
-            ecrire("trafic.t1.txt",TxStation)
-            if TxStation != '':
-                print TxStation
+                    node_list += n + ' '
+                node_list = node_list.encode('utf-8')
+            ecrire("trafic.t1.txt",node_active)
+            if node_active != '':
+                print node_active
                 command('dim', str(100))
             else:
                 command('dim', str(5))
-            if dashlist != '':
-                print dashlist
-                ecrire("trafic.g0.txt",dashlist)
+            if node_list != '':
+                print node_list
+                ecrire("trafic.g0.txt",node_list)
     #
     # Sinon gestion des interactions Nextion
     #
@@ -268,9 +268,9 @@ while True:
             ecrire('confirm.t0.txt','CONFIRMER LE REDEMARRAGE LOGICIEL ?')
         elif 'ouimajwifi' in s:
             print 'Wifi Update'
-            print 'New SSID: ' + newssid
-            print 'New PASS: ' + newpass
-            wifi(conf, newssid, newpass)
+            print 'New SSID: ' + new_ssid
+            print 'New PASS: ' + new_pass
+            wifi(conf, new_ssid, new_pass)
             page('wifi')
         elif 'maj' in s and 'ouimajwifi' not in s:
             print 'MAJ Wifi...'
@@ -279,12 +279,12 @@ while True:
             while True:
                 t = hmi_read_line()
                 if len(t) < 71:
-                    test= t.split(eof)
-                    newpass = test[0][1:]
-                    newssid = test[1][1:]
-                    print 'New SSID: ' + newssid
-                    print 'New PASS: ' + newpass
-                    wifistatut = 0
+                    test = t.split(eof)
+                    new_pass = test[0][1:]
+                    new_ssid = test[1][1:]
+                    print 'New SSID: ' + new_ssid
+                    print 'New PASS: ' + new_pass
+                    wifi_statut = 0
                     break
             page('confirm')
             ecrire('confirm.t0.txt','CONFIRMER LA MAJ WIFI ?') 
@@ -296,23 +296,21 @@ while True:
             get_meteo()
         elif 'trafic' in s:
             print 'Page trafic'
-        elif 'dashboard' in s:
-            print 'Page dashboard'
         elif 'menu' in s:
             print 'Page menu'
         elif 'pagewifi' in s:
             print 'Page wifi'
             Json='/etc/spotnik/config.json'
-            if wifistatut == 0:
+            if wifi_statut == 0:
                 with open(Json, 'r') as a:
-                    infojson = json.load(a)
-                    wifi_ssid = infojson['wifi_ssid']
-                    wifi_pass = infojson['wpa_key']
+                    info_json = json.load(a)
+                    wifi_ssid = info_json['wifi_ssid']
+                    wifi_pass = info_json['wpa_key']
                     print 'Envoi SSID actuel sur Nextion: ' + wifi_ssid
                     print 'Envoi PASS actuel sur Nextion: ' + wifi_pass
                     ecrire('wifi.t1.txt', str(wifi_ssid))
                     ecrire('wifi.t0.txt', str(wifi_pass))
-                    wifistatut = 1  
+                    wifi_statut = 1  
         elif 'regdim' in s:
             print 'Reglage DIM recu'
         elif s[3:] in room_list:
