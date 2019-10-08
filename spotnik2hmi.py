@@ -228,7 +228,7 @@ while True:
         page('arret')
         os.system('shutdown -h now')
     elif 'ouimajwifi' in s:
-        print 'Wifi'
+        print 'Wifi Update'
         wifi(newssid, newpass)
         page('wifi')
     elif 'ouiquitecho' in s:
@@ -282,7 +282,7 @@ while True:
     elif 'menu' in s:
         print 'Page menu'
     elif 'wifi' in s:
-        print 'Page wifi !!!!!!!!!!!!'
+        print 'Page wifi'
         Json='/etc/spotnik/config.json'
         if wifistatut == 0:
             with open(Json, 'r') as a:
