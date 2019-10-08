@@ -240,6 +240,7 @@ while True:
             whereis = 'trafic'
         else:
             whereis = 'eleswhere'
+            exit()
 
         command('dim', str(100))
 
