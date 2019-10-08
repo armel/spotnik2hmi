@@ -211,14 +211,14 @@ while True:
     
     # Gestion des interactions Nextion
 
-    if 'reboot' in s:
-        print 'Reboot command....'
-        page('confirm')
-        ecrire('confirm.t0.txt','CONFIRMER LE REBOOT GENERAL ?')
-    elif 'ouireboot' in s:
+    if 'ouireboot' in s:
         print 'Reboot'
         page('boot')
         os.system('reboot')
+    elif 'reboot' in s:
+        print 'Reboot command....'
+        page('confirm')
+        ecrire('confirm.t0.txt','CONFIRMER LE REBOOT GENERAL ?')
     elif 'ouiredem' in s:
         print 'Redemarrage'
         dtmf('96#')
@@ -240,7 +240,7 @@ while True:
         print 'Shutdown command...'
         page('confirm')
         ecrire('confirm.t0.txt','CONFIRMER UN ARRET TOTAL ?')           
-    elif 'restartconfirm' in s:       
+    elif 'restart' in s:       
         print 'Restart command...'
         page('confirm')
         ecrire('confirm.t0.txt','CONFIRMER LE REDEMARRAGE LOGICIEL ?')
