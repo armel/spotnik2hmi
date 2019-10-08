@@ -191,9 +191,7 @@ while True:
         print data['transmitter']
         print data['receive']
     except:
-        pass
-
-    exit()
+        data = ''
 
     # Controle si page Dashboard RRF ou TEC
 
