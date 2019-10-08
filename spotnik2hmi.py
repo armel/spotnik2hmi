@@ -201,6 +201,9 @@ while True:
         else:
             TxStation = ''
         if 'nodes' in data and len(data['nodes']) < 15:
+            for n in ['RRF', 'TECHNIQUE', 'BAVARDAGE', 'INTERNATIONAL', 'LOCAL']:
+                if n in data['nodes']:
+                    data['nodes'].remove(n)
             dashlist = ''
             for n in data['nodes']:
                 dashlist += n + ' '
