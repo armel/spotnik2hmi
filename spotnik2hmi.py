@@ -206,8 +206,9 @@ while True:
 
     # Gestion des commandes serie reception du Nextion
     s = hmi_read_line()
+    print 'Avant >>>>>>>', s
     s = ''.join(e for e in s if e.isalnum())
-    print '>>>>>>>', s
+    print 'Apres >>>>>>>', s
     
     # Gestion des interactions Nextion
 
@@ -286,17 +287,18 @@ while True:
     elif 'menu' in s:
         print 'Page menu'
     elif 'pagewifi' in s:
-        print 'Page wifi !!!', wifistatut
+        print 'Page wifi'
         Json='/etc/spotnik/config.json'
-        with open(Json, 'r') as a:
-            infojson = json.load(a)
-            wifi_ssid = infojson['wifi_ssid']
-            wifi_pass = infojson['wpa_key']
-            print 'Envoi SSID actuel sur Nextion: ' + wifi_ssid
-            print 'Envoi PASS actuel sur Nextion: ' + wifi_pass
-            ecrire('wifi.t1.txt', str(wifi_ssid))
-            ecrire('wifi.t0.txt', str(wifi_pass))
-            wifistatut = 1  
+        if wifistatut == 0:
+            with open(Json, 'r') as a:
+                infojson = json.load(a)
+                wifi_ssid = infojson['wifi_ssid']
+                wifi_pass = infojson['wpa_key']
+                print 'Envoi SSID actuel sur Nextion: ' + wifi_ssid
+                print 'Envoi PASS actuel sur Nextion: ' + wifi_pass
+                ecrire('wifi.t1.txt', str(wifi_ssid))
+                ecrire('wifi.t0.txt', str(wifi_pass))
+                wifistatut = 1  
     elif 'echolink' in s:
         print 'Page echolink'
     elif 'keypadnum' in s:
