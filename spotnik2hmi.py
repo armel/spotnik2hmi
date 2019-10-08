@@ -286,7 +286,7 @@ while True:
     elif 'menu' in s:
         print 'Page menu'
     elif 'pagewifi' in s:
-        print 'Page wifi' + wifistatut
+        print 'Page wifi', wifistatut
         Json='/etc/spotnik/config.json'
         if wifistatut == 0:
             with open(Json, 'r') as a:
