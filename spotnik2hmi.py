@@ -161,10 +161,11 @@ while True:
     elif s == 'qsyperroquet':   # Fix me !!!
         s = 'qsydefault'
 
-    if 'trafic' in s:
-        whereis = 'trafic'
-    else:
-        whereis = 'eleswhere'
+    id s != '':
+        if 'trafic' in s:
+            whereis = 'trafic'
+        else:
+            whereis = 'eleswhere'
 
     print 'Apres >>>>>>>', s, s[-3:]
     print 'Whereis', whereis
