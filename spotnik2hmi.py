@@ -287,11 +287,6 @@ while True:
     elif 'meteo' in s:
         print 'Detection bouton meteo'
         get_meteo()
-    elif 'nodeqsy' in s:
-        print 'Node choisi'
-        print s[s.find('nodeqsy')+7:s.find('nodeqsy')+13] + '#'
-        dtmf(s[s.find('nodeqsy')+7:s.find('nodeqsy')+13] + '#')
-        page('echolink')
     elif 'trafic' in s:
         print 'Page trafic'
     elif 'dashboard' in s:
