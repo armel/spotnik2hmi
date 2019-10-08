@@ -161,6 +161,11 @@ while True:
     elif s == 'qsyperroquet':   # Fix me !!!
         s = 'qsydefault'
 
+    if 'trafic' in s:
+        whereis = 'trafic'
+    else:
+        whereis = 'eleswhere'
+
     print 'Apres >>>>>>>', s, s[-3:]
     print 'Whereis', whereis
 
@@ -236,12 +241,6 @@ while True:
     #
 
     else:
-        if 'trafic' in s:
-            whereis = 'trafic'
-        else:
-            whereis = 'eleswhere'
-            exit()
-
         command('dim', str(100))
 
         if 'ouireboot' in s:
