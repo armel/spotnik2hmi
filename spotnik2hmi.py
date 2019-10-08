@@ -72,7 +72,7 @@ room_list = {
     }
 }
 
-versionDash = '3.00L'
+versionDash = '3.01L'
 wifistatut = 0
 
 a = open('/etc/spotnik/network','r')
