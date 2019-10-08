@@ -319,6 +319,7 @@ while True:
         print 'Reglage DIM recu'
         rxdim = s[9:-3]
         print rxdim
+        exit()
     elif 'dmeteo' in s:
         print 'Bulletin Meteo'
         dtmf('*51#')
