@@ -204,7 +204,7 @@ while True:
             dashlist = ''
             for n in data['nodes']:
                 dashlist += n + ' '
-            dashlist = dashlist.decode('utf-8')
+            dashlist = dashlist.encode('utf-8')
         print TxStation
         print dashlist
 
