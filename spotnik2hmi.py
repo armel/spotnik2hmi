@@ -23,38 +23,32 @@ room_list = {
     'rrf': {
         'url': 'http://rrf.f5nlg.ovh/api/svxlink/RRF',
         'message': 'RESEAU RRF',
-        'dtmf': '96#',
-        'filter': '","RRF"]'
+        'dtmf': '96#'
     },
     'fon': {
         'url': 'http://rrf.f5nlg.ovh/api/svxlink/FON',
         'message': 'RESEAU FON',
-        'dtmf': '97#',
-        'filter': '","FON"]'
+        'dtmf': '97#'
     },
     'tec': {
         'url': 'http://rrf.f5nlg.ovh/api/svxlink/technique',
         'message': 'SALON TECHNIQUE',
-        'dtmf': '98#',
-        'filter': '","TECHNIQUE"]'
+        'dtmf': '98#'
     },
     'int': {
         'url': 'http://rrf.f5nlg.ovh/api/svxlink/international',
         'message': 'SALON INTER.',
-        'dtmf': '99#',
-        'filter': '","INTERNATIONAL"]'
+        'dtmf': '99#'
     },
     'bav': {
         'url': 'http://rrf.f5nlg.ovh/api/svxlink/bavardage',
         'message': 'SALON BAVARDAGE',
-        'dtmf': '100#',
-        'filter': '","BAVARDAGE"]'
+        'dtmf': '100#'
     },
     'loc': {
         'url': 'http://rrf.f5nlg.ovh/api/svxlink/local',
         'message': 'SALON LOCAL',
-        'dtmf': '101#',
-        'filter': '","LOCAL"]'
+        'dtmf': '101#'
     },
     'sat': {
         'url': 'http://rrf.f5nlg.ovh/api/svxlink/satellite',
@@ -203,7 +197,7 @@ while True:
             TxStation = TxStation.encode('utf-8')
         else:
             TxStation = ''
-        if 'nodes' in data and len(data['nodes']) < 20:
+        if 'nodes' in data and len(data['nodes']) < 25:
             for n in ['RRF', 'TECHNIQUE', 'BAVARDAGE', 'INTERNATIONAL', 'LOCAL']:
                 if n in data['nodes']:
                     data['nodes'].remove(n)
