@@ -142,74 +142,13 @@ ecrire('boot.vascript.txt', str(versionDash))
 # Affichage de la page Dashboard
 print 'Page trafic ...'
 page('trafic')
+whereis = 'trafic'
 
 while True:
-    # Gestion date et heure (en FR) 
-    dashlist = ''
-    today = datetime.datetime.now()
-    locale.setlocale(locale.LC_TIME,'')
-    ecrire('trafic.t18.txt', today.strftime('%d-%m-%Y'))
-    ecrire('trafic.t8.txt', today.strftime('%H:%M:%S'))
-    ecrire('trafic.V_heure.txt', today.strftime('%H:%M'))
-    requete('vis p9,0')
-    ecrire('trafic.t15.txt', today.strftime('%H:%M'))
+    #
+    # Lecture des évenements en provenance du Nextion
+    #
 
-    # Definition et affichage link actif    
-    a = open('/etc/spotnik/network','r')
-    tn = a.read().strip()
-
-    if tn in room_list:
-        ecrire('trafic.t0.txt',room_list[tn]['message'])
-        if tn != 'default':
-            url = room_list[tn]['url']
-    else:
-        ecrire('page200.t3.txt', 'Mode autonome')
-
-    a.close()
-
-    # Request HTTP datas
-    try:
-        r = requests.get(url, verify=False, timeout=10)
-    except requests.exceptions.ConnectionError as errc:
-        print ('Error Connecting:', errc)
-        ecrire('trafic.t1.txt','DASH HS')
-    except requests.exceptions.Timeout as errt:
-        print ('Timeout Error:', errt)
-        ecrire('trafic.t1.txt','DASH HS')
-    
-    try:
-        data = r.json()
-    except:
-        data = ''
-
-    # Controle si page Dashboard RRF ou TEC
-
-    if tn in room_list:
-        TxStation = ''
-        dashlist = ''
-        if 'transmitter' in data:
-            TxStation = data['transmitter']
-            TxStation = TxStation.encode('utf-8')
-        else:
-            TxStation = ''
-        if 'nodes' in data and len(data['nodes']) < 16:
-            for n in ['RRF', 'TECHNIQUE', 'BAVARDAGE', 'INTERNATIONAL', 'LOCAL']:
-                if n in data['nodes']:
-                    data['nodes'].remove(n)
-            for n in data['nodes']:
-                dashlist += n + ' '
-            dashlist = dashlist.encode('utf-8')
-        ecrire("trafic.t1.txt",TxStation)
-        if TxStation != '':
-            print TxStation
-            command('dim', str(100))
-        else:
-            command('dim', str(5))
-        if dashlist != '':
-            print dashlist
-            ecrire("trafic.g0.txt",dashlist)
-
-    # Gestion des commandes serie reception du Nextion
     s = hmi_read_line()
     print 'Avant >>>>>>>', s
 
@@ -223,82 +162,160 @@ while True:
         s = 'qsydefault'
 
     print 'Apres >>>>>>>', s, s[-3:]
-    
-    # Gestion des interactions Nextion
+    print 'Whereis', whereis
 
-    if 'ouireboot' in s:
-        print 'Reboot'
-        page('boot')
-        os.system('reboot')
-    elif 'reboot' in s:
-        print 'Reboot command....'
-        page('confirm')
-        ecrire('confirm.t0.txt','CONFIRMER LE REBOOT GENERAL ?')
-    elif 'ouiredem' in s:
-        print 'Redemarrage'
-        dtmf('96#')
-        page('trafic')
-    elif 'ouiarret' in s:
-        print 'Arret du system'
-        page('arret')
-        os.system('shutdown -h now')
-    elif 'shutdown' in s:
-        print 'Shutdown command...'
-        page('confirm')
-        ecrire('confirm.t0.txt','CONFIRMER UN ARRET TOTAL ?')           
-    elif 'restart' in s:       
-        print 'Restart command...'
-        page('confirm')
-        ecrire('confirm.t0.txt','CONFIRMER LE REDEMARRAGE LOGICIEL ?')
-    elif 'ouimajwifi' in s:
-        print 'Wifi Update'
-        print 'New SSID: ' + newssid
-        print 'New PASS: ' + newpass
-        wifi(conf, newssid, newpass)
-        page('wifi')
-    elif 'maj' in s and 'ouimajwifi' not in s:
-        print 'MAJ Wifi...'
-        requete('get t0.txt')
-        requete('get t1.txt')
-        while True:
-            t = hmi_read_line()
-            if len(t) < 71:
-                test= t.split(eof)
-                newpass = test[0][1:]
-                newssid = test[1][1:]
-                print 'New SSID: ' + newssid
-                print 'New PASS: ' + newpass
-                wifistatut = 0
-                break
-        page('confirm')
-        ecrire('confirm.t0.txt','CONFIRMER LA MAJ WIFI ?') 
-    elif 'info' in s:
-        print 'Detection bouton info'
-        dtmf('*#')
-    elif 'meteo' in s:
-        print 'Detection bouton meteo'
-        get_meteo()
-    elif 'trafic' in s:
-        print 'Page trafic'
-    elif 'dashboard' in s:
-        print 'Page dashboard'
-    elif 'menu' in s:
-        print 'Page menu'
-    elif 'pagewifi' in s:
-        print 'Page wifi'
-        Json='/etc/spotnik/config.json'
-        if wifistatut == 0:
-            with open(Json, 'r') as a:
-                infojson = json.load(a)
-                wifi_ssid = infojson['wifi_ssid']
-                wifi_pass = infojson['wpa_key']
-                print 'Envoi SSID actuel sur Nextion: ' + wifi_ssid
-                print 'Envoi PASS actuel sur Nextion: ' + wifi_pass
-                ecrire('wifi.t1.txt', str(wifi_ssid))
-                ecrire('wifi.t0.txt', str(wifi_pass))
-                wifistatut = 1  
-    elif 'regdim' in s:
-        print 'Reglage DIM recu'
-    elif s[3:] in room_list:
-        print 'QSY ' + room_list[s[3:]]['message'] + ' ' + room_list[s[3:]]['dtmf']
-        dtmf(room_list[s[3:]]['dtmf'])
+    #
+    # Si page trafic
+    #
+
+    if whereis == 'trafic':
+        # Gestion date et heure (en FR) 
+        dashlist = ''
+        today = datetime.datetime.now()
+        locale.setlocale(locale.LC_TIME,'')
+        ecrire('trafic.t18.txt', today.strftime('%d-%m-%Y'))
+        ecrire('trafic.t8.txt', today.strftime('%H:%M:%S'))
+        ecrire('trafic.V_heure.txt', today.strftime('%H:%M'))
+        requete('vis p9,0')
+        ecrire('trafic.t15.txt', today.strftime('%H:%M'))
+
+        # Definition et affichage link actif    
+        a = open('/etc/spotnik/network','r')
+        tn = a.read().strip()
+
+        if tn in room_list:
+            ecrire('trafic.t0.txt',room_list[tn]['message'])
+            if tn != 'default':
+                url = room_list[tn]['url']
+
+        a.close()
+
+        # Request HTTP datas
+        try:
+            r = requests.get(url, verify=False, timeout=10)
+        except requests.exceptions.ConnectionError as errc:
+            print ('Error Connecting:', errc)
+            ecrire('trafic.t1.txt','DASH HS')
+        except requests.exceptions.Timeout as errt:
+            print ('Timeout Error:', errt)
+            ecrire('trafic.t1.txt','DASH HS')
+        
+        try:
+            data = r.json()
+        except:
+            data = ''
+
+        # Controle si page Dashboard RRF ou TEC
+
+        if tn in room_list:
+            TxStation = ''
+            dashlist = ''
+            if 'transmitter' in data:
+                TxStation = data['transmitter']
+                TxStation = TxStation.encode('utf-8')
+            else:
+                TxStation = ''
+            if 'nodes' in data and len(data['nodes']) < 16:
+                for n in ['RRF', 'TECHNIQUE', 'BAVARDAGE', 'INTERNATIONAL', 'LOCAL']:
+                    if n in data['nodes']:
+                        data['nodes'].remove(n)
+                for n in data['nodes']:
+                    dashlist += n + ' '
+                dashlist = dashlist.encode('utf-8')
+            ecrire("trafic.t1.txt",TxStation)
+            if TxStation != '':
+                print TxStation
+                command('dim', str(100))
+            else:
+                command('dim', str(5))
+            if dashlist != '':
+                print dashlist
+                ecrire("trafic.g0.txt",dashlist)
+    #
+    # Sinon gestion des interactions Nextion
+    #
+
+    else:
+        if 'trafic' in s:
+            whereis = 'trafic'
+        else:
+            whereis = 'eleswhere'
+
+        command('dim', str(100))
+
+        if 'ouireboot' in s:
+            print 'Reboot'
+            page('boot')
+            os.system('reboot')
+        elif 'reboot' in s:
+            print 'Reboot command....'
+            page('confirm')
+            ecrire('confirm.t0.txt','CONFIRMER LE REBOOT GENERAL ?')
+        elif 'ouiredem' in s:
+            print 'Redemarrage'
+            dtmf('96#')
+            page('trafic')
+        elif 'ouiarret' in s:
+            print 'Arret du system'
+            page('arret')
+            os.system('shutdown -h now')
+        elif 'shutdown' in s:
+            print 'Shutdown command...'
+            page('confirm')
+            ecrire('confirm.t0.txt','CONFIRMER UN ARRET TOTAL ?')           
+        elif 'restart' in s:       
+            print 'Restart command...'
+            page('confirm')
+            ecrire('confirm.t0.txt','CONFIRMER LE REDEMARRAGE LOGICIEL ?')
+        elif 'ouimajwifi' in s:
+            print 'Wifi Update'
+            print 'New SSID: ' + newssid
+            print 'New PASS: ' + newpass
+            wifi(conf, newssid, newpass)
+            page('wifi')
+        elif 'maj' in s and 'ouimajwifi' not in s:
+            print 'MAJ Wifi...'
+            requete('get t0.txt')
+            requete('get t1.txt')
+            while True:
+                t = hmi_read_line()
+                if len(t) < 71:
+                    test= t.split(eof)
+                    newpass = test[0][1:]
+                    newssid = test[1][1:]
+                    print 'New SSID: ' + newssid
+                    print 'New PASS: ' + newpass
+                    wifistatut = 0
+                    break
+            page('confirm')
+            ecrire('confirm.t0.txt','CONFIRMER LA MAJ WIFI ?') 
+        elif 'info' in s:
+            print 'Detection bouton info'
+            dtmf('*#')
+        elif 'meteo' in s:
+            print 'Detection bouton meteo'
+            get_meteo()
+        elif 'trafic' in s:
+            print 'Page trafic'
+        elif 'dashboard' in s:
+            print 'Page dashboard'
+        elif 'menu' in s:
+            print 'Page menu'
+        elif 'pagewifi' in s:
+            print 'Page wifi'
+            Json='/etc/spotnik/config.json'
+            if wifistatut == 0:
+                with open(Json, 'r') as a:
+                    infojson = json.load(a)
+                    wifi_ssid = infojson['wifi_ssid']
+                    wifi_pass = infojson['wpa_key']
+                    print 'Envoi SSID actuel sur Nextion: ' + wifi_ssid
+                    print 'Envoi PASS actuel sur Nextion: ' + wifi_pass
+                    ecrire('wifi.t1.txt', str(wifi_ssid))
+                    ecrire('wifi.t0.txt', str(wifi_pass))
+                    wifistatut = 1  
+        elif 'regdim' in s:
+            print 'Reglage DIM recu'
+        elif s[3:] in room_list:
+            print 'QSY ' + room_list[s[3:]]['message'] + ' ' + room_list[s[3:]]['dtmf']
+            dtmf(room_list[s[3:]]['dtmf'])
