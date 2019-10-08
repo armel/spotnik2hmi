@@ -20,32 +20,30 @@ fi
 if [ $INSTALL = "SPOTNIK2HMI" ]; then
 
 # MAJ
-echo "UPGRADE IN PROGRESS..."
-apt-get -y update
+#echo "UPGRADE IN PROGRESS..."
+#apt-get -y update
 #apt-get -y dist-upgrade
-apt-get -y upgrade
-echo "UPGRADE COMPLETED !"
+#apt-get -y upgrade
+#echo "UPGRADE COMPLETED !"
  
 echo "INSTALLATION DEPENDANCE PYTHON"
 apt-get install gcc python-dev python-setuptools
 apt-get install python-pip
 pip install requests
-apt-get update
-apt-get upgrade
+#apt-get update
+#apt-get upgrade
 apt-get install python-serial
 
 echo "INSTALLATION COMPLETE !"
 
 echo "INSTALLATION scripts python"
-git clone https://github.com/F8ASB/spotnik2hmi.git /opt/spotnik/spotnik2hmi/
-
+git clone https://github.com/armel/spotnik2hmi.git /opt/spotnik/spotnik2hmi/
 chmod +x /opt/spotnik/spotnik2hmi/spotnik2hmi.py
-chmod +x /opt/spotnik/spotnik2hmi/python-metar/get_report.py
-
 echo "INSTALLATION COMPLETE !"
 
 echo "INSTALLATION UTILITAIRE METAR"
 git clone https://github.com/python-metar/python-metar.git /opt/spotnik/spotnik2hmi/python-metar/
+chmod +x /opt/spotnik/spotnik2hmi/python-metar/get_report.py
 echo "INSTALLATION COMPLETE !"
 
 PORT=$(whiptail --title "Choix du Port de communication" --radiolist \
