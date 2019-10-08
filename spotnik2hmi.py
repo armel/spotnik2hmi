@@ -167,10 +167,6 @@ while True:
 
     a.close()
 
-    # Gestion status TRX
-
-    print '>>>>>> AF' + url
-
     # Request HTTP datas
     try:
         r = requests.get(url, verify=False, timeout=10)
