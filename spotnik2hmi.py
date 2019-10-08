@@ -62,7 +62,8 @@ room_list = {
     },
     'default': {
         'url': '',
-        'message': 'PERROQUET'
+        'message': 'PERROQUET',
+        'dtmf': '95#'
     }
 }
 
@@ -202,7 +203,7 @@ while True:
             for n in data['nodes']:
                 dashlist += n + ' '
             dashlist = dashlist.encode('utf-8')
-            
+
         print TxStation
         ecrire("trafic.t1.txt",TxStation)
         if dashlist != '':
@@ -219,6 +220,8 @@ while True:
         s = 'qsyint'
     elif s == 'qsytech':        # Fix me !!!
         s = 'qsytec'
+    elif s == 'qsyperroquet':   # Fix me !!!
+        s = 'qsydefault'
 
     print 'Apres >>>>>>>', s
     
@@ -314,9 +317,6 @@ while True:
     elif 'dmeteo' in s:
         print 'Bulletin Meteo'
         dtmf('*51#')
-    elif 'qsyperroquet' in s:
-        print 'QSY Perroquet'
-        dtmf('95#')
     elif s[-3:] in room_list:
         print 'QSY ' + room_list[s[-3:]]['message'] + ' ' + room_list[s[-3:]]['dtmf']
         dtmf(room_list[s[-3:]]['dtmf'])
