@@ -191,7 +191,6 @@ def wifi(conf, wifiid, wifipass):
 def command(data, valeur):
     eof = '\xff\xff\xff'
     stringw = data + '=' + valeur + eof
-    print stringw
     port.write(stringw)
 
 # Fonction ecriture texte sur Nextion ex: ecrire(t0.txt,"hello word")

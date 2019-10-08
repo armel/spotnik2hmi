@@ -203,7 +203,7 @@ while True:
         print TxStation
         ecrire("trafic.t1.txt",TxStation)
         if TxStation != '':
-            command('dim', str(100))
+            command('dim', str(rdmi))
         else:
             command('dim', str(10))
         if dashlist != '':
