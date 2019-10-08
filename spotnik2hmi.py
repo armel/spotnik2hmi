@@ -179,8 +179,6 @@ while True:
     # Request HTTP datas
     try:
         r = requests.get(url, verify=False, timeout=10)
-        page_web = r.content
-        print page_web
     except requests.exceptions.ConnectionError as errc:
         print ('Error Connecting:', errc)
         ecrire('trafic.t1.txt','DASH HS')
@@ -188,21 +186,28 @@ while True:
         print ('Timeout Error:', errt)
         ecrire('trafic.t1.txt','DASH HS')
     
+    try:
+        data = r.json()
+
+        print r
+
+    exit(0)
+
     # Controle si page Dashboard RRF ou TEC
 
     if tn in room_list:
         fincall= page_web.find ('"transmitter":"')
         if tn not in ['rrf', 'fon', 'sat', 'default']:
-            dashdebut= page_web.find ('"nodes":[')
-            dashfin= page_web.find (room_list[tn]['filter'])
+            dashdebut = page_web.find ('"nodes":[')
+            dashfin = page_web.find (room_list[tn]['filter'])
         
         if fincall >0:
-            tramecall= (page_web[(fincall):fincall+30])
+            tramecall = (page_web[(fincall):fincall+30])
             call = tramecall.split('"')
             print call[3]
             if tn not in ['rrf', 'fon', 'sat', 'default']:
-                tramedash= (page_web[(dashdebut+10):(dashfin)])
-                dashlist= tramedash.replace('"','')
+                tramedash = (page_web[(dashdebut+10):(dashfin)])
+                dashlist = tramedash.replace('"','')
                 print 'dashlist:' + dashlist
             TxStation = call[3]
         else:
@@ -282,7 +287,7 @@ while True:
     elif 'nodeqsy' in s:
         print 'Node choisi'
         print s[s.find('nodeqsy')+7:s.find('nodeqsy')+13] + '#'
-        dtmf(s[s.find('nodeqsy')+7:s.find('nodeqsy')+13]+'#')
+        dtmf(s[s.find('nodeqsy')+7:s.find('nodeqsy')+13] + '#')
         page('echolink')
     elif 'trafic' in s:
         print 'Page trafic'
