@@ -207,7 +207,7 @@ while True:
     # Gestion des commandes serie reception du Nextion
     s = hmi_read_line()
     s = ''.join(e for e in s if e.isalnum())
-    print s
+    print '>>>>>>>', s
     
     # Gestion des interactions Nextion
 
