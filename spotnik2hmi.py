@@ -163,7 +163,7 @@ while True:
         elif s == 'qsyperroquet':   # Fix me !!!
             s = 'qsydefault'
 
-        if 'trafic' in s or 'listdash' in s:
+        if 'trafic' in s:
             whereis = 'trafic'
         else:
             whereis = 'eleswhere'
