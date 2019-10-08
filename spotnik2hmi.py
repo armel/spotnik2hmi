@@ -257,9 +257,8 @@ while True:
             print '>>>>>>>>>>>>>>>>>>>>' + t
             if len(t) < 71:
                 test= t.split(eof)
-                print test
-                newpass= test[1][:-3]
-                newssid= test[2][:-3]
+                newpass= test[0][1:]
+                newssid= test[1][1:]
                 print 'New SSID: ' + newssid
                 print 'New PASS: ' + newpass
                 wifistatut = 0
