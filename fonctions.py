@@ -188,6 +188,11 @@ def wifi(conf, wifiid, wifipass):
     with open(Json, 'w') as f:
         json.dump(config, f)
 # Fonction set data
+def foo():
+    eof = '\xff\xff\xff'
+    stringw = 'print dims.txt' + eof
+    return port.write(stringw)
+# Fonction set data
 def command(data, valeur):
     eof = '\xff\xff\xff'
     stringw = data + '=' + valeur + eof

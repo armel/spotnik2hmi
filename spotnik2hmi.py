@@ -182,6 +182,8 @@ while True:
     except:
         data = ''
 
+    print foo()
+    
     # Controle si page Dashboard RRF ou TEC
 
     if tn in room_list:
