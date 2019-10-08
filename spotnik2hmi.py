@@ -202,6 +202,10 @@ while True:
 
         print TxStation
         ecrire("trafic.t1.txt",TxStation)
+        if TxStation != '':
+            ecrire('dims', 100)
+        else:
+            ecrire('dims', 10)
         if dashlist != '':
             print dashlist
             ecrire("trafic.g0.txt",dashlist)
@@ -307,7 +311,7 @@ while True:
         print 'Reglage DIM recu'
         rxdim = s[9:-3]
         print rdim
-        rdmi= rxdim
+        rdmi = rxdim
     elif 'dmeteo' in s:
         print 'Bulletin Meteo'
         dtmf('*51#')
