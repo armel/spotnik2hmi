@@ -242,8 +242,6 @@ while True:
     #
 
     else:
-        command('dim', str(100))
-
         if 'ouireboot' in s:
             print 'Reboot'
             page('boot')
