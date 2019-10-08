@@ -288,16 +288,15 @@ while True:
     elif 'pagewifi' in s:
         print 'Page wifi !!!', wifistatut
         Json='/etc/spotnik/config.json'
-        if wifistatut == 0:
-            with open(Json, 'r') as a:
-                infojson = json.load(a)
-                wifi_ssid = infojson['wifi_ssid']
-                wifi_pass = infojson['wpa_key']
-                print 'Envoi SSID actuel sur Nextion: ' + wifi_ssid
-                print 'Envoi PASS actuel sur Nextion: ' + wifi_pass
-                ecrire('wifi.t1.txt', str(wifi_ssid))
-                ecrire('wifi.t0.txt', str(wifi_pass))
-                wifistatut = 1  
+        with open(Json, 'r') as a:
+            infojson = json.load(a)
+            wifi_ssid = infojson['wifi_ssid']
+            wifi_pass = infojson['wpa_key']
+            print 'Envoi SSID actuel sur Nextion: ' + wifi_ssid
+            print 'Envoi PASS actuel sur Nextion: ' + wifi_pass
+            ecrire('wifi.t1.txt', str(wifi_ssid))
+            ecrire('wifi.t0.txt', str(wifi_pass))
+            wifistatut = 1  
     elif 'echolink' in s:
         print 'Page echolink'
     elif 'keypadnum' in s:
