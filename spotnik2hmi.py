@@ -219,7 +219,7 @@ while True:
     elif s == 'qsyperroquet':   # Fix me !!!
         s = 'qsydefault'
 
-    print 'Apres >>>>>>>', s
+    print 'Apres >>>>>>>', s, s[-3:]
     
     # Gestion des interactions Nextion
 
@@ -313,8 +313,8 @@ while True:
     elif 'dmeteo' in s:
         print 'Bulletin Meteo'
         dtmf('*51#')
-    elif s[-3:] in room_list:
-        print 'QSY ' + room_list[s[-3:]]['message'] + ' ' + room_list[s[-3:]]['dtmf']
-        dtmf(room_list[s[-3:]]['dtmf'])
+    elif s[3:] in room_list:
+        print 'QSY ' + room_list[s[3:]]['message'] + ' ' + room_list[s[3:]]['dtmf']
+        dtmf(room_list[s[3:]]['dtmf'])
     else:
         ecrire('page200.t3.txt', 'Mode autonome')
