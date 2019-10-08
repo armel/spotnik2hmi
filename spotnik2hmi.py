@@ -189,7 +189,7 @@ while True:
 
     if tn in room_list:
         fincall= page_web.find ('"transmitter":"')
-        if tn not in ['rrf', 'fon', 'sat']:
+        if tn not in ['rrf', 'fon', 'sat', 'default']:
             dashdebut= page_web.find ('"nodes":[')
             dashfin= page_web.find (room_list[tn]['filter'])
         
@@ -197,7 +197,7 @@ while True:
             tramecall= (page_web[(fincall):fincall+30])
             call = tramecall.split('"')
             print call[3]
-            if tn not in ['rrf', 'fon', 'sat']:
+            if tn not in ['rrf', 'fon', 'sat', 'default']:
                 tramedash= (page_web[(dashdebut+10):(dashfin)])
                 dashlist= tramedash.replace('"','')
                 print 'dashlist:' + dashlist
