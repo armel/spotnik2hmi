@@ -254,10 +254,10 @@ while True:
         requete('get t1.txt')
         while True:
             t = hmi_read_line()
-            t = ''.join(e for e in t if e.isalnum())
             print '>>>>>>>>>>>>>>>>>>>>' + t
             if len(t) < 71:
-                test= t.split('p')
+                test= t.split(eof)
+                print test
                 newpass= test[1][:-3]
                 newssid= test[2][:-3]
                 print 'New SSID: ' + newssid

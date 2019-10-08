@@ -83,7 +83,7 @@ def reset_hmi():
 
 # Fonction requete du nextion
 def requete(valeur):
-    requetesend = str(valeur)+eof
+    requetesend = str(valeur) + eof
     port.write(requetesend)
 
 def hmi_read_line():
@@ -171,7 +171,7 @@ def console(cmd):
     return (p.returncode, out, err)
 
 #Fonction Wifi ECRITURE
-def wifi(wifiid,wifipass):
+def wifi(wifiid, wifipass):
     cfg = ConfigParser.ConfigParser()
     cfg.read(conf)
     cfg.set('connection', 'id', wifiid)
@@ -189,6 +189,7 @@ def wifi(wifiid,wifipass):
     with open(Json, 'w') as f:
         json.dump(config, f)
 #Fonction ecriture texte sur Nextion ex: ecrire(t0.txt,"hello word")
+
 def ecrire(champ,valeur):
     eof = '\xff\xff\xff'
     stringw = champ + '="' + valeur + '"' + eof
