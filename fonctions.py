@@ -192,6 +192,8 @@ def wifi(conf, wifiid, wifipass):
 def ecrire(champ,valeur):
     eof = '\xff\xff\xff'
     stringw = champ + '="' + valeur + '"' + eof
+
+    print stringw
     port.write(stringw)
 
 #Fonction appel de page
