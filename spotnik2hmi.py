@@ -180,6 +180,7 @@ while True:
     try:
         r = requests.get(url, verify=False, timeout=10)
         page_web = r.content
+        print page_web
     except requests.exceptions.ConnectionError as errc:
         print ('Error Connecting:', errc)
         ecrire('trafic.t1.txt','DASH HS')
