@@ -190,7 +190,7 @@ def wifi(conf, wifiid, wifipass):
 # Fonction set data
 def foo():
     eof = '\xff\xff\xff'
-    stringw = 'print dims.txt' + eof
+    stringw = 'print dim.txt' + eof
     return port.write(stringw)
 # Fonction set data
 def command(data, valeur):
