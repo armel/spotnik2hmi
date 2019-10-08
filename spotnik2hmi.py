@@ -182,8 +182,6 @@ while True:
     except:
         data = ''
 
-    print foo()
-    
     # Controle si page Dashboard RRF ou TEC
 
     if tn in room_list:
@@ -194,17 +192,16 @@ while True:
             TxStation = TxStation.encode('utf-8')
         else:
             TxStation = ''
-        if 'nodes' in data and len(data['nodes']) < 25:
+        if 'nodes' in data and len(data['nodes']) < 16:
             for n in ['RRF', 'TECHNIQUE', 'BAVARDAGE', 'INTERNATIONAL', 'LOCAL']:
                 if n in data['nodes']:
                     data['nodes'].remove(n)
             for n in data['nodes']:
                 dashlist += n + ' '
             dashlist = dashlist.encode('utf-8')
-
-        print TxStation
         ecrire("trafic.t1.txt",TxStation)
         if TxStation != '':
+            print TxStation
             command('dim', str(100))
         else:
             command('dim', str(5))
@@ -245,15 +242,6 @@ while True:
         print 'Arret du system'
         page('arret')
         os.system('shutdown -h now')
-    elif 'ouiquitecho' in s:
-        print 'Oui quitte Echolink'
-        dtmf('#')
-        dtmf('96#')
-        page('trafic')
-    elif 'ouideconnectenode' in s:   
-        print 'Deconnecte Node'
-        page('echolink')
-        dtmf('#')
     elif 'shutdown' in s:
         print 'Shutdown command...'
         page('confirm')
@@ -311,11 +299,6 @@ while True:
                 wifistatut = 1  
     elif 'regdim' in s:
         print 'Reglage DIM recu'
-    elif 'dmeteo' in s:
-        print 'Bulletin Meteo'
-        dtmf('*51#')
     elif s[3:] in room_list:
         print 'QSY ' + room_list[s[3:]]['message'] + ' ' + room_list[s[3:]]['dtmf']
         dtmf(room_list[s[3:]]['dtmf'])
-    else:
-        ecrire('page200.t3.txt', 'Mode autonome')

@@ -169,7 +169,7 @@ def console(cmd):
     out, err = p.communicate()
     return (p.returncode, out, err)
 
-# Fonction Wifi ECRITURE
+# Fonction Wifi ecriture
 def wifi(conf, wifiid, wifipass):
     cfg = ConfigParser.ConfigParser()
     cfg.read(conf)
@@ -187,11 +187,7 @@ def wifi(conf, wifiid, wifipass):
     #write it back to the file
     with open(Json, 'w') as f:
         json.dump(config, f)
-# Fonction set data
-def foo():
-    eof = '\xff\xff\xff'
-    stringw = 'print dim.txt' + eof
-    return port.write(stringw)
+        
 # Fonction set data
 def command(data, valeur):
     eof = '\xff\xff\xff'
