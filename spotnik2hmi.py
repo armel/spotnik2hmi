@@ -184,6 +184,11 @@ while True:
 
     # Controle si page Dashboard RRF ou TEC
 
+    try:
+        print '---------------->', rxdim
+    else:
+        pass
+
     if tn in room_list:
         TxStation = ''
         dashlist = ''
@@ -204,7 +209,7 @@ while True:
         ecrire("trafic.t1.txt",TxStation)
         if TxStation != '':
             try:
-                command('dim', str(rdmi))
+                command('dim', str(rxdim))
             except:
                 command('dim', str(100))
         else:
@@ -313,8 +318,7 @@ while True:
     elif 'regdim' in s:
         print 'Reglage DIM recu'
         rxdim = s[9:-3]
-        print rdim
-        rdmi = rxdim
+        print rxdim
     elif 'dmeteo' in s:
         print 'Bulletin Meteo'
         dtmf('*51#')
