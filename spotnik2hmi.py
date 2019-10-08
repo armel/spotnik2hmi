@@ -227,7 +227,7 @@ while True:
         print 'Arret du system'
         page('arret')
         os.system('shutdown -h now')
-    elif 'ouimajwifi' in s:
+    elif 'confirm' in s:
         print 'Wifi Update' + ' ' + newssid + ' ' + newpass
         exit(0)
         wifi(newssid, newpass)
