@@ -188,10 +188,9 @@ while True:
     
     try:
         data = r.json()
-
         print r
 
-    exit(0)
+    exit()
 
     # Controle si page Dashboard RRF ou TEC
 
