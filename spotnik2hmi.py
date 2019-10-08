@@ -226,8 +226,7 @@ while True:
     if 'ouireboot' in s:
         print 'Reboot'
         page('boot')
-        exit()
-        #os.system('reboot')
+        os.system('reboot')
     elif 'reboot' in s:
         print 'Reboot command....'
         page('confirm')
@@ -239,8 +238,7 @@ while True:
     elif 'ouiarret' in s:
         print 'Arret du system'
         page('arret')
-        exit()
-        #os.system('shutdown -h now')
+        os.system('shutdown -h now')
     elif 'ouiquitecho' in s:
         print 'Oui quitte Echolink'
         dtmf('#')
