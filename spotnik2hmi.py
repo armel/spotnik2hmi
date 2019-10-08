@@ -196,6 +196,8 @@ while True:
     # Controle si page Dashboard RRF ou TEC
 
     if tn in room_list:
+        TxStation = ''
+        dashlist = ''
         if 'transmitter' in data:
             TxStation = data['transmitter']
         else:
@@ -204,12 +206,15 @@ while True:
             for n in ['RRF', 'TECHNIQUE', 'BAVARDAGE', 'INTERNATIONAL', 'LOCAL']:
                 if n in data['nodes']:
                     data['nodes'].remove(n)
-            dashlist = ''
             for n in data['nodes']:
                 dashlist += n + ' '
             dashlist = dashlist.encode('utf-8')
-        print TxStation
-        print dashlist
+        if TxStation != '':
+            print TxStation
+            ecrire("trafic.t1.txt",TxStation)
+        if dashlist != '':
+            print dashlist
+            ecrire("trafic.g0.txt",dashlist)
 
     # Gestion des commandes serie reception du Nextion
     s = hmi_read_line()
@@ -341,10 +346,3 @@ while True:
         print 'QSY ' + room_list[s[-3:]]['message']
         print room_list[s[-3:]]['dtmf']
         dtmf(room_list[s[-3:]]['dtmf'])
-
-    # Dashboard
-    if s.find('listdash') == -1 and tn!='rrf' and tn!='fon':
-        ecrire('page200.t3.txt', 'Mode autonome')
-    else:
-        #print 'Envoi dash'
-        ecrire('trafic.g0.txt',dashlist)
