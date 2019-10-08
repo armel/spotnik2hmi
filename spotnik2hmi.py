@@ -249,7 +249,7 @@ while True:
         print 'Restart command...'
         page('confirm')
         ecrire('confirm.t0.txt','CONFIRMER LE REDEMARRAGE LOGICIEL ?')
-    elif 'maj' in s:
+    elif 'majwifi' in s:
         print 'MAJ Wifi...'
         requete('get t0.txt')
         requete('get t1.txt')
