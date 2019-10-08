@@ -229,6 +229,7 @@ while True:
         os.system('shutdown -h now')
     elif 'ouimajwifi' in s:
         print 'Wifi Update' + ' ' + newssid + ' ' + newpass
+        exit(0)
         wifi(newssid, newpass)
         page('wifi')
     elif 'ouiquitecho' in s:
