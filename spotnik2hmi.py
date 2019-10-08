@@ -152,6 +152,7 @@ while True:
     s = hmi_read_line()
     print 'Avant >>>>>>>', s
 
+    s = s.replace('listdash', '')
     s = ''.join(e for e in s if e.isalnum())
 
     if s != '':
