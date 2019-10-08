@@ -182,8 +182,6 @@ while True:
     
     try:
         data = r.json()
-        print data['transmitter']
-        print data['receive']
     except:
         data = ''
 
@@ -214,7 +212,14 @@ while True:
     # Gestion des commandes serie reception du Nextion
     s = hmi_read_line()
     print 'Avant >>>>>>>', s
+
     s = ''.join(e for e in s if e.isalnum())
+
+    if s == 'qsyinter':         # Fix me !!!
+        s = 'qsyint'
+    elif s == 'qsytech':        # Fix me !!!
+        s = 'qsytec'
+
     print 'Apres >>>>>>>', s
     
     # Gestion des interactions Nextion
@@ -306,14 +311,6 @@ while True:
                 ecrire('wifi.t1.txt', str(wifi_ssid))
                 ecrire('wifi.t0.txt', str(wifi_pass))
                 wifistatut = 1  
-    elif 'echolink' in s:
-        print 'Page echolink'
-    elif 'keypadnum' in s:
-        print 'Page clavier numerique'
-    elif 'connexionecho' in s:
-        print 'Bouton connexion echolink'
-    elif 'deconnectioncho' in s:
-        print 'Bouton deconnexion echolink'
     elif 'regdim' in s:
         print 'Reglage DIM recu'
         rxdim = s[9:-3]
@@ -325,19 +322,8 @@ while True:
     elif 'qsyperroquet' in s:
         print 'QSY Perroquet'
         dtmf('95#')
-    else:
-        ecrire('page200.t3.txt', 'Mode autonome')
-
-    # QSY Salon
-
-    if s=='qsyinter':         # Fix me !!!
-        s='qsyint'
-    elif s=='qsytech':        # Fix me !!!
-        s='qsytec'
-    
-    if s[-3:] not in room_list:
-        ecrire('page200.t3.txt', 'Mode autonome')
-    else:
-        print 'QSY ' + room_list[s[-3:]]['message']
-        print room_list[s[-3:]]['dtmf']
+    elif s[-3] in room_list:
+        print 'QSY ' + room_list[s[-3:]]['message'] + ' ' + room_list[s[-3:]]['dtmf']
         dtmf(room_list[s[-3:]]['dtmf'])
+    else:
+        ecrire('page200.t3.txt', 'Mode autonome')
