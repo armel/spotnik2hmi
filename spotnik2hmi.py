@@ -229,7 +229,7 @@ while True:
         os.system('shutdown -h now')
     elif 'ouimajwifi' in s:
         print 'Wifi'
-        wifi(newssid,newpass)
+        wifi(newssid, newpass)
         page('wifi')
     elif 'ouiquitecho' in s:
         print 'Oui quitte Echolink'
@@ -249,13 +249,14 @@ while True:
         page('confirm')
         ecrire('confirm.t0.txt','CONFIRMER LE REDEMARRAGE LOGICIEL ?')
     elif 'maj' in s:
-        print 'MAJ Wifi....'
+        print 'MAJ Wifi...'
         requete('get t0.txt')
         requete('get t1.txt')
         while True:
-            s = hmi_read_line()
-            if len(s)<71:
-                test= s.split('p')
+            t = hmi_read_line()
+            print '>>>>>>>>>>>>>>>>>>>>' + t
+            if len(t) < 71:
+                test= t.split('p')
                 newpass= test[1][:-3]
                 newssid= test[2][:-3]
                 print 'New SSID: ' + newssid
