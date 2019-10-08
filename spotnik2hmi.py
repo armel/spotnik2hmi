@@ -200,6 +200,7 @@ while True:
         dashlist = ''
         if 'transmitter' in data:
             TxStation = data['transmitter']
+            TxStation = TxStation.encode('utf-8')
         else:
             TxStation = ''
         if 'nodes' in data and len(data['nodes']) < 15:
