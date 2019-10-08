@@ -161,7 +161,7 @@ while True:
     elif s == 'qsyperroquet':   # Fix me !!!
         s = 'qsydefault'
 
-    id s != '':
+    if s != '':
         if 'trafic' in s:
             whereis = 'trafic'
         else:
