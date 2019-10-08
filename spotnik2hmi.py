@@ -203,7 +203,7 @@ while True:
             TxStation = TxStation.encode('utf-8')
         else:
             TxStation = ''
-        if 'nodes' in data and len(data['nodes']) < 15:
+        if 'nodes' in data and len(data['nodes']) < 20:
             for n in ['RRF', 'TECHNIQUE', 'BAVARDAGE', 'INTERNATIONAL', 'LOCAL']:
                 if n in data['nodes']:
                     data['nodes'].remove(n)
