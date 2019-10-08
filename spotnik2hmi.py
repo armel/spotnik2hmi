@@ -200,7 +200,7 @@ while True:
             TxStation = data['transmitter']
         else:
             TxStation = ''
-        if 'nodes' in data:
+        if 'nodes' in data and len(data['nodes'] < 15):
             dashlist = ''
             for n in data['nodes']:
                 dashlist += n + ' '
