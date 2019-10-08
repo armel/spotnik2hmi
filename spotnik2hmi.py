@@ -188,7 +188,7 @@ while True:
     
     try:
         data = r.json()
-        print r
+        print data
     except:
         pass
 
