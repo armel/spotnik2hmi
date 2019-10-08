@@ -41,8 +41,8 @@ chmod +x /opt/spotnik/spotnik2hmi/spotnik2hmi.py
 echo "INSTALLATION COMPLETE !"
 
 echo "INSTALLATION UTILITAIRE METAR"
-git clone https://github.com/python-metar/python-metar.git /opt/spotnik/spotnik2hmi/python-metar/
-chmod +x /opt/spotnik/spotnik2hmi/python-metar/get_report.py
+git clone https://github.com/python-metar/python-metar.git /opt/spotnik/python-metar/
+chmod +x /opt/spotnik/python-metar/get_report.py
 echo "INSTALLATION COMPLETE !"
 
 PORT=$(whiptail --title "Choix du Port de communication" --radiolist \

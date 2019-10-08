@@ -231,7 +231,7 @@ def get_meteo():
     fichier.write("[rapport]")
     fichier.close()
 
-    result = console('/opt/spotnik/spotnik2hmi/python-metar/get_report.py '+ airport+ '>> /tmp/meteo.txt')
+    result = console('/opt/spotnik/python-metar/get_report.py '+ airport+ '>> /tmp/meteo.txt')
     print result
     #routine ouverture fichier de config
     config = ConfigParser.RawConfigParser()
