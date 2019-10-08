@@ -188,7 +188,8 @@ while True:
     
     try:
         data = r.json()
-        print data
+        print data['transmitter']
+        print data['receive']
     except:
         pass
 
