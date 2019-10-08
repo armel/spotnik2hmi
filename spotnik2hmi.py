@@ -203,7 +203,7 @@ while True:
         print TxStation
         ecrire("trafic.t1.txt",TxStation)
         if TxStation != '':
-            try rdmi:
+            try:
                 command('dim', str(rdmi))
             except:
                 command('dim', str(100))
