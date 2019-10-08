@@ -227,12 +227,6 @@ while True:
         print 'Arret du system'
         page('arret')
         os.system('shutdown -h now')
-    elif 'confirm' in s:
-        print 'Wifi Update'
-        print 'New SSID: ' + newssid
-        print 'New PASS: ' + newpass
-        wifi(conf, newssid, newpass)
-        page('wifi')
     elif 'ouiquitecho' in s:
         print 'Oui quitte Echolink'
         dtmf('#')
@@ -246,10 +240,16 @@ while True:
         print 'Shutdown command...'
         page('confirm')
         ecrire('confirm.t0.txt','CONFIRMER UN ARRET TOTAL ?')           
-    elif 'restart' in s:       
+    elif 'restartconfirm' in s:       
         print 'Restart command...'
         page('confirm')
         ecrire('confirm.t0.txt','CONFIRMER LE REDEMARRAGE LOGICIEL ?')
+    elif 'confirm' in s:
+        print 'Wifi Update'
+        print 'New SSID: ' + newssid
+        print 'New PASS: ' + newpass
+        wifi(conf, newssid, newpass)
+        page('wifi')
     elif 'majwifi' in s:
         print 'MAJ Wifi...'
         requete('get t0.txt')
@@ -336,5 +336,5 @@ while True:
     if s.find('listdash') == -1 and tn!='rrf' and tn!='fon':
         ecrire('page200.t3.txt', 'Mode autonome')
     else:
-        print 'Envoi dash'
+        #print 'Envoi dash'
         ecrire('trafic.g0.txt',dashlist)
