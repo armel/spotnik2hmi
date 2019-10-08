@@ -241,11 +241,11 @@ while True:
         page('echolink')
         dtmf('#')
     elif 'shutdown' in s:
-        print 'Shutdown command....'
+        print 'Shutdown command...'
         page('confirm')
         ecrire('confirm.t0.txt','CONFIRMER UN ARRET TOTAL ?')           
     elif 'restart' in s:       
-        print 'Restart command....'
+        print 'Restart command...'
         page('confirm')
         ecrire('confirm.t0.txt','CONFIRMER LE REDEMARRAGE LOGICIEL ?')
     elif 'maj' in s:
@@ -253,13 +253,13 @@ while True:
         requete('get t0.txt')
         requete('get t1.txt')
         while True:
-            s = hmi_readl_ine()
+            s = hmi_read_line()
             if len(s)<71:
                 test= s.split('p')
                 newpass= test[1][:-3]
                 newssid= test[2][:-3]
-                print 'New SSID: '+newssid
-                print 'New PASS: '+newpass
+                print 'New SSID: ' + newssid
+                print 'New PASS: ' + newpass
                 wifistatut = 0
                 break
         page('confirm')
@@ -272,7 +272,7 @@ while True:
         get_meteo()
     elif 'nodeqsy' in s:
         print 'Node choisi'
-        print s[s.find('nodeqsy')+7:s.find('nodeqsy')+13]+'#'
+        print s[s.find('nodeqsy')+7:s.find('nodeqsy')+13] + '#'
         dtmf(s[s.find('nodeqsy')+7:s.find('nodeqsy')+13]+'#')
         page('echolink')
     elif 'trafic' in s:

@@ -1,7 +1,6 @@
 #!/bin/bash
 whiptail --title "INFORMATION:" --msgbox "Ce script considere que vous partez d une image disponible par F5NLG du Spotnik 3.0 et fonctionnelle sur Raspberry ou Orange Pi. Il permet d ajouter un ecran Nextion a la distribution. Plus d informations sur http://blog.f8asb.com/spotnik2hmi.                                                                                         Team F0DEI/F5SWB/F8ASB" 15 60
 
-
 #!/bin/bash
 INSTALL=$(whiptail --title "Choisir votre installation" --radiolist \
 "Que voulez vous installer?" 15 60 4 \
@@ -97,7 +96,6 @@ else
     echo "Vous avez annule"
 fi
 fi
-
 
 echo ""
 echo "INSTALL TERMINEE AVEC SUCCES"
