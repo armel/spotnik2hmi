@@ -154,14 +154,14 @@ while True:
 
     s = ''.join(e for e in s if e.isalnum())
 
-    if s == 'qsyinter':         # Fix me !!!
-        s = 'qsyint'
-    elif s == 'qsytech':        # Fix me !!!
-        s = 'qsytec'
-    elif s == 'qsyperroquet':   # Fix me !!!
-        s = 'qsydefault'
-
     if s != '':
+        if s == 'qsyinter':         # Fix me !!!
+            s = 'qsyint'
+        elif s == 'qsytech':        # Fix me !!!
+            s = 'qsytec'
+        elif s == 'qsyperroquet':   # Fix me !!!
+            s = 'qsydefault'
+
         if 'trafic' in s:
             whereis = 'trafic'
         else:
