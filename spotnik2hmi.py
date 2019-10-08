@@ -322,7 +322,7 @@ while True:
     elif 'qsyperroquet' in s:
         print 'QSY Perroquet'
         dtmf('95#')
-    elif s[-3] in room_list:
+    elif s[-3:] in room_list:
         print 'QSY ' + room_list[s[-3:]]['message'] + ' ' + room_list[s[-3:]]['dtmf']
         dtmf(room_list[s[-3:]]['dtmf'])
     else:
