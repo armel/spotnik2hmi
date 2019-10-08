@@ -244,7 +244,7 @@ while True:
         print 'Restart command...'
         page('confirm')
         ecrire('confirm.t0.txt','CONFIRMER LE REDEMARRAGE LOGICIEL ?')
-    elif 'confirm' in s:
+    elif 'wificonfirm' in s:
         print 'Wifi Update'
         print 'New SSID: ' + newssid
         print 'New PASS: ' + newpass
