@@ -203,9 +203,9 @@ while True:
         print TxStation
         ecrire("trafic.t1.txt",TxStation)
         if TxStation != '':
-            command('dim', str(rdmi))
+            command('dim', str(100))
         else:
-            command('dim', str(10))
+            command('dim', str(rdmi))
         if dashlist != '':
             print dashlist
             ecrire("trafic.g0.txt",dashlist)
