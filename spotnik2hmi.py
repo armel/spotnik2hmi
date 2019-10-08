@@ -206,7 +206,7 @@ while True:
 
     # Gestion des commandes serie reception du Nextion
     s = hmi_read_line()
-    s=''.join(e for e in s if e.isalnum())
+    s = ''.join(e for e in s if e.isalnum())
     print s
     
     # Gestion des interactions Nextion
@@ -254,6 +254,7 @@ while True:
         requete('get t1.txt')
         while True:
             t = hmi_read_line()
+            t = ''.join(e for e in t if e.isalnum())
             print '>>>>>>>>>>>>>>>>>>>>' + t
             if len(t) < 71:
                 test= t.split('p')
