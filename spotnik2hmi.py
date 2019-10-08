@@ -232,8 +232,8 @@ while True:
     elif 'ouiquitecho' in s:
         print 'Oui quitte Echolink'
         dtmf('#')
-        page('trafic')
         dtmf('96#')
+        page('trafic')
     elif 'ouideconnectenode' in s:   
         print 'Deconnecte Node'
         page('echolink')
