@@ -203,7 +203,7 @@ while True:
         if 'nodes' in data and len(data['nodes']) < 15:
             dashlist = ''
             for n in data['nodes']:
-                dashlist += n + ' '
+                dashlist += n.decode('utf-8') + ' '
         print TxStation
         print dashlist
 
