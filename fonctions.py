@@ -163,13 +163,13 @@ def get_call_sign():
         tmp = json.load(d)
     return '(' + tmp['Departement'] + ') ' + tmp['callsign'] + ' ' + tmp['band_type']
 
-#Fonction envoyer des commande console
+# Fonction envoyer des commande console
 def console(cmd):
     p = Popen(cmd, shell=True, stdout=PIPE)
     out, err = p.communicate()
     return (p.returncode, out, err)
 
-#Fonction Wifi ECRITURE
+# Fonction Wifi ECRITURE
 def wifi(conf, wifiid, wifipass):
     cfg = ConfigParser.ConfigParser()
     cfg.read(conf)
@@ -187,23 +187,27 @@ def wifi(conf, wifiid, wifipass):
     #write it back to the file
     with open(Json, 'w') as f:
         json.dump(config, f)
-#Fonction ecriture texte sur Nextion ex: ecrire(t0.txt,"hello word")
-
-def ecrire(champ,valeur):
+# Fonction set data
+def command(data, valeur):
     eof = '\xff\xff\xff'
-    stringw = champ + '="' + valeur + '"' + eof
-
+    stringw = data + '=' + valeur + eof
     print stringw
     port.write(stringw)
 
-#Fonction appel de page
+# Fonction ecriture texte sur Nextion ex: ecrire(t0.txt,"hello word")
+def ecrire(champ,valeur):
+    eof = '\xff\xff\xff'
+    stringw = champ + '="' + valeur + '"' + eof
+    port.write(stringw)
+
+# Fonction appel de page
 def page(nompage):
     eof = '\xff\xff\xff'
     appelpage = 'page ' + nompage + eof
     port.write(appelpage)
     print appelpage.replace(eof, '')
 
-#Fonction recherche de nom de ville selon code ICAO
+# Fonction recherche de nom de ville selon code ICAO
 def get_city():
     # Lecture valeur icao dans config.json       
     with open(Json, 'r') as d:
@@ -218,7 +222,7 @@ def get_city():
     ecrire("meteo.t0.txt", result_city) 
     print "Aeroport de: " + result_city  
 
-#Fonction Meteo Lecture des donnees Metar + envoi Nextion
+# Fonction Meteo Lecture des donnees Metar + envoi Nextion
 def get_meteo():
     #recherche code IMAO dans config.json
     with open(Json, 'r') as b:
