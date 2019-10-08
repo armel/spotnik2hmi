@@ -254,11 +254,10 @@ while True:
         requete('get t1.txt')
         while True:
             t = hmi_read_line()
-            print '>>>>>>>>>>>>>>>>>>>>' + t
             if len(t) < 71:
                 test= t.split(eof)
-                newpass= test[0][1:]
-                newssid= test[1][1:]
+                newpass = test[0][1:]
+                newssid = test[1][1:]
                 print 'New SSID: ' + newssid
                 print 'New PASS: ' + newpass
                 wifistatut = 0
@@ -283,7 +282,7 @@ while True:
     elif 'menu' in s:
         print 'Page menu'
     elif 'wifi' in s:
-        print 'Page wifi'
+        print 'Page wifi !!!!!!!!!!!!'
         Json='/etc/spotnik/config.json'
         if wifistatut == 0:
             with open(Json, 'r') as a:
