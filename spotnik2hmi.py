@@ -282,7 +282,7 @@ while True:
         print 'Page dashboard'
     elif 'menu' in s:
         print 'Page menu'
-    elif 'wifi' in s:
+    elif 'wifi' in s and 'ouimajwifi' not in s:
         print 'Page wifi'
         Json='/etc/spotnik/config.json'
         if wifistatut == 0:
