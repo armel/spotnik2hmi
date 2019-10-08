@@ -202,9 +202,9 @@ while True:
             for n in data['nodes']:
                 dashlist += n + ' '
             dashlist = dashlist.encode('utf-8')
-        if TxStation != '':
-            print TxStation
-            ecrire("trafic.t1.txt",TxStation)
+            
+        print TxStation
+        ecrire("trafic.t1.txt",TxStation)
         if dashlist != '':
             print dashlist
             ecrire("trafic.g0.txt",dashlist)
