@@ -186,7 +186,7 @@ while True:
 
     try:
         print '---------------->', rxdim
-    else:
+    except:
         pass
 
     if tn in room_list:
