@@ -279,6 +279,7 @@ while True:
             requete('get t1.txt')
             while True:
                 t = hmi_read_wifi()
+                print '-------->', t
                 if len(t) < 71:
                     test = t.split(eof)
                     new_pass = test[0][1:]
