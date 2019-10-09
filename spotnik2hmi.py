@@ -69,6 +69,7 @@ room_list = {
 
 version_dash = '3.02L'
 wifi_statut = 0
+wifi_maj = 0
 
 a = open('/etc/spotnik/network','r')
 tn = a.read().strip()
@@ -170,6 +171,7 @@ while True:
 
     print 'Apres >>>>>>>', s, s[-3:]
     print 'Whereis', whereis
+    print 'Wifi', wifi_maj
 
     #
     # Si page trafic
@@ -287,6 +289,7 @@ while True:
                     print 'New SSID: ' + new_ssid
                     print 'New PASS: ' + new_pass
                     wifi_statut = 0
+                    wifi_maj = 1
                     break
             page('confirm')
             ecrire('confirm.t0.txt','CONFIRMER LA MAJ WIFI ?') 
@@ -301,18 +304,25 @@ while True:
         elif 'menu' in s:
             print 'Page menu'
         elif 'pagewifi' in s:
-            print 'Page wifi'
-            Json='/etc/spotnik/config.json'
-            if wifi_statut == 0:
-                with open(Json, 'r') as a:
-                    info_json = json.load(a)
-                    wifi_ssid = info_json['wifi_ssid']
-                    wifi_pass = info_json['wpa_key']
-                    print 'Envoi SSID actuel sur Nextion: ' + wifi_ssid
-                    print 'Envoi PASS actuel sur Nextion: ' + wifi_pass
-                    ecrire('wifi.t1.txt', str(wifi_ssid))
-                    ecrire('wifi.t0.txt', str(wifi_pass))
-                    wifi_statut = 1  
+            if wifi_maj == 0:
+                print 'Page wifi'
+                Json='/etc/spotnik/config.json'
+                if wifi_statut == 0:
+                    with open(Json, 'r') as a:
+                        info_json = json.load(a)
+                        wifi_ssid = info_json['wifi_ssid']
+                        wifi_pass = info_json['wpa_key']
+                        print 'Envoi SSID actuel sur Nextion: ' + wifi_ssid
+                        print 'Envoi PASS actuel sur Nextion: ' + wifi_pass
+                        ecrire('wifi.t1.txt', str(wifi_ssid))
+                        ecrire('wifi.t0.txt', str(wifi_pass))
+                        wifi_statut = 1
+            elif wifi_maj == 1:
+                print 'Wifi Update'
+                print 'New SSID: ' + new_ssid
+                print 'New PASS: ' + new_pass
+                wifi(conf, new_ssid, new_pass)
+                page('wifi')
         elif 'regdim' in s:
             print 'Reglage DIM recu'
         elif s[3:] in room_list:
