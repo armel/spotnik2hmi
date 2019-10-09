@@ -147,7 +147,9 @@ while True:
     #
 
     s = hmi_read_line()
-    print 'Avant\t', s
+
+    print '--------------------'
+    print 'Avant\t: ', s
 
     s = s.replace('listdash', '')
     #s = ''.join(e for e in s if e.isalnum())
@@ -165,9 +167,9 @@ while True:
         else:
             whereis = 'eleswhere'
 
-    print 'Apres\t', s, s[-3:]
-    print 'Whereis\t', whereis
-    print 'Wifi\t', wifi_maj
+    print 'Apres\t: ', s, s[-3:]
+    print 'Whereis\t: ', whereis
+    print 'Wifi\t: ', wifi_maj
     print '--------------------'
 
     #
