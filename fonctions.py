@@ -129,7 +129,6 @@ def dtmf(code):
     b.write(code)
     print "code DTMF: " + code
     b.close()
-    return 0
 
 # Recuperation IP
 def get_ip():
