@@ -13,29 +13,18 @@
 #`--'  `--'  `------''--'   '--'   `--'   `--'        `-----' `--'  `--'   #
 #                                 TEAM: F0DEI,F5SWB,F8ASB      #    
 ############################################################################
-#import echolink
+
 import serial
 import time
 import os
 import sys
 import struct
-import subprocess
 import socket
 import fcntl
-import struct
-from datetime import  *
 import locale
-import mmap
-#partie dashboard
-import urllib2
-import ssl
-#pour lecture fichier de config
 import ConfigParser
-#pour adresse ip
 import socket
-#pour CPU
 import io
-#pour json
 import json
 from subprocess import Popen, PIPE
 
@@ -187,7 +176,7 @@ def wifi(conf, wifiid, wifipass):
     #write it back to the file
     with open(Json, 'w') as f:
         json.dump(config, f)
-        
+
 # Fonction set data
 def command(data, valeur):
     eof = '\xff\xff\xff'
