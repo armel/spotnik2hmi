@@ -234,9 +234,7 @@ while True:
                 command('dim', str(100))
             else:
                 command('dim', str(5))
-            if node_list != '':
-                print node_list
-                ecrire("trafic.g0.txt",node_list)
+            ecrire("trafic.g0.txt",node_list)
     #
     # Sinon gestion des interactions Nextion
     #
