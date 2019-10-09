@@ -79,7 +79,7 @@ def hmi_read_line():
     global port
     data = port.readline()
     data = data.split(eof)
-    print 'brute....' + data
+    print 'brute....', data
     return str(data[-1])
 
 # Fonction utilisation CPU
