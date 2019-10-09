@@ -323,6 +323,7 @@ while True:
                 print 'New PASS: ' + new_pass
                 wifi(conf, new_ssid, new_pass)
                 page('wifi')
+                wifi_maj = 0
         elif 'regdim' in s:
             print 'Reglage DIM recu'
         elif s[3:] in room_list:
