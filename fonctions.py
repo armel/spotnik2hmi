@@ -77,8 +77,10 @@ def requete(valeur):
 
 def hmi_read_line():
     global port
-    rcv = port.readline()
-    return str(rcv)
+    data = port.readline()
+    data = data.split(eof)
+    print 'brute....' + data
+    return str(data[-1])
 
 # Fonction utilisation CPU
 def get_cpu_usage():
