@@ -28,7 +28,7 @@ import io
 import json
 from subprocess import Popen, PIPE
 
-# Variables:
+# Variables
 eof = '\xff\xff\xff'
 port = 0 
 #Chemin fichier Json
@@ -173,13 +173,13 @@ def wifi(conf, wifiid, wifipass):
     cfg.set('wifi-security', 'psk', wifipass)
     cfg.write(open(conf,'w'))
 
-    #lecture de donnees JSON
+    # Lecture de donnees JSON
     with open(Json, 'r') as f:
         config = json.load(f)
-    #editer la donnee
+    # Editer la donnee
         config['wifi_ssid'] = wifiid
         config['wpa_key'] = wifipass
-    #write it back to the file
+    # Write it back to the file
     with open(Json, 'w') as f:
         json.dump(config, f)
 
@@ -219,11 +219,11 @@ def get_city():
 
 # Fonction Meteo Lecture des donnees Metar + envoi Nextion
 def get_meteo():
-    #recherche code IMAO dans config.json
+    # Recherche code IMAO dans config.json
     with open(Json, 'r') as b:
         afind= json.load(b)
         airport =afind['airport_code']
-    #Info ville Aéroport
+    # Info ville Aéroport
     print "Le code ICAO est: "+airport
     get_city()
 
@@ -233,11 +233,11 @@ def get_meteo():
 
     result = console('/opt/spotnik/python-metar/get_report.py '+ airport+ '>> /tmp/meteo.txt')
     print result
-    #routine ouverture fichier de config
+    # Routine ouverture fichier de config
     config = ConfigParser.RawConfigParser()
     config.read('/tmp/meteo.txt')
 
-    #recuperation indicatif et frequence
+    # Recuperation indicatif et frequence
     pression = config.get('rapport', 'pressure')
     temperature = config.get('rapport', 'temperature')
     rose = config.get('rapport', 'dew point')

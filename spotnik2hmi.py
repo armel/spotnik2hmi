@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#Parametrage port serie
 
 from fonctions import *
 
@@ -13,7 +12,7 @@ import os
 
 portcom(sys.argv[1],sys.argv[2])
 
-#Variables
+# Variables
 eof = '\xff\xff\xff'
 url = ''
 
@@ -114,13 +113,13 @@ print 'Station : ' + call_sign
 print 'Frequence : ' + frequency
 print 'Spotnik Version : ' + version
 
-#Reset ecran Nextion
+# Reset ecran Nextion
 
 reset_hmi()
 
 time.sleep(5);
 
-#envoi information systeme
+# Envoi information système
 print 'Maj Call : ' + call_sign
 ecrire('boot.va0.txt', str(call_sign))
 print 'Maj info disk : ' + disk_usage
@@ -211,7 +210,7 @@ while True:
         except:
             data = ''
 
-        # Controle si page Dashboard RRF ou TEC
+        # Détection call et list des links
 
         if tn in room_list:
             node_active = ''
