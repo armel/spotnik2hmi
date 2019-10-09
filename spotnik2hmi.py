@@ -273,7 +273,7 @@ while True:
             print 'New PASS: ' + new_pass
             wifi(conf, new_ssid, new_pass)
             page('wifi')
-        elif 'maj' in s and 'ouimajwifi' not in s:
+        elif 'maj' in s:
             print 'MAJ Wifi...'
             requete('get t0.txt')
             requete('get t1.txt')
