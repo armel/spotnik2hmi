@@ -4,14 +4,14 @@
 
 from fonctions import *
 
-import serial
-import sys
+#import serial
+#import sys
 import datetime
 import time
 import requests
 import ConfigParser, os
 import json
-import os
+#import os
 
 portcom(sys.argv[1],sys.argv[2])
 
