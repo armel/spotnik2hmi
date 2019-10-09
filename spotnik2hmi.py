@@ -81,10 +81,6 @@ if tn in ['default', 'sat']:
 else: 
     print 'Network Ok'
         
-# Reglage de luminosite
-rdim = 10   #ecran sans reception signal
-txdim = 80  #ecran avec reception station
-
 # Chemins fichiers
 svxconfig = '/etc/spotnik/svxlink.cfg'
 cheminversion = open('/etc/spotnik/version', 'r')
@@ -172,6 +168,7 @@ while True:
     print 'Apres >>>>>>>', s, s[-3:]
     print 'Whereis', whereis
     print 'Wifi', wifi_maj
+    print '-----'
 
     #
     # Si page trafic
