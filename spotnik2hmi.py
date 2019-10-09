@@ -11,7 +11,7 @@ import ConfigParser, os
 import json
 import os
 
-#portcom(sys.argv[1],sys.argv[2])
+portcom(sys.argv[1],sys.argv[2])
 
 #Variables
 eof = '\xff\xff\xff'
