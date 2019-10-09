@@ -78,7 +78,7 @@ def requete(valeur):
 def hmi_read_line():
     global port
     data = port.readline()
-    print data
+    print data, data[:-3]
     data = data.split(eof)
     print 'brute....', data
     return str(data[-1])
