@@ -153,7 +153,7 @@ while True:
     print 'Avant >>>>>>>', s
 
     s = s.replace('listdash', '')
-    s = ''.join(e for e in s if e.isalnum())
+    #s = ''.join(e for e in s if e.isalnum())
 
     if s != '':
         if s == 'qsyinter':         # Fix me !!!
