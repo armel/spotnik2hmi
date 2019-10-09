@@ -82,6 +82,11 @@ def hmi_read_line():
     print 'brute....', data
     return str(data[-1])
 
+def hmi_read_wifi():
+    global port
+    data = port.readline()
+    return str(data)
+
 # Fonction utilisation CPU
 def get_cpu_usage():
     return str(round(float(os.popen('''grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {print usage }' ''').readline()),2))
