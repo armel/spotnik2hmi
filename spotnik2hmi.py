@@ -165,7 +165,7 @@ while True:
         if 'trafic' in s:
             whereis = 'trafic'
         else:
-            whereis = 'eleswhere'
+            whereis = 'elsewhere'
 
     print 'Apres\t:', s, s[-3:]
     print 'Whereis\t:', whereis
